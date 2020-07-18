@@ -14,13 +14,16 @@
 		2D2F27E124C39354004C8D8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D2F27E024C39354004C8D8E /* Assets.xcassets */; };
 		2D2F27E424C39354004C8D8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D2F27E224C39354004C8D8E /* LaunchScreen.storyboard */; };
 		2D2F27FA24C39354004C8D8E /* CVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F27F924C39354004C8D8E /* CVUITests.swift */; };
+<<<<<<< HEAD
 		2D957C4924C3A274000BDC86 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = 2D957C4824C3A274000BDC86 /* Quick */; };
 		2D957C4D24C3A2D3000BDC86 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = 2D957C4C24C3A2D3000BDC86 /* Nimble */; };
+=======
 		2D2F281024C397BC004C8D8E /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F280F24C397BC004C8D8E /* ImageViewController.swift */; };
 		2D2F281224C399EF004C8D8E /* ImageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F281124C399EF004C8D8E /* ImageInteractor.swift */; };
 		2D2F281424C39A02004C8D8E /* ImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F281324C39A02004C8D8E /* ImagePresenter.swift */; };
 		2D957C4224C39E0B000BDC86 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D957C4124C39E0B000BDC86 /* ImageProvider.swift */; };
 		2D957C4624C3A039000BDC86 /* ImageInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D957C4524C3A039000BDC86 /* ImageInteractorTests.swift */; };
+>>>>>>> feature/image_scene
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
