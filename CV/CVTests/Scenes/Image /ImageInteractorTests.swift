@@ -20,8 +20,6 @@ import Nimble
 @testable import CV
 
 class ImageInteractorTests: QuickSpec {
-    var tested: ImageInteractor!
-    
     override func spec() {
         describe("ImageInteractor when loading image") {
             context("started") {
@@ -39,7 +37,6 @@ class ImageInteractorTests: QuickSpec {
                     let tested = ImageInteractor(presenter: ImagePresentationLogic.Dummy(), url: .stub, provider: imageProvider)
                     
                     tested.loadImage()
-                    
                     
                     expect(imageProvider.imageSpy.wasInvoked(with: .stub)) == true
                 }

@@ -21,8 +21,33 @@ protocol ImageProviding {
     func image(for url: URL, completion: @escaping (Result<UIImage, Error>) -> Void)
 }
 
-class ImageProvider: ImageProviding {
-    func image(for url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
-        
+final class ImageProvider: ImageProviding {
+    enum Error: Swift.Error {
+        case downloadingError(Swift.Error?)
+        case invalidData
+    }
+    
+    let urlSession: URLSession
+    
+    init(urlSession: URLSession = .shared) {
+        self.urlSession = urlSession
+    }
+    
+    func image(for url: URL, completion: @escaping (Result<UIImage, Swift.Error>) -> Void) {
+        let downloadTask = urlSession.downloadTask(with: url) { (fileUrl, response, error) in
+            guard let fileUrl = fileUrl else {
+                logger.error("Downloading failed with error: \(String(describing: error))")
+                completion(.failure(Error.downloadingError(error)))
+                return
+            }
+            logger.debug("Image downloaded at path: \(fileUrl)")
+            guard let image = UIImage(contentsOfFile: fileUrl.path) else {
+                logger.error("Cannot create an image from file at path: \(fileUrl.path)")
+                completion(.failure(Error.invalidData))
+                return
+            }
+            completion(.success(image))
+        }
+        downloadTask.resume()
     }
 }

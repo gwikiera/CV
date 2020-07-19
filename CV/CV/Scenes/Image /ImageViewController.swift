@@ -47,7 +47,6 @@ final class ImageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard isBeingPresented else { return }
         interactor.loadImage()
     }
 }
