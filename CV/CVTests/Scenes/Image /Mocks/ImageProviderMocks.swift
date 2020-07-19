@@ -16,20 +16,27 @@
 // limitations under the License.
     
 import UIKit
+@testable import CV
 
-protocol ImagePresentationLogic {
-    func presentLoading()
-    func presentImage(_ image: UIImage)
-    func presentError(_ error: Error)
-}
-
-final class ImagePresenter: ImagePresentationLogic {
-    func presentLoading() {
+enum ImageProviding {
+    // MARK: - Stub
+    class Stub: CV.ImageProviding {
+        lazy var imageStub = stub(of: image)
+        func image(for url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
+            imageStub(url, completion)
+        }
     }
     
-    func presentImage(_ image: UIImage) {
+    // MARK: - Spy
+    class Spy: CV.ImageProviding {
+        lazy var imageSpy = spyCompletion(of: image)
+        func image(for url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
+            imageSpy.register(with: url)
+        }
     }
 
-    func presentError(_ error: Error) {
+    // MARK: - Dummy
+    class Dummy: CV.ImageProviding {
+        func image(for url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {}
     }
 }

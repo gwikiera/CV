@@ -22,15 +22,27 @@ protocol ImageBusinessLogic {
 }
 
 final class ImageInteractor: ImageBusinessLogic {
+    let presenter: ImagePresentationLogic
     let url: URL
     let provider: ImageProviding
     
-    init(url: URL, provider: ImageProviding) {
+    init(presenter: ImagePresentationLogic,
+         url: URL,
+         provider: ImageProviding) {
+        self.presenter = presenter
         self.url = url
         self.provider = provider
     }
     
     func loadImage() {
-        
+        presenter.presentLoading()
+        provider.image(for: url) { [presenter] result in
+            switch result {
+            case .success(let image):
+                presenter.presentImage(image)
+            case .failure(let error):
+                presenter.presentError(error)
+            }
+        }
     }
 }

@@ -18,11 +18,11 @@
 import UIKit
 
 protocol ImageProviding {
-    func image(for url: URL, completion: (Result<UIImage, Error>) -> Void)
+    func image(for url: URL, completion: @escaping (Result<UIImage, Error>) -> Void)
 }
 
 class ImageProvider: ImageProviding {
-    func image(for url: URL, completion: (Result<UIImage, Error>) -> Void) {
+    func image(for url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
         
     }
 }

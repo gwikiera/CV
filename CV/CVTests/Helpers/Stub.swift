@@ -1,7 +1,7 @@
 //
-//  CV
+//  Workouts
 //
-//  Copyright 2020 - Grzegorz Wikiera - https://github.com/gwikiera
+//  Copyright 2019 - Grzegorz Wikiera - https://github.com/gwikiera
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,22 +14,17 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-    
-import UIKit
 
-protocol ImagePresentationLogic {
-    func presentLoading()
-    func presentImage(_ image: UIImage)
-    func presentError(_ error: Error)
+func stub<T>(of value: T) -> T {
+    return nil!
 }
 
-final class ImagePresenter: ImagePresentationLogic {
-    func presentLoading() {
-    }
-    
-    func presentImage(_ image: UIImage) {
-    }
+func dummy<T>() -> ((T) -> Void) {
+    return { _ in }
+}
 
-    func presentError(_ error: Error) {
+func stubCompletion<A, T>(with value: T) -> ((A, @escaping (T) -> Void) -> Void) {
+    return { _, completion in
+        completion(value)
     }
 }

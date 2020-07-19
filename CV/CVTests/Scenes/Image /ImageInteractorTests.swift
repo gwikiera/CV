@@ -15,14 +15,63 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
     
-import XCTest
+import Quick
+import Nimble
 @testable import CV
 
-class ImageInteractorTests: XCTestCase {
+class ImageInteractorTests: QuickSpec {
     var tested: ImageInteractor!
     
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    override func spec() {
+        describe("ImageInteractor when loading image") {
+            context("started") {
+                it("presents loading") {
+                    let presenter = ImagePresentationLogic.Spy()
+                    let tested = ImageInteractor(presenter: presenter, url: .stub, provider: ImageProviding.Dummy())
+                    
+                    tested.loadImage()
+                    
+                    expect(presenter.presentLoadingSpy.wasInvoked) == true
+                }
+                
+                it("asks for image") {
+                    let imageProvider = ImageProviding.Spy()
+                    let tested = ImageInteractor(presenter: ImagePresentationLogic.Dummy(), url: .stub, provider: imageProvider)
+                    
+                    tested.loadImage()
+                    
+                    
+                    expect(imageProvider.imageSpy.wasInvoked(with: .stub)) == true
+                }
+            }
+            
+            context("succeded") {
+                it("presents image") {
+                    let presenter = ImagePresentationLogic.Spy()
+                    let imageProvider = ImageProviding.Stub()
+                    imageProvider.imageStub = { url, completion in completion(.success(.stub)) }
+                    let tested = ImageInteractor(presenter: presenter, url: .stub, provider: imageProvider)
+                    
+                    tested.loadImage()
+                    
+                    expect(presenter.presentImageSpy.wasInvoked(with: .stub)) == true
+                }
+            }
+            
+            context("failed") {
+                it("presents error") {
+                    let error = ErrorStub()
+                    let presenter = ImagePresentationLogic.Spy()
+                    let imageProvider = ImageProviding.Stub()
+                    imageProvider.imageStub = { url, completion in completion(.failure(error)) }
+                    let tested = ImageInteractor(presenter: presenter, url: .stub, provider: imageProvider)
+                    
+                    tested.loadImage()
+                    
+                    expect(presenter.presentErrorSpy.wasInvoked) == true
+                    expect(presenter.presentErrorSpy.invokedParameters) === error
+                }
+            }
+        }
     }
 }
