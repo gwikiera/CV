@@ -26,6 +26,20 @@ protocol ImageViewLogic: AnyObject {
 final class ImageViewController: UIViewController {
     let interactor: ImageBusinessLogic
     
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = view.tintColor
+        view.center(view: activityIndicator)
+        return activityIndicator
+    }()
+    
+    private lazy var errorImage: UIImage? = {
+        let largeConfiguration = UIImage.SymbolConfiguration(scale: .large)
+        let errorImage = UIImage(systemName: "xmark.octagon.fill", withConfiguration: largeConfiguration)
+        return errorImage
+    }()
+    
     init(interactor: ImageBusinessLogic) {
         self.interactor = interactor
         
@@ -44,6 +58,13 @@ final class ImageViewController: UIViewController {
         self.view = UIImageView()
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        view.tintColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -53,14 +74,18 @@ final class ImageViewController: UIViewController {
 
 extension ImageViewController: ImageViewLogic {
     func displayLoading() {
-        
+        activityIndicator.startAnimating()
     }
     
     func displayImage(at imagePath: ImagePath) {
+        activityIndicator.stopAnimating()
         imageView.image = UIImage(contentsOfFile: imagePath)
+        imageView.contentMode = .scaleAspectFit
     }
     
     func displayErrorMessage(_ message: String) {
-
+        activityIndicator.stopAnimating()
+        imageView.image = errorImage
+        imageView.contentMode = .center
     }
 }
