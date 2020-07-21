@@ -204,7 +204,7 @@
 		2D2F280A24C39502004C8D8E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				2D2F280E24C39781004C8D8E /* Image  */,
+				2D2F280E24C39781004C8D8E /* Image */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -218,7 +218,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		2D2F280E24C39781004C8D8E /* Image  */ = {
+		2D2F280E24C39781004C8D8E /* Image */ = {
 			isa = PBXGroup;
 			children = (
 				2D2F27DB24C39352004C8D8E /* ViewController.swift */,
@@ -227,7 +227,7 @@
 				2D2F281324C39A02004C8D8E /* ImagePresenter.swift */,
 				2D2F280F24C397BC004C8D8E /* ImageViewController.swift */,
 			);
-			path = "Image ";
+			path = Image;
 			sourceTree = "<group>";
 		};
 		2D5BB3C224C45BBB006DE8E2 /* Workers */ = {
