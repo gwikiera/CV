@@ -27,7 +27,7 @@ final class ImageViewController: UIViewController {
     let interactor: ImageBusinessLogic
     
     private var imageView: UIImageView {
-        view as! UIImageView
+        view as! UIImageView //swiftlint:disable:this force_cast
     }
     
     private lazy var activityIndicator: UIActivityIndicatorView = {

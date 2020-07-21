@@ -16,7 +16,6 @@
 // limitations under the License.
     
 import UIKit
-import Files
 
 protocol ImageProviding {    
     func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Error>) -> Void)
@@ -64,7 +63,6 @@ final class ImageProvider: ImageProviding {
             case .success(let imagePath):
                 logger.debug("Image downloaded at path: \(imagePath).")
                 completion(.success(imagePath))
-                break
             case .failure(let error):
                 logger.debug("Image downloading failed, error: \(error).")
                 completion(.failure(error))
@@ -82,7 +80,7 @@ private extension ImageProvider {
     }
     
     func downloadImage(for url: URL, imageName: String, completion: @escaping (Result<ImagePath, Error>) -> Void) {
-        let downloadTask = urlSession.downloadTask(with: url) { (fileUrl, response, error) in
+        let downloadTask = urlSession.downloadTask(with: url) { (fileUrl, _, error) in
             guard let fileUrl = fileUrl else {
                 logger.error("Downloading failed with error: \(String(describing: error))")
                 DispatchQueue.main.async {
