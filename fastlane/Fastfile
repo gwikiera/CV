@@ -1,0 +1,10 @@
+default_platform(:ios)
+
+xcversion(version: "~> 11.5")
+
+platform :ios do
+  desc "Perform unit tests"
+  lane :test do
+	run_tests(scheme: "CV")
+  end
+end
