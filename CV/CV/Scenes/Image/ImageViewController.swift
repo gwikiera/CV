@@ -26,6 +26,10 @@ protocol ImageViewLogic: AnyObject {
 final class ImageViewController: UIViewController {
     let interactor: ImageBusinessLogic
     
+    private var imageView: UIImageView {
+        view as! UIImageView
+    }
+    
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .medium)
         activityIndicator.hidesWhenStopped = true
@@ -48,10 +52,6 @@ final class ImageViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private var imageView: UIImageView {
-        view as! UIImageView
     }
     
     override func loadView() {

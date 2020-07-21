@@ -1,7 +1,7 @@
 //
-//  Workouts
+//  CV
 //
-//  Copyright 2019 - Grzegorz Wikiera - https://github.com/gwikiera
+//  Copyright 2020 - Grzegorz Wikiera - https://github.com/gwikiera
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
