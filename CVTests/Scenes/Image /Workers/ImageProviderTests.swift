@@ -69,7 +69,7 @@ class ImageProviderTests: QuickSpec {
                     expect(try completionSpy.invokedParameters?.get()) == imagePath
                 }
                 
-                fit("returns the cached image") {                    
+                it("returns the cached image") {                    
                     tested.imagePath(for: url) { _ in }
 
                     tested.imagePath(for: url) { _ in
