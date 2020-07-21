@@ -19,8 +19,8 @@ import UIKit
 
 protocol ImageViewLogic: AnyObject {
     func displayLoading()
-    func display(imagePath: ImagePath)
-    func displayError(_ error: Error)
+    func displayImage(at imagePath: ImagePath)
+    func displayErrorMessage(_ message: String)
 }
 
 final class ImageViewController: UIViewController {
@@ -56,11 +56,11 @@ extension ImageViewController: ImageViewLogic {
         
     }
     
-    func display(imagePath: ImagePath) {
+    func displayImage(at imagePath: ImagePath) {
         imageView.image = UIImage(contentsOfFile: imagePath)
     }
     
-    func displayError(_ error: Error) {
-        
+    func displayErrorMessage(_ message: String) {
+
     }
 }

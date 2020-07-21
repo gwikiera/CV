@@ -17,7 +17,10 @@
 
 import UIKit
 
-class ErrorStub: Error {
+class ErrorStub: Error, LocalizedError {
+    var errorDescription: String? {
+        "errorDescription"
+    }
 }
 
 extension URL {

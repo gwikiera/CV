@@ -39,7 +39,7 @@ final class ImageInteractor: ImageBusinessLogic {
         provider.imagePath(for: imageUrl) { [presenter] result in
             switch result {
             case .success(let image):
-                presenter.presentImage(image)
+                presenter.presentImage(at: image)
             case .failure(let error):
                 presenter.presentError(error)
             }

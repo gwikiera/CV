@@ -21,7 +21,7 @@ typealias ImagePath = String
 
 protocol ImagePresentationLogic {
     func presentLoading()
-    func presentImage(_ imagePath: ImagePath)
+    func presentImage(at imagePath: ImagePath)
     func presentError(_ error: Error)
 }
 
@@ -32,11 +32,11 @@ final class ImagePresenter: ImagePresentationLogic {
         view.displayLoading()
     }
     
-    func presentImage(_ imagePath: ImagePath) {
-        view.display(imagePath: imagePath)
+    func presentImage(at imagePath: ImagePath) {
+        view.displayImage(at: imagePath)
     }
 
     func presentError(_ error: Error) {
-        view.displayError(error)
+        view.displayErrorMessage(error.localizedDescription)
     }
 }

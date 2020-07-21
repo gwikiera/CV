@@ -14,29 +14,26 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-    
+
 import Foundation
 @testable import CV
 
-enum ImageProviding {
-    // MARK: - Stub
-    class Stub: CV.ImageProviding {
-        lazy var imagePathStub = stub(of: imagePath)
-        func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Error>) -> Void) {
-            imagePathStub(url, completion)
-        }
-    }
-    
+enum ImageViewLogic {
     // MARK: - Spy
-    class Spy: CV.ImageProviding {
-        lazy var imagePathSpy = spyCompletion(of: imagePath)
-        func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Error>) -> Void) {
-            imagePathSpy.register(with: url)
+    class Spy: CV.ImageViewLogic {
+        lazy var displayLoadingSpy = spy(of: displayLoading)
+        func displayLoading() {
+            displayLoadingSpy.register()
         }
-    }
-
-    // MARK: - Dummy
-    class Dummy: CV.ImageProviding {
-        func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Error>) -> Void) {}
+        
+        lazy var displayImageSpy = spy(of: displayImage)
+        func displayImage(at imagePath: ImagePath) {
+            displayImageSpy.register(with: imagePath)
+        }
+        
+        lazy var displayErrorMessageSpy = spy(of: displayErrorMessage)
+        func displayErrorMessage(_ message: String) {
+            displayErrorMessageSpy.register(with: message)
+        }
     }
 }

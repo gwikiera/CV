@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D2BB9C924C6F88200235BE9 /* ImagePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2BB9C824C6F88200235BE9 /* ImagePresenterTests.swift */; };
+		2D2BB9CB24C6F8F600235BE9 /* ImageViewLogicMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2BB9CA24C6F8F600235BE9 /* ImageViewLogicMocks.swift */; };
 		2D2D0A8324C4515B0023FA22 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 2D2D0A8224C4515B0023FA22 /* Logging */; };
 		2D2D0A8524C452A00023FA22 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D0A8424C452A00023FA22 /* Logger.swift */; };
 		2D2F27D824C39352004C8D8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F27D724C39352004C8D8E /* AppDelegate.swift */; };
@@ -56,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D2BB9C824C6F88200235BE9 /* ImagePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePresenterTests.swift; sourceTree = "<group>"; };
+		2D2BB9CA24C6F8F600235BE9 /* ImageViewLogicMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewLogicMocks.swift; sourceTree = "<group>"; };
 		2D2D0A8424C452A00023FA22 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2D2F27D424C39352004C8D8E /* CV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2F27D724C39352004C8D8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 				2D5BB3C224C45BBB006DE8E2 /* Workers */,
 				2DDFEAE324C3A5C200E016BC /* Mocks */,
 				2D957C4524C3A039000BDC86 /* ImageInteractorTests.swift */,
+				2D2BB9C824C6F88200235BE9 /* ImagePresenterTests.swift */,
 			);
 			path = "Image ";
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 			children = (
 				2DDFEAE424C3A5E500E016BC /* ImagePresenterMocks.swift */,
 				2DDFEAE824C42CE300E016BC /* ImageProviderMocks.swift */,
+				2D2BB9CA24C6F8F600235BE9 /* ImageViewLogicMocks.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -470,7 +476,9 @@
 				2DDFEAE924C42CE300E016BC /* ImageProviderMocks.swift in Sources */,
 				2D5BB3C424C45BD1006DE8E2 /* ImageProviderTests.swift in Sources */,
 				2DDFEAE224C3A5A700E016BC /* Stub.swift in Sources */,
+				2D2BB9CB24C6F8F600235BE9 /* ImageViewLogicMocks.swift in Sources */,
 				2D957C4624C3A039000BDC86 /* ImageInteractorTests.swift in Sources */,
+				2D2BB9C924C6F88200235BE9 /* ImagePresenterTests.swift in Sources */,
 				2DDFEAE724C42CA400E016BC /* Stubs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
