@@ -19,6 +19,7 @@
 		2D2F281024C397BC004C8D8E /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F280F24C397BC004C8D8E /* ImageViewController.swift */; };
 		2D2F281224C399EF004C8D8E /* ImageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F281124C399EF004C8D8E /* ImageInteractor.swift */; };
 		2D2F281424C39A02004C8D8E /* ImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F281324C39A02004C8D8E /* ImagePresenter.swift */; };
+		2D4BEB4324C5B60900F6DE8A /* CVStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4BEB4224C5B60900F6DE8A /* CVStubs.swift */; };
 		2D5BB3C424C45BD1006DE8E2 /* ImageProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BB3C324C45BD1006DE8E2 /* ImageProviderTests.swift */; };
 		2D5BB3C924C4647B006DE8E2 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D5BB3C824C4647B006DE8E2 /* empty.json */; };
 		2D5BB3CB24C464A7006DE8E2 /* TestsFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BB3CA24C464A7006DE8E2 /* TestsFiles.swift */; };
@@ -72,6 +73,7 @@
 		2D2F280F24C397BC004C8D8E /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		2D2F281124C399EF004C8D8E /* ImageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInteractor.swift; sourceTree = "<group>"; };
 		2D2F281324C39A02004C8D8E /* ImagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePresenter.swift; sourceTree = "<group>"; };
+		2D4BEB4224C5B60900F6DE8A /* CVStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVStubs.swift; sourceTree = "<group>"; };
 		2D5BB3C324C45BD1006DE8E2 /* ImageProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProviderTests.swift; sourceTree = "<group>"; };
 		2D5BB3C824C4647B006DE8E2 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		2D5BB3CA24C464A7006DE8E2 /* TestsFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsFiles.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				2DDFEADF24C3A5A700E016BC /* Spy.swift */,
 				2DDFEAE024C3A5A700E016BC /* Stub.swift */,
 				2DDFEAE624C42CA400E016BC /* Stubs.swift */,
+				2D4BEB4224C5B60900F6DE8A /* CVStubs.swift */,
 				2D5BB3CA24C464A7006DE8E2 /* TestsFiles.swift */,
 			);
 			path = "Tests Helpers";
@@ -462,6 +465,7 @@
 			files = (
 				2DDFEAE524C3A5E500E016BC /* ImagePresenterMocks.swift in Sources */,
 				2D5BB3CB24C464A7006DE8E2 /* TestsFiles.swift in Sources */,
+				2D4BEB4324C5B60900F6DE8A /* CVStubs.swift in Sources */,
 				2DDFEAE124C3A5A700E016BC /* Spy.swift in Sources */,
 				2DDFEAE924C42CE300E016BC /* ImageProviderMocks.swift in Sources */,
 				2D5BB3C424C45BD1006DE8E2 /* ImageProviderTests.swift in Sources */,

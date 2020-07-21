@@ -21,22 +21,22 @@ import UIKit
 enum ImageProviding {
     // MARK: - Stub
     class Stub: CV.ImageProviding {
-        lazy var imageStub = stub(of: image)
-        func image(for url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
-            imageStub(url, completion)
+        lazy var imagePathStub = stub(of: imagePath)
+        func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Error>) -> Void) {
+            imagePathStub(url, completion)
         }
     }
     
     // MARK: - Spy
     class Spy: CV.ImageProviding {
-        lazy var imageSpy = spyCompletion(of: image)
-        func image(for url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
-            imageSpy.register(with: url)
+        lazy var imagePathSpy = spyCompletion(of: imagePath)
+        func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Error>) -> Void) {
+            imagePathSpy.register(with: url)
         }
     }
 
     // MARK: - Dummy
     class Dummy: CV.ImageProviding {
-        func image(for url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {}
+        func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Error>) -> Void) {}
     }
 }

@@ -15,28 +15,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
     
-import UIKit
 
-typealias ImagePath = String
+@testable import CV
 
-protocol ImagePresentationLogic {
-    func presentLoading()
-    func presentImage(_ imagePath: ImagePath)
-    func presentError(_ error: Error)
-}
-
-final class ImagePresenter: ImagePresentationLogic {
-    weak var view: ImageViewLogic!
-    
-    func presentLoading() {
-        view.displayLoading()
-    }
-    
-    func presentImage(_ imagePath: ImagePath) {
-        view.display(imagePath: imagePath)
-    }
-
-    func presentError(_ error: Error) {
-        view.displayError(error)
-    }
+extension ImagePath {
+    static var stub: ImagePath = ""
 }

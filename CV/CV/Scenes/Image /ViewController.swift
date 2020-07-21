@@ -32,9 +32,10 @@ class ViewController: UIViewController {
         let imagePresenter = ImagePresenter()
         let imageProvider = ImageProvider()
         let imageInteractor = ImageInteractor(presenter: imagePresenter,
-                                              url: url,
+                                              imageUrl: url,
                                               provider: imageProvider)
         let imageViewController = ImageViewController(interactor: imageInteractor)
+        imagePresenter.view = imageViewController
         embed(viewController: imageViewController)
     }
 }

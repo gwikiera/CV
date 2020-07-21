@@ -27,45 +27,60 @@ class ImageProviderTests: QuickSpec {
                 it("calls completion with downloading error") {
                     let url = URL.stub
                     let tested = ImageProvider()
-                    let completionSpy: Spy<Result<UIImage, Error>> = .init()
+                    let completionSpy: Spy<Result<ImagePath, Error>> = .init()
                     
-                    tested.image(for: url) { result in
+                    tested.imagePath(for: url) { result in
                         completionSpy.register(with: result)
                     }
                     
                     expect(completionSpy.wasInvoked).toEventually(beTrue())
-                    expect(try completionSpy.invokedParameters?.get()).to(throwError(ImageProvider.Error.downloadingError(nil)))
-                }
-            }
-            
-            context("for invalid data url") {
-                it("calls completion with invalid data error") {
-                    let url = JSON.empty.url
-                    let tested = ImageProvider()
-                    let completionSpy: Spy<Result<UIImage, Error>> = .init()
-                    
-                    tested.image(for: url) { result in
-                        completionSpy.register(with: result)
-                    }
-                    
-                    expect(completionSpy.wasInvoked).toEventually(beTrue())
-                    expect(try completionSpy.invokedParameters?.get()).to(throwError(ImageProvider.Error.invalidData))
+                    expect(try completionSpy.invokedParameters?.get()).toEventually(throwError(ImageProvider.Error.downloadingError(nil)))
                 }
             }
             
             context("for image url") {
-                it("calls completion with image data") {
-                    let url = Image.whitePixel.url
-                    let tested = ImageProvider()
-                    let completionSpy: Spy<Result<UIImage, Error>> = .init()
-                    
-                    tested.image(for: url) { result in
+                let url = Image.whitePixel.url
+                let fileManager = FileManager.default
+
+                var storagePath: String!
+                var imagePath: ImagePath!
+                var tested: ImageProvider!
+                var completionSpy: Spy<Result<ImagePath, Error>>!
+
+                beforeEach {
+                    storagePath = NSTemporaryDirectory() + UUID().uuidString + "/"
+                    try! fileManager.createDirectory(atPath: storagePath, withIntermediateDirectories: true, attributes: nil)
+                    imagePath = storagePath + url.lastPathComponent
+                    tested = ImageProvider(storagePath: storagePath)
+                    completionSpy = .init()
+                }
+                
+                afterEach {
+                    try! fileManager.removeItem(atPath: storagePath)
+                }
+                
+                it("downloads the image") {
+                    tested.imagePath(for: url) { result in
                         completionSpy.register(with: result)
                     }
                     
                     expect(completionSpy.wasInvoked).toEventually(beTrue())
                     expect(try completionSpy.invokedParameters?.get()).toNot(throwError())
-                    expect(try completionSpy.invokedParameters?.get()).toNot(beNil())
+                    expect(try completionSpy.invokedParameters?.get()) == imagePath
+                }
+                
+                fit("returns the cached image") {                    
+                    tested.imagePath(for: url) { _ in }
+
+                    tested.imagePath(for: url) { _ in
+                        tested.imagePath(for: url) { result in
+                            completionSpy.register(with: result)
+                        }
+                    }
+                    
+                    expect(completionSpy.wasInvoked).toEventually(beTrue())
+                    expect(try completionSpy.invokedParameters?.get()).toNot(throwError())
+                    expect(try completionSpy.invokedParameters?.get()) == imagePath
                 }
             }
         }

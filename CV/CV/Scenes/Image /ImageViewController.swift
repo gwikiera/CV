@@ -17,9 +17,9 @@
     
 import UIKit
 
-protocol ImageViewLogic {
+protocol ImageViewLogic: AnyObject {
     func displayLoading()
-    func display(image: URL)
+    func display(imagePath: ImagePath)
     func displayError(_ error: Error)
 }
 
@@ -48,5 +48,19 @@ final class ImageViewController: UIViewController {
         super.viewWillAppear(animated)
         
         interactor.loadImage()
+    }
+}
+
+extension ImageViewController: ImageViewLogic {
+    func displayLoading() {
+        
+    }
+    
+    func display(imagePath: ImagePath) {
+        imageView.image = UIImage(contentsOfFile: imagePath)
+    }
+    
+    func displayError(_ error: Error) {
+        
     }
 }

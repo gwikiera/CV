@@ -16,38 +16,113 @@
 // limitations under the License.
     
 import UIKit
+import Files
 
-protocol ImageProviding {
-    func image(for url: URL, completion: @escaping (Result<UIImage, Error>) -> Void)
+protocol ImageProviding {    
+    func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Error>) -> Void)
 }
 
 final class ImageProvider: ImageProviding {
     enum Error: Swift.Error {
         case downloadingError(Swift.Error?)
-        case invalidData
+        case imageStoringError(Swift.Error?)
     }
     
+    let fileManager: FileManager
+    let storagePath: String
     let urlSession: URLSession
-    
-    init(urlSession: URLSession = .shared) {
+
+    init(fileManager: FileManager = .default,
+         storagePath: String,
+         urlSession: URLSession = .shared) {
+        self.fileManager = fileManager
+        self.storagePath = storagePath
         self.urlSession = urlSession
     }
     
-    func image(for url: URL, completion: @escaping (Result<UIImage, Swift.Error>) -> Void) {
+    convenience init(fileManager: FileManager = .default,
+                     urlSession: URLSession = .shared) {
+        guard let storagePath = fileManager.urls(for: .cachesDirectory, in: .allDomainsMask).first else {
+            fatalError("Cannot find caches directory.")
+        }
+        self.init(fileManager: fileManager, storagePath: storagePath.path, urlSession: urlSession)
+    }
+    
+    func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Swift.Error>) -> Void) {
+        let fileName = !url.lastPathComponent.isEmpty ? url.lastPathComponent : String(url.hashValue)
+        
+        if let imagePath = storedImagePathForImage(named: fileName) {
+            logger.debug("Providing stored path: '\(imagePath) for image named: \(fileName).")
+            completion(.success(imagePath))
+            return
+        }
+        
+        logger.debug("No stored image found, starting downloading image from url \(url).")
+
+        downloadImage(for: url, imageName: fileName) { result in
+            switch result {
+            case .success(let imagePath):
+                logger.debug("Image downloaded at path: \(imagePath).")
+                completion(.success(imagePath))
+                break
+            case .failure(let error):
+                logger.debug("Image downloading failed, error: \(error).")
+                completion(.failure(error))
+                return
+            }
+        }
+    }
+}
+
+private extension ImageProvider {
+    func storedImagePathForImage(named imageName: String) -> ImagePath? {
+        let imagePath = pathForImage(named: imageName)
+        guard fileManager.isReadableFile(atPath: imagePath) else { return nil }
+        return imagePath
+    }
+    
+    func downloadImage(for url: URL, imageName: String, completion: @escaping (Result<ImagePath, Error>) -> Void) {
         let downloadTask = urlSession.downloadTask(with: url) { (fileUrl, response, error) in
             guard let fileUrl = fileUrl else {
                 logger.error("Downloading failed with error: \(String(describing: error))")
-                completion(.failure(Error.downloadingError(error)))
+                DispatchQueue.main.async {
+                    completion(.failure(.downloadingError(error)))
+                }
                 return
             }
-            logger.debug("Image downloaded at path: \(fileUrl)")
-            guard let image = UIImage(contentsOfFile: fileUrl.path) else {
-                logger.error("Cannot create an image from file at path: \(fileUrl.path)")
-                completion(.failure(Error.invalidData))
-                return
+            
+            let storeResult = self.storeImage(named: imageName, sourceUrl: fileUrl)
+            DispatchQueue.main.async {
+                completion(storeResult)
             }
-            completion(.success(image))
         }
         downloadTask.resume()
+    }
+
+    func storeImage(named imageName: String, sourceUrl: URL) -> Result<ImagePath, Error> {
+        let imagePath = pathForImage(named: imageName)
+        if fileManager.fileExists(atPath: imagePath) {
+            do {
+                try fileManager.removeItem(atPath: imagePath)
+            } catch {
+                logger.error("Cannot delete file at path:\(imagePath).\nError: \(error).")
+                return .failure(.imageStoringError(error))
+            }
+        }
+        
+        let destinationUrl = URL(fileURLWithPath: imagePath)
+
+        do {
+            try fileManager.moveItem(at: sourceUrl, to: destinationUrl)
+        } catch {
+            logger.error("Cannot copy file from path:\(sourceUrl) to path: \(destinationUrl).\nError: \(error).")
+            return .failure(.imageStoringError(error))
+        }
+        
+        return .success(imagePath)
+    }
+    
+    func pathForImage(named imageName: String) -> ImagePath {
+        return storagePath + imageName
     }
 }
