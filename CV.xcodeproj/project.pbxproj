@@ -204,6 +204,7 @@
 		2D2F280A24C39502004C8D8E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				2D2F27DB24C39352004C8D8E /* ViewController.swift */,
 				2D2F280E24C39781004C8D8E /* Image */,
 			);
 			path = Scenes;
@@ -221,7 +222,6 @@
 		2D2F280E24C39781004C8D8E /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				2D2F27DB24C39352004C8D8E /* ViewController.swift */,
 				2D957C4024C39DF4000BDC86 /* Workers */,
 				2D2F281124C399EF004C8D8E /* ImageInteractor.swift */,
 				2D2F281324C39A02004C8D8E /* ImagePresenter.swift */,
