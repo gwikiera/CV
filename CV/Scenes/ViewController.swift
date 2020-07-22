@@ -18,6 +18,36 @@
 import UIKit
 import Logging
 
+struct ViewModel {
+    struct ContactItem {
+        let name: String
+        let value: String
+    }
+        
+    struct AdditionalInfoItem {
+        let title: String
+        let content: String
+    }
+    
+    struct CarrerSection {
+        let title: String
+        let items: [CarrerItem]
+    }
+    
+    struct CarrerItem {
+        let title: String
+        let subtitle: String
+        let description: String
+    }
+    
+    let fullname: String
+    let imageURL: URL
+    let introduction: String
+    let contactItems: [ContactItem]
+    let carrerHistory: [CarrerSection]
+    let additionalInfo: [AdditionalInfoItem]
+}
+
 class ViewController: UICollectionViewController {
 }
 
