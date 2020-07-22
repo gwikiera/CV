@@ -18,12 +18,19 @@
 import UIKit
 import Logging
 
-class ViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
+class ViewController: UICollectionViewController {
+}
+
+extension ViewController {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        1
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ViewControllerCell", for: indexPath)
         
         guard let path = Bundle.main.path(forResource: "Profile", ofType: "jpeg") else {
-            return
+            return cell
         }
         logger.debug("Loading image at path: \(path)")
         
@@ -36,6 +43,13 @@ class ViewController: UIViewController {
                                               provider: imageProvider)
         let imageViewController = ImageViewController(interactor: imageInteractor)
         imagePresenter.view = imageViewController
-        embed(viewController: imageViewController)
+        embed(viewController: imageViewController, containerView: cell.contentView)
+        return cell
+    }
+}
+
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        .init(width: 300, height: 300)
     }
 }
