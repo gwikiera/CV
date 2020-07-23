@@ -18,63 +18,53 @@
 import UIKit
 import Logging
 
-struct ViewModel {
-    struct ContactItem {
-        let name: String
-        let value: String
-    }
-        
-    struct AdditionalInfoItem {
-        let title: String
-        let content: String
-    }
-    
-    struct CarrerSection {
-        let title: String
-        let items: [CarrerItem]
-    }
-    
-    struct CarrerItem {
-        let title: String
-        let subtitle: String
-        let description: String
-    }
-    
-    let fullname: String
-    let imageURL: URL
-    let introduction: String
-    let contactItems: [ContactItem]
-    let carrerHistory: [CarrerSection]
-    let additionalInfo: [AdditionalInfoItem]
-}
-
 class ViewController: UICollectionViewController {
-}
-
-extension ViewController {
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
+    enum Section: Int, Hashable, CaseIterable {
+        case image
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ViewControllerCell", for: indexPath)
+    enum Item: Hashable {
+        case image(URL)
+    }
+    
+    private var viewModel: ViewModel?
+    private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        guard let path = Bundle.main.path(forResource: "Profile", ofType: "jpeg") else {
-            return cell
-        }
-        logger.debug("Loading image at path: \(path)")
+        display(viewModel: .example)
+    }
+    
+    func display(viewModel: ViewModel) {
+        self.viewModel = viewModel
         
-        let url = URL(fileURLWithPath: path)
-
-        let imagePresenter = ImagePresenter()
-        let imageProvider = ImageProvider()
-        let imageInteractor = ImageInteractor(presenter: imagePresenter,
-                                              imageUrl: url,
-                                              provider: imageProvider)
-        let imageViewController = ImageViewController(interactor: imageInteractor)
-        imagePresenter.view = imageViewController
-        embed(viewController: imageViewController, containerView: cell.contentView)
-        return cell
+        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
+            guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
+            switch section {
+            case .image:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ViewControllerCell", for: indexPath)
+                if case .image(let url) = item {
+                    let imagePresenter = ImagePresenter()
+                    let imageProvider = ImageProvider()
+                    let imageInteractor = ImageInteractor(presenter: imagePresenter,
+                                                          imageUrl: url,
+                                                          provider: imageProvider)
+                    let imageViewController = ImageViewController(interactor: imageInteractor)
+                    imagePresenter.view = imageViewController
+                    self.embed(viewController: imageViewController, containerView: cell.contentView)
+                }
+                
+                return cell
+            }
+        })
+        
+        collectionView.dataSource = dataSource
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        snapshot.appendSections(Section.allCases)
+        snapshot.appendItems([Item.image(viewModel.imageURL)], toSection: .image)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
 }
 
