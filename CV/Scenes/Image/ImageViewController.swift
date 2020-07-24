@@ -89,3 +89,50 @@ extension ImageViewController: ImageViewLogic {
         imageView.contentMode = .center
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+struct ImageInteractorDummy: ImageBusinessLogic {
+    func loadImage() {}
+}
+
+struct ImageViewRepresentable: UIViewRepresentable {
+    enum Mode: CaseIterable {
+        case loading, error, image
+    }
+    
+    let mode: Mode
+    
+    func makeUIView(context: Context) -> UIView {
+        let viewController = ImageViewController(interactor: ImageInteractorDummy())
+        switch mode {
+        case .loading:
+            viewController.displayLoading()
+        case .error:
+            viewController.displayErrorMessage("error message")
+        case .image:
+            viewController.displayImage(at: Bundle.main.path(forResource: "Profile", ofType: "jpeg")!)
+        }
+        return viewController.view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {}
+}
+
+struct ImageViewRepresentable_Preview: PreviewProvider { //swiftlint:disable:this type_name
+    static var devices = ["iPhone SE", "iPhone XS Max", "iPad Pro (11-inch)"]
+
+    static var previews: some View {
+        Group {
+            ForEach(devices, id: \.self) { name in
+                ForEach(ImageViewRepresentable.Mode.allCases, id: \.self) { mode in
+                    ImageViewRepresentable(mode: mode)
+                       .previewDevice(PreviewDevice(rawValue: name))
+                       .previewDisplayName(name)
+                }
+            }
+        }
+    }
+}
+#endif
