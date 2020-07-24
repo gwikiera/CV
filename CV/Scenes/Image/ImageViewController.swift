@@ -128,8 +128,8 @@ struct ImageViewRepresentable_Preview: PreviewProvider { //swiftlint:disable:thi
             ForEach(devices, id: \.self) { name in
                 ForEach(ImageViewRepresentable.Mode.allCases, id: \.self) { mode in
                     ImageViewRepresentable(mode: mode)
-                       .previewDevice(PreviewDevice(rawValue: name))
-                       .previewDisplayName(name)
+                        .previewDevice(PreviewDevice(rawValue: name))
+                        .previewDisplayName(name)
                 }
             }
         }
