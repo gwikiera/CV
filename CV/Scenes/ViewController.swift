@@ -53,3 +53,29 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         .init(width: 300, height: 300)
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+struct ViewRepresentable: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+        UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ViewController").view
+    }
+    
+    func updateUIView(_ view: UIView, context: Context) {}
+}
+
+struct ViewRepresentable_Preview: PreviewProvider { //swiftlint:disable:this type_name
+    static var devices = ["iPhone SE", "iPhone XS Max", "iPad Pro (11-inch)"]
+
+    static var previews: some View {
+        Group {
+            ForEach(devices, id: \.self) { name in
+                ViewRepresentable()
+                    .previewDevice(PreviewDevice(rawValue: name))
+                    .previewDisplayName(name)
+            }
+        }
+    }
+}
+#endif
