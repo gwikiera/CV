@@ -19,16 +19,8 @@ import UIKit
 import Logging
 
 class ViewController: UICollectionViewController {
-    enum Section: Int, Hashable, CaseIterable {
-        case image
-    }
-    
-    enum Item: Hashable {
-        case image(URL)
-    }
-    
     private var viewModel: ViewModel?
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
+    private var dataSource: UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -39,12 +31,12 @@ class ViewController: UICollectionViewController {
     func display(viewModel: ViewModel) {
         self.viewModel = viewModel
         
-        dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
-            guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
+        dataSource = UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
+            guard let section = DataSource.Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ViewControllerCell", for: indexPath)
             switch section {
             case .image:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ViewControllerCell", for: indexPath)
-                if case .image(let url) = item {
+                if let sectionItem = item as? DataSource.ImageSectionItem, case .url(let url) = sectionItem {
                     let imagePresenter = ImagePresenter()
                     let imageProvider = ImageProvider()
                     let imageInteractor = ImageInteractor(presenter: imagePresenter,
@@ -54,16 +46,15 @@ class ViewController: UICollectionViewController {
                     imagePresenter.view = imageViewController
                     self.embed(viewController: imageViewController, containerView: cell.contentView)
                 }
-                
-                return cell
+            default:
+                break
             }
+            return cell
         })
         
         collectionView.dataSource = dataSource
         
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
-        snapshot.appendSections(Section.allCases)
-        snapshot.appendItems([Item.image(viewModel.imageURL)], toSection: .image)
+        let snapshot = DataSource.snapshot(from: viewModel)
         dataSource?.apply(snapshot, animatingDifferences: false)
     }
 }
