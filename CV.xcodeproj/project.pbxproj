@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D1C272E24CB24C600787E61 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C272D24CB24C600787E61 /* DataSource.swift */; };
+		2D1C273024CB283000787E61 /* DataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C272F24CB283000787E61 /* DataSourceTests.swift */; };
 		2D2BB9C924C6F88200235BE9 /* ImagePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2BB9C824C6F88200235BE9 /* ImagePresenterTests.swift */; };
 		2D2BB9CB24C6F8F600235BE9 /* ImageViewLogicMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2BB9CA24C6F8F600235BE9 /* ImageViewLogicMocks.swift */; };
 		2D2D0A8324C4515B0023FA22 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 2D2D0A8224C4515B0023FA22 /* Logging */; };
@@ -38,6 +40,7 @@
 		2DDFEAEE24C44DE200E016BC /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFEAED24C44DE200E016BC /* UIView.swift */; };
 		2DDFEAF124C44E8300E016BC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFEAF024C44E8300E016BC /* UIViewController.swift */; };
 		2DE5CD2724C467B400824F46 /* whitePixel.png in Resources */ = {isa = PBXBuildFile; fileRef = 2DE5CD2624C467B400824F46 /* whitePixel.png */; };
+		2DFAFE6C24C9693D00E84DC9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFAFE6B24C9693D00E84DC9 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D1C272D24CB24C600787E61 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		2D1C272F24CB283000787E61 /* DataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceTests.swift; sourceTree = "<group>"; };
 		2D2BB9C824C6F88200235BE9 /* ImagePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePresenterTests.swift; sourceTree = "<group>"; };
 		2D2BB9CA24C6F8F600235BE9 /* ImageViewLogicMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewLogicMocks.swift; sourceTree = "<group>"; };
 		2D2D0A8424C452A00023FA22 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -92,6 +97,7 @@
 		2DDFEAED24C44DE200E016BC /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		2DDFEAF024C44E8300E016BC /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		2DE5CD2624C467B400824F46 /* whitePixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whitePixel.png; sourceTree = "<group>"; };
+		2DFAFE6B24C9693D00E84DC9 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				2D2F27DB24C39352004C8D8E /* ViewController.swift */,
+				2DFAFE6B24C9693D00E84DC9 /* ViewModel.swift */,
+				2D1C272D24CB24C600787E61 /* DataSource.swift */,
 				2D2F280E24C39781004C8D8E /* Image */,
 			);
 			path = Scenes;
@@ -258,6 +266,7 @@
 		2D957C4324C3A00D000BDC86 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				2D1C272F24CB283000787E61 /* DataSourceTests.swift */,
 				2D957C4424C3A01E000BDC86 /* Image  */,
 			);
 			path = Scenes;
@@ -477,9 +486,11 @@
 				2DDFEAEE24C44DE200E016BC /* UIView.swift in Sources */,
 				2D2F281224C399EF004C8D8E /* ImageInteractor.swift in Sources */,
 				2DDFEAF124C44E8300E016BC /* UIViewController.swift in Sources */,
+				2DFAFE6C24C9693D00E84DC9 /* ViewModel.swift in Sources */,
 				2D2F27DC24C39352004C8D8E /* ViewController.swift in Sources */,
 				2D2F27D824C39352004C8D8E /* AppDelegate.swift in Sources */,
 				2D2D0A8524C452A00023FA22 /* Logger.swift in Sources */,
+				2D1C272E24CB24C600787E61 /* DataSource.swift in Sources */,
 				2D2F281024C397BC004C8D8E /* ImageViewController.swift in Sources */,
 				2D2F281424C39A02004C8D8E /* ImagePresenter.swift in Sources */,
 				2D957C4224C39E0B000BDC86 /* ImageProvider.swift in Sources */,
@@ -497,6 +508,7 @@
 				2DDFEAE124C3A5A700E016BC /* Spy.swift in Sources */,
 				2DDFEAE924C42CE300E016BC /* ImageProviderMocks.swift in Sources */,
 				2D5BB3C424C45BD1006DE8E2 /* ImageProviderTests.swift in Sources */,
+				2D1C273024CB283000787E61 /* DataSourceTests.swift in Sources */,
 				2DDFEAE224C3A5A700E016BC /* Stub.swift in Sources */,
 				2D2BB9CB24C6F8F600235BE9 /* ImageViewLogicMocks.swift in Sources */,
 				2D957C4624C3A039000BDC86 /* ImageInteractorTests.swift in Sources */,

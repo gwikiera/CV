@@ -19,32 +19,43 @@ import UIKit
 import Logging
 
 class ViewController: UICollectionViewController {
-}
-
-extension ViewController {
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        1
+    private var viewModel: ViewModel?
+    private var dataSource: UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        display(viewModel: .example)
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ViewControllerCell", for: indexPath)
+    func display(viewModel: ViewModel) {
+        self.viewModel = viewModel
         
-        guard let path = Bundle.main.path(forResource: "Profile", ofType: "jpeg") else {
+        dataSource = UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
+            guard let section = DataSource.Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ViewControllerCell", for: indexPath)
+            switch section {
+            case .image:
+                if let sectionItem = item as? DataSource.ImageSectionItem, case .url(let url) = sectionItem {
+                    let imagePresenter = ImagePresenter()
+                    let imageProvider = ImageProvider()
+                    let imageInteractor = ImageInteractor(presenter: imagePresenter,
+                                                          imageUrl: url,
+                                                          provider: imageProvider)
+                    let imageViewController = ImageViewController(interactor: imageInteractor)
+                    imagePresenter.view = imageViewController
+                    self.embed(viewController: imageViewController, containerView: cell.contentView)
+                }
+            default:
+                break
+            }
             return cell
-        }
-        logger.debug("Loading image at path: \(path)")
+        })
         
-        let url = URL(fileURLWithPath: path)
-
-        let imagePresenter = ImagePresenter()
-        let imageProvider = ImageProvider()
-        let imageInteractor = ImageInteractor(presenter: imagePresenter,
-                                              imageUrl: url,
-                                              provider: imageProvider)
-        let imageViewController = ImageViewController(interactor: imageInteractor)
-        imagePresenter.view = imageViewController
-        embed(viewController: imageViewController, containerView: cell.contentView)
-        return cell
+        collectionView.dataSource = dataSource
+        
+        let snapshot = DataSource.snapshot(from: viewModel)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
 }
 
