@@ -18,7 +18,7 @@
 import Foundation
 
 struct ViewModel {
-    struct ContactItem {
+    struct ContactItem: Hashable {
         let name: String
         let value: String
     }
@@ -39,8 +39,8 @@ struct ViewModel {
         let description: String
     }
     
-    let fullname: String
     let imageURL: URL
+    let fullname: String
     let introduction: String
     let contactItems: [ContactItem]
     let carrerHistory: [CarrerSection]
@@ -56,8 +56,8 @@ extension ViewModel {
         
         let url = URL(fileURLWithPath: path)
         
-        return ViewModel(fullname: "Grzegorz Wikiera",
-                         imageURL: url,
+        return ViewModel(imageURL: url,
+                         fullname: "Grzegorz Wikiera",
                          introduction: "I am an iOS developer with more than ten years of experience. I participated in many different projects, from building simple games for kids to designing and developing iOS frameworks. As a principal developer, I set up the standards of iOS development in the matter of architecture, tools, and code standards. I was presenting my findings on internal presentations and local meet-ups. Currently, I am leading one of the iOS teams in the company, which is responsible for most of the applications. I am still covering for the tech part, with some extra responsibilities. I am managing people, working on their development, motivation, and everything else which allows them to create the best products in an agile way.",
                          contactItems: [ContactItem(name: "phone", value: "+48 791 597 001"),
                                         ContactItem(name: "email", value: "gwikiera@gmail.com"),
