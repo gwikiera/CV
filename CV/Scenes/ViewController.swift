@@ -22,6 +22,12 @@ class ViewController: UICollectionViewController {
     private var viewModel: ViewModel?
     private var dataSource: UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        collectionView.register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: "HeaderCollectionViewCell")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -45,6 +51,12 @@ class ViewController: UICollectionViewController {
                     let imageViewController = ImageViewController(interactor: imageInteractor)
                     imagePresenter.view = imageViewController
                     self.embed(viewController: imageViewController, containerView: cell.contentView)
+                }
+            case .personal:
+                if let sectionItem = item as? DataSource.PersonalSectionItem, case .fullname(let fullname) = sectionItem {
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HeaderCollectionViewCell", for: indexPath) as! HeaderCollectionViewCell
+                    cell.text = fullname
+                    return cell
                 }
             default:
                 break
