@@ -26,6 +26,7 @@ class ViewController: UICollectionViewController {
         super.viewDidLoad()
         
         collectionView.register(HeaderCollectionViewCell.self, forCellWithReuseIdentifier: "HeaderCollectionViewCell")
+        collectionView.register(ContactCollectionViewCell.self, forCellWithReuseIdentifier: "ContactCollectionViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,9 +54,17 @@ class ViewController: UICollectionViewController {
                     self.embed(viewController: imageViewController, containerView: cell.contentView)
                 }
             case .personal:
-                if let sectionItem = item as? DataSource.PersonalSectionItem, case .fullname(let fullname) = sectionItem {
+                guard let sectionItem = item as? DataSource.PersonalSectionItem else {
+                    return cell
+                }
+                switch sectionItem {
+                case .fullname(let fullname):
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HeaderCollectionViewCell", for: indexPath) as! HeaderCollectionViewCell
                     cell.text = fullname
+                    return cell
+                case .contact(type: let type, value: let value):
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ContactCollectionViewCell", for: indexPath) as! ContactCollectionViewCell
+                    cell.set(type: type, value: value)
                     return cell
                 }
             default:

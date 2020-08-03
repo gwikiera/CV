@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D0E735B24D609C200B697EA /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E735A24D609C200B697EA /* HeaderCollectionViewCell.swift */; };
+		2D0E735D24D6B6C100B697EA /* ContactCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E735C24D6B6C100B697EA /* ContactCollectionViewCell.swift */; };
 		2D1C272E24CB24C600787E61 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C272D24CB24C600787E61 /* DataSource.swift */; };
 		2D1C273024CB283000787E61 /* DataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C272F24CB283000787E61 /* DataSourceTests.swift */; };
 		2D2BB9C924C6F88200235BE9 /* ImagePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2BB9C824C6F88200235BE9 /* ImagePresenterTests.swift */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		2D0E735A24D609C200B697EA /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		2D0E735C24D6B6C100B697EA /* ContactCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D1C272D24CB24C600787E61 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		2D1C272F24CB283000787E61 /* DataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceTests.swift; sourceTree = "<group>"; };
 		2D2BB9C824C6F88200235BE9 /* ImagePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePresenterTests.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				2D0E735A24D609C200B697EA /* HeaderCollectionViewCell.swift */,
+				2D0E735C24D6B6C100B697EA /* ContactCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				2D2F281224C399EF004C8D8E /* ImageInteractor.swift in Sources */,
 				2DDFEAF124C44E8300E016BC /* UIViewController.swift in Sources */,
 				2DFAFE6C24C9693D00E84DC9 /* ViewModel.swift in Sources */,
+				2D0E735D24D6B6C100B697EA /* ContactCollectionViewCell.swift in Sources */,
 				2D2F27DC24C39352004C8D8E /* ViewController.swift in Sources */,
 				2D2F27D824C39352004C8D8E /* AppDelegate.swift in Sources */,
 				2D2D0A8524C452A00023FA22 /* Logger.swift in Sources */,
