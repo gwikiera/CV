@@ -24,3 +24,13 @@ let logger: Logger = {
     #endif
     return logger
 }()
+
+extension Logger {
+    func assert(_ message: @autoclosure () -> Logger.Message,
+                metadata: @autoclosure () -> Logger.Metadata? = nil,
+                source: @autoclosure () -> String? = nil,
+                file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
+        critical(message(), metadata: metadata(), source: source(), file: "\(file)", function: "\(function)", line: line)
+        assertionFailure(message().description, file: file, line: line)
+    }
+}

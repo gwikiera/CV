@@ -18,15 +18,6 @@
 import UIKit
 
 class HeaderCollectionViewCell: UICollectionViewCell {
-    var text: String? {
-        get {
-            label.text
-        }
-        set {
-            label.text = newValue
-        }
-    }
-    
     private lazy var label = UILabel()
     
     override init(frame: CGRect) {
@@ -42,11 +33,14 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         underlineView.heightAnchor.constraint(equalTo: label.heightAnchor, multiplier: 0.4, constant: 0).isActive = true
         underlineView.centerXAnchor.constraint(equalTo: label.centerXAnchor).isActive = true
         underlineView.topAnchor.constraint(equalTo: label.lastBaselineAnchor).isActive = true
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setText(_ text: String) {
+        label.text = text
     }
 }
 
@@ -58,7 +52,7 @@ struct HeaderCellViewRepresentable: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UIView {
         let cell = HeaderCollectionViewCell()
-        cell.text = text
+        cell.setText(text)
         return cell
     }
     
