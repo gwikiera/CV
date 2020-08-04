@@ -20,7 +20,7 @@ import Logging
 
 class ViewController: UICollectionViewController {
     private var dataSource: UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>?
-    private lazy var cellProvider = CellProvider(viewController: self, collectionView: collectionView)
+    private lazy var cellProvider = CellProvider(collectionView: collectionView)
     
     override func viewDidLoad() {
         super.viewDidLoad()

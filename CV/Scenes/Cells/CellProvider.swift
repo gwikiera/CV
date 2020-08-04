@@ -20,15 +20,11 @@ import UIKit
 class CellProvider {
     typealias SectionCellProvider = (UICollectionView, IndexPath, AnyHashable) -> UICollectionViewCell?
     
-    weak var viewController: UIViewController?
-    
     private lazy var sectionProviders: [DataSource.Section: SectionCellProvider] = [.image: provideImageSectionCell,
                                                                                     .personal: providePersonalSectionCell]
 
-    init(viewController: UIViewController, collectionView: UICollectionView) {
-        self.viewController = viewController
-        
-        collectionView.register(UICollectionViewCell.self)
+    init(collectionView: UICollectionView) {
+        collectionView.register(ImageCollectionViewCell.self)
         collectionView.register(HeaderCollectionViewCell.self)
         collectionView.register(ContactCollectionViewCell.self)
     }
@@ -50,7 +46,7 @@ class CellProvider {
 
 private extension CellProvider {
     func provideImageSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
-        let cell: UICollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        let cell: ImageCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         guard let sectionItem = item as? DataSource.ImageSectionItem, case .url(let url) = sectionItem else {
             logger.assert("Invalid item type: \(item) for index path: \(indexPath).")
             return nil
@@ -60,9 +56,8 @@ private extension CellProvider {
         let imageInteractor = ImageInteractor(presenter: imagePresenter,
                                               imageUrl: url,
                                               provider: imageProvider)
-        let imageViewController = ImageViewController(interactor: imageInteractor)
-        imagePresenter.view = imageViewController
-        viewController?.embed(viewController: imageViewController, containerView: cell.contentView)
+        cell.interactor = imageInteractor
+        imagePresenter.view = cell
         return cell
     }
     
