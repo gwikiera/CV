@@ -22,9 +22,8 @@ import Nimble
 
 class CellProviderTests: QuickSpec {
     override func spec() { //swiftlint:disable:this function_body_length
-        let viewController = UIViewController()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
-        let tested = CellProvider(viewController: viewController, collectionView: collectionView)
+        let tested = CellProvider(collectionView: collectionView)
         let invalidItem = ""
         
         describe("CellProvider") {
@@ -55,12 +54,12 @@ class CellProviderTests: QuickSpec {
                 context("and ImageSectionItem.url object") {
                     let item = DataSource.ImageSectionItem.url(.stub)
                     
-                    it("provides image cell") {
+                    it("provides ImageCollectionViewCell cell") {
                         let cell = tested.provideCell(collectionView: collectionView,
                                                       indexPath: indexPath,
                                                       item: item)
                         
-                        expect(cell).to(beAKindOf(UICollectionViewCell.self))
+                        expect(cell).to(beAnInstanceOf(ImageCollectionViewCell.self))
                     }
                 }
             }
@@ -86,7 +85,7 @@ class CellProviderTests: QuickSpec {
                                                       indexPath: indexPath,
                                                       item: item)
                         
-                        expect(cell).to(beAKindOf(HeaderCollectionViewCell.self))
+                        expect(cell).to(beAnInstanceOf(HeaderCollectionViewCell.self))
                     }
                 }
                 
@@ -98,7 +97,7 @@ class CellProviderTests: QuickSpec {
                                                       indexPath: indexPath,
                                                       item: item)
                         
-                        expect(cell).to(beAKindOf(ContactCollectionViewCell.self))
+                        expect(cell).to(beAnInstanceOf(ContactCollectionViewCell.self))
                     }
                 }
             }

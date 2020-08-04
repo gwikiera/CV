@@ -13,6 +13,7 @@
 		2D1C273024CB283000787E61 /* DataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1C272F24CB283000787E61 /* DataSourceTests.swift */; };
 		2D2BB9C924C6F88200235BE9 /* ImagePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2BB9C824C6F88200235BE9 /* ImagePresenterTests.swift */; };
 		2D2BB9CB24C6F8F600235BE9 /* ImageViewLogicMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2BB9CA24C6F8F600235BE9 /* ImageViewLogicMocks.swift */; };
+		2D2C087D24D99707001EFA58 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2C087C24D99707001EFA58 /* ImageCollectionViewCell.swift */; };
 		2D2D0A8324C4515B0023FA22 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 2D2D0A8224C4515B0023FA22 /* Logging */; };
 		2D2D0A8524C452A00023FA22 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D0A8424C452A00023FA22 /* Logger.swift */; };
 		2D2F27D824C39352004C8D8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F27D724C39352004C8D8E /* AppDelegate.swift */; };
@@ -73,6 +74,7 @@
 		2D1C272F24CB283000787E61 /* DataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSourceTests.swift; sourceTree = "<group>"; };
 		2D2BB9C824C6F88200235BE9 /* ImagePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePresenterTests.swift; sourceTree = "<group>"; };
 		2D2BB9CA24C6F8F600235BE9 /* ImageViewLogicMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewLogicMocks.swift; sourceTree = "<group>"; };
+		2D2C087C24D99707001EFA58 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D2D0A8424C452A00023FA22 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		2D2F27D424C39352004C8D8E /* CV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2F27D724C39352004C8D8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				2D0E735A24D609C200B697EA /* HeaderCollectionViewCell.swift */,
 				2D0E735C24D6B6C100B697EA /* ContactCollectionViewCell.swift */,
+				2D2C087C24D99707001EFA58 /* ImageCollectionViewCell.swift */,
 				2DAF343A24D8AA6700F33949 /* CellProvider.swift */,
 			);
 			path = Cells;
@@ -523,6 +526,7 @@
 				2D2F281224C399EF004C8D8E /* ImageInteractor.swift in Sources */,
 				2DDFEAF124C44E8300E016BC /* UIViewController.swift in Sources */,
 				2DFAFE6C24C9693D00E84DC9 /* ViewModel.swift in Sources */,
+				2D2C087D24D99707001EFA58 /* ImageCollectionViewCell.swift in Sources */,
 				2D0E735D24D6B6C100B697EA /* ContactCollectionViewCell.swift in Sources */,
 				2D2F27DC24C39352004C8D8E /* ViewController.swift in Sources */,
 				2D2F27D824C39352004C8D8E /* AppDelegate.swift in Sources */,

@@ -38,12 +38,12 @@ final class ImageViewController: UIViewController {
         return activityIndicator
     }()
     
-    private lazy var errorImage: UIImage? = {
+    private var errorImage: UIImage? {
         let largeConfiguration = UIImage.SymbolConfiguration(scale: .large)
         let errorImage = UIImage(systemName: "xmark.octagon.fill", withConfiguration: largeConfiguration)
         return errorImage
-    }()
-    
+    }
+
     init(interactor: ImageBusinessLogic) {
         self.interactor = interactor
         
