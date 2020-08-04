@@ -18,13 +18,18 @@
 import UIKit
 
 class HeaderCollectionViewCell: UICollectionViewCell {
-    private lazy var label = UILabel()
+    private lazy var label: UILabel = {
+        let label = UILabel()
+        label.font = .header
+        label.textColor = UIColor.Text.primary
+        return label
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
                 
         let underlineView = UIView()
-        underlineView.backgroundColor = .yellow
+        underlineView.backgroundColor = UIColor.Text.underline
         underlineView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(underlineView)
         contentView.center(view: label)

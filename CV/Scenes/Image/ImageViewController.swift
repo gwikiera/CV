@@ -61,8 +61,8 @@ final class ImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        view.tintColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
+        view.backgroundColor = UIColor.Image.background
+        view.tintColor = UIColor.Image.tint
     }
     
     override func viewWillAppear(_ animated: Bool) {
