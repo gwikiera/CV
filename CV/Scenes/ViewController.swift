@@ -19,41 +19,24 @@ import UIKit
 import Logging
 
 class ViewController: UICollectionViewController {
-    private var viewModel: ViewModel?
     private var dataSource: UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>?
+    private lazy var cellProvider = CellProvider(viewController: self, collectionView: collectionView)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        dataSource = UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>(collectionView: collectionView, cellProvider: cellProvider.provideCell(collectionView:indexPath:item:))
+        collectionView.dataSource = dataSource
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // TODO: Placeholder
         display(viewModel: .example)
     }
     
     func display(viewModel: ViewModel) {
-        self.viewModel = viewModel
-        
-        dataSource = UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
-            guard let section = DataSource.Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ViewControllerCell", for: indexPath)
-            switch section {
-            case .image:
-                if let sectionItem = item as? DataSource.ImageSectionItem, case .url(let url) = sectionItem {
-                    let imagePresenter = ImagePresenter()
-                    let imageProvider = ImageProvider()
-                    let imageInteractor = ImageInteractor(presenter: imagePresenter,
-                                                          imageUrl: url,
-                                                          provider: imageProvider)
-                    let imageViewController = ImageViewController(interactor: imageInteractor)
-                    imagePresenter.view = imageViewController
-                    self.embed(viewController: imageViewController, containerView: cell.contentView)
-                }
-            default:
-                break
-            }
-            return cell
-        })
-        
-        collectionView.dataSource = dataSource
-        
         let snapshot = DataSource.snapshot(from: viewModel)
         dataSource?.apply(snapshot, animatingDifferences: false)
     }

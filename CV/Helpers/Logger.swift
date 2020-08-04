@@ -16,6 +16,7 @@
 // limitations under the License.
     
 import Logging
+import Foundation
 
 let logger: Logger = {
     var logger = Logger(label: "com.gwikiera.CV")
@@ -24,3 +25,17 @@ let logger: Logger = {
     #endif
     return logger
 }()
+
+extension Logger {
+    func assert(_ message: @autoclosure () -> Logger.Message,
+                metadata: @autoclosure () -> Logger.Metadata? = nil,
+                source: @autoclosure () -> String? = nil,
+                file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
+        critical(message(), metadata: metadata(), source: source(), file: "\(file)", function: "\(function)", line: line)
+        #if DEBUG
+        let isRunningUnitTests = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+        guard !isRunningUnitTests else { return }
+        assertionFailure(message().description, file: file, line: line)
+        #endif
+    }
+}
