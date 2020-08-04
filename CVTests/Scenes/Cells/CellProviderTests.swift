@@ -21,30 +21,84 @@ import Nimble
 @testable import CV
 
 class CellProviderTests: QuickSpec {
-    override func spec() {
+    override func spec() { //swiftlint:disable:this function_body_length
         let viewController = UIViewController()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
         let tested = CellProvider(viewController: viewController, collectionView: collectionView)
-
+        let invalidItem = ""
+        
         describe("CellProvider") {
+            context("for invalid section") {
+                let indexPath = IndexPath(row: 0, section: 999)
+
+                it("returns nil") {
+                    let cell = tested.provideCell(collectionView: collectionView,
+                                                  indexPath: indexPath,
+                                                  item: invalidItem)
+                    
+                    expect(cell).to(beNil())
+                }
+            }
+            
             context("for image section") {
+                let indexPath = IndexPath(row: 0, section: DataSource.Section.image.rawValue)
                 context("and invalid object") {
                     it("returns nil") {
                         let cell = tested.provideCell(collectionView: collectionView,
-                                                      indexPath: IndexPath(row: 0, section: DataSource.Section.image.rawValue),
-                                                      item: "")
+                                                      indexPath: indexPath,
+                                                      item: invalidItem)
                         
                         expect(cell).to(beNil())
                     }
                 }
 
-                context("and invalid object") {
+                context("and ImageSectionItem.url object") {
+                    let item = DataSource.ImageSectionItem.url(.stub)
+                    
                     it("provides image cell") {
                         let cell = tested.provideCell(collectionView: collectionView,
-                                                      indexPath: IndexPath(row: 0, section: DataSource.Section.image.rawValue),
-                                                      item: DataSource.ImageSectionItem.url(.stub))
+                                                      indexPath: indexPath,
+                                                      item: item)
                         
                         expect(cell).to(beAKindOf(UICollectionViewCell.self))
+                    }
+                }
+            }
+            
+            context("for personal section") {
+                let indexPath = IndexPath(row: 0, section: DataSource.Section.personal.rawValue)
+
+                context("and invalid object") {
+                    it("returns nil") {
+                        let cell = tested.provideCell(collectionView: collectionView,
+                                                      indexPath: indexPath,
+                                                      item: invalidItem)
+                        
+                        expect(cell).to(beNil())
+                    }
+                }
+
+                context("and PersonalSectionItem.fullname object") {
+                    let item = DataSource.PersonalSectionItem.fullname("fullname")
+
+                    it("provides HeaderCollectionViewCell cell") {
+                        let cell = tested.provideCell(collectionView: collectionView,
+                                                      indexPath: indexPath,
+                                                      item: item)
+                        
+                        expect(cell).to(beAKindOf(HeaderCollectionViewCell.self))
+                    }
+                }
+                
+                context("and PersonalSectionItem.contact object") {
+                    let item = DataSource.PersonalSectionItem.contact(type: "type", value: "value")
+
+                    it("provides ContactCollectionViewCell cell") {
+                        let cell = tested.provideCell(collectionView: collectionView,
+                                                      indexPath: indexPath,
+                                                      item: item)
+                        
+                        expect(cell).to(beAKindOf(ContactCollectionViewCell.self))
                     }
                 }
             }
