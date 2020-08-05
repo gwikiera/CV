@@ -40,6 +40,17 @@ class ImageCollectionViewCell: UICollectionViewCell {
         return errorImage
     }
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        backgroundColor = UIColor.Image.background
+        tintColor = UIColor.Image.tint
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         
@@ -66,3 +77,41 @@ extension ImageCollectionViewCell: ImageViewLogic {
         imageView.contentMode = .center
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+struct ImageCellViewRepresentable: UIViewRepresentable {
+    enum Mode: CaseIterable {
+        case loading, error, image
+    }
+    
+    let mode: Mode
+
+    func makeUIView(context: Context) -> UIView {
+        let cell = ImageCollectionViewCell()
+        switch mode {
+        case .loading:
+            cell.displayLoading()
+        case .error:
+            cell.displayErrorMessage("error message")
+        case .image:
+            cell.displayImage(at: Bundle.main.path(forResource: "Profile", ofType: "jpeg")!)
+        }
+        return cell
+    }
+    
+    func updateUIView(_ view: UIView, context: Context) {}
+}
+
+struct ImageCellViewRepresentable_Preview: PreviewProvider { //swiftlint:disable:this type_name
+    static var previews: some View {
+        Group {
+            ForEach(ImageCellViewRepresentable.Mode.allCases, id: \.self) { mode in
+                ImageCellViewRepresentable(mode: mode)
+                    .previewLayout(.fixed(width: 320, height: 100))
+            }
+        }
+    }
+}
+#endif

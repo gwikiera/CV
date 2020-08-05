@@ -23,6 +23,8 @@ class ContactCollectionViewCell: UICollectionViewCell {
         textView.isScrollEnabled = false
         textView.dataDetectorTypes = .all
         textView.isEditable = false
+        textView.textColor = UIColor.Text.secondary
+        textView.font = .paragraph
         contentView.center(view: textView)
         return textView
     }()
