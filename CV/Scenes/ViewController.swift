@@ -43,10 +43,6 @@ class ViewController: UICollectionViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        .lightContent
-    }
-    
     func display(viewModel: ViewModel) {
         let snapshot = DataSource.snapshot(from: viewModel)
         dataSource?.apply(snapshot, animatingDifferences: false)

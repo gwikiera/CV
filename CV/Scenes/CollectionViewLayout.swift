@@ -19,31 +19,47 @@ import UIKit
 
 enum CollectionViewLayout {
     static func generateLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { (section, env) -> NSCollectionLayoutSection? in
-            switch section {
-            case DataSource.Section.image.rawValue:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                      heightDimension: .fractionalHeight(1.0))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupHeightDimmension: NSCollectionLayoutDimension = env.traitCollection.verticalSizeClass == .compact ? .fractionalHeight(1.0) : .fractionalWidth(1.0)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                       heightDimension: groupHeightDimmension)
-                let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-                return NSCollectionLayoutSection(group: group)
-            case DataSource.Section.personal.rawValue:
-                let itemSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .estimated(100))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .estimated(100))
-                let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-                return NSCollectionLayoutSection(group: group)
-            default:
+        let layout = UICollectionViewCompositionalLayout { (section, environment) -> NSCollectionLayoutSection? in
+            guard let dataSection = DataSource.Section(rawValue: section) else {
+                logger.assert("Unknown section: \(section)")
                 return nil
+            }
+
+            switch dataSection {
+            case .image:
+                return self.imageSectionLayout(for: environment)
+            case .personal:
+                return self.personalSectionLayout(for: environment)
+            default:
+                // TODO: Fix later
+                return self.personalSectionLayout(for: environment)
             }
         }
         return layout
+    }
+}
+
+private extension CollectionViewLayout {
+    static func imageSectionLayout(for environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+                        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupHeightDimmension: NSCollectionLayoutDimension = environment.traitCollection.verticalSizeClass == .compact ? .fractionalHeight(1.0) : .fractionalWidth(1.0)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: groupHeightDimmension)
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        return NSCollectionLayoutSection(group: group)
+    }
+    
+    static func personalSectionLayout(for environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(100))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: itemSize.widthDimension,
+            heightDimension: itemSize.heightDimension)
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        return NSCollectionLayoutSection(group: group)
     }
 }
