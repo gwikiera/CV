@@ -17,8 +17,8 @@
     
 import UIKit
 
-enum CollectionViewLayout {
-    static func generateLayout() -> UICollectionViewLayout {
+final class CollectionViewLayoutGenerator {
+    func generateLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (section, environment) -> NSCollectionLayoutSection? in
             guard let dataSection = DataSource.Section(rawValue: section) else {
                 logger.assert("Unknown section: \(section)")
@@ -39,9 +39,9 @@ enum CollectionViewLayout {
     }
 }
 
-private extension CollectionViewLayout {
-    static func imageSectionLayout(for environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
-                        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+private extension CollectionViewLayoutGenerator {
+    func imageSectionLayout(for environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupHeightDimmension: NSCollectionLayoutDimension = environment.traitCollection.verticalSizeClass == .compact ? .fractionalHeight(1.0) : .fractionalWidth(1.0)
@@ -51,7 +51,7 @@ private extension CollectionViewLayout {
         return NSCollectionLayoutSection(group: group)
     }
     
-    static func personalSectionLayout(for environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+    func personalSectionLayout(for environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .estimated(100))

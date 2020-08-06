@@ -27,7 +27,7 @@ class ViewController: UICollectionViewController {
         
         dataSource = UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>(collectionView: collectionView, cellProvider: cellProvider.provideCell(collectionView:indexPath:item:))
         collectionView.dataSource = dataSource
-        collectionView.collectionViewLayout = CollectionViewLayout.generateLayout()
+        collectionView.collectionViewLayout = CollectionViewLayoutGenerator().generateLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
