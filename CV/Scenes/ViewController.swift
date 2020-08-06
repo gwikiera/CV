@@ -27,6 +27,7 @@ class ViewController: UICollectionViewController {
         
         dataSource = UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>(collectionView: collectionView, cellProvider: cellProvider.provideCell(collectionView:indexPath:item:))
         collectionView.dataSource = dataSource
+        collectionView.collectionViewLayout = CollectionViewLayout.generateLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,15 +37,19 @@ class ViewController: UICollectionViewController {
         display(viewModel: .example)
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+    
     func display(viewModel: ViewModel) {
         let snapshot = DataSource.snapshot(from: viewModel)
         dataSource?.apply(snapshot, animatingDifferences: false)
-    }
-}
-
-extension ViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: 300, height: 300)
     }
 }
 

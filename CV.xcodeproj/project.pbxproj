@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D0C9F1F24DC46D6005F2D2B /* CollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0C9F1E24DC46D6005F2D2B /* CollectionViewLayout.swift */; };
 		2D0D778424DA088F0037C377 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0D778324DA088F0037C377 /* UIColor.swift */; };
 		2D0D778624DA0A3C0037C377 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0D778524DA0A3C0037C377 /* UIFont.swift */; };
 		2D0E735B24D609C200B697EA /* HeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0E735A24D609C200B697EA /* HeaderCollectionViewCell.swift */; };
@@ -73,6 +74,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D0C9F1E24DC46D6005F2D2B /* CollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayout.swift; sourceTree = "<group>"; };
 		2D0D778324DA088F0037C377 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		2D0D778524DA0A3C0037C377 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		2D0E735A24D609C200B697EA /* HeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				2D2F27DB24C39352004C8D8E /* ViewController.swift */,
 				2DFAFE6B24C9693D00E84DC9 /* ViewModel.swift */,
 				2D1C272D24CB24C600787E61 /* DataSource.swift */,
+				2D0C9F1E24DC46D6005F2D2B /* CollectionViewLayout.swift */,
 				2D2F280E24C39781004C8D8E /* Image */,
 			);
 			path = Scenes;
@@ -549,6 +552,7 @@
 				2DAF343B24D8AA6700F33949 /* CellProvider.swift in Sources */,
 				2D0E735B24D609C200B697EA /* HeaderCollectionViewCell.swift in Sources */,
 				2DDFEAEE24C44DE200E016BC /* UIView.swift in Sources */,
+				2D0C9F1F24DC46D6005F2D2B /* CollectionViewLayout.swift in Sources */,
 				2D2F281224C399EF004C8D8E /* ImageInteractor.swift in Sources */,
 				2DDFEAF124C44E8300E016BC /* UIViewController.swift in Sources */,
 				2DFAFE6C24C9693D00E84DC9 /* ViewModel.swift in Sources */,

@@ -21,11 +21,14 @@ class ContactCollectionViewCell: UICollectionViewCell {
     private lazy var textView: UITextView = {
         let textView = UITextView()
         textView.isScrollEnabled = false
-        textView.dataDetectorTypes = .all
+        DispatchQueue.main.async {
+            textView.dataDetectorTypes = [.link, .phoneNumber]
+        }
         textView.isEditable = false
         textView.textColor = UIColor.Text.secondary
         textView.font = .paragraph
         contentView.center(view: textView)
+        contentView.heightAnchor.constraint(equalTo: textView.heightAnchor, multiplier: 1).isActive = true
         return textView
     }()
     
