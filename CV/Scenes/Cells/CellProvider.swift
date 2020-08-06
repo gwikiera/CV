@@ -20,9 +20,6 @@ import UIKit
 class CellProvider {
     typealias SectionCellProvider = (UICollectionView, IndexPath, AnyHashable) -> UICollectionViewCell?
     
-    private lazy var sectionProviders: [DataSource.Section: SectionCellProvider] = [.image: provideImageSectionCell,
-                                                                                    .personal: providePersonalSectionCell]
-
     init(collectionView: UICollectionView) {
         collectionView.register(ImageCollectionViewCell.self)
         collectionView.register(HeaderCollectionViewCell.self)
@@ -34,13 +31,16 @@ class CellProvider {
             logger.assert("Unknown section for indexPath: \(indexPath)")
             return nil
         }
-        
-        guard let sectionProvider = sectionProviders[section] else {
-            logger.assert("Section provider for section: \(section) not found.")
-            return nil
-        }
 
-        return sectionProvider(collectionView, indexPath, item)
+        switch section {
+        case .image:
+            return provideImageSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
+        case .personal:
+            return providePersonalSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
+        default:
+            // TODO: Fix later
+            return collectionView.dequeueReusableCell(withReuseIdentifier: ContactCollectionViewCell.reuseIdentifier, for: indexPath)
+        }
     }
 }
 
