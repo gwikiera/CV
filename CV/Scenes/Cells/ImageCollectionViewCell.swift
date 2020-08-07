@@ -22,7 +22,9 @@ class ImageCollectionViewCell: UICollectionViewCell {
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.backgroundColor = UIColor.Image.background
         contentView.embed(view: imageView)
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1).isActive = true
         return imageView
     }()
     
@@ -43,7 +45,6 @@ class ImageCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.Image.background
         tintColor = UIColor.Image.tint
     }
     
