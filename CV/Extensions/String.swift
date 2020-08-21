@@ -15,17 +15,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
     
-import UIKit
+#if DEBUG
+import Foundation
 
-extension UIColor {
-    enum Image {
-        static var background: UIColor { return UIColor(named: "ImageBG")! }
-        static var tint: UIColor { return UIColor(named: "ImageTint")! }
-    }
-    
-    enum Text {
-        static var primary: UIColor { return UIColor(named: "PrimaryText")! }
-        static var secondary: UIColor { return UIColor(named: "SecondaryText")! }
-        static var underline: UIColor { return UIColor(named: "TextUnderline")! }
-    }
+extension String {
+    static let loremIpsum = #"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."# //swiftlint:disable:this line_length
 }
+#endif

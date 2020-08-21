@@ -18,13 +18,13 @@
 import UIKit
 
 extension UIView {
-    func embed(view: UIView) {
+    func embed(view: UIView, offset: CGFloat = 0) {
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
-        leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -offset).isActive = true
+        trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: offset).isActive = true
+        topAnchor.constraint(equalTo: view.topAnchor, constant: -offset).isActive = true
+        bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: offset).isActive = true
     }
 
     func center(view: UIView) {
