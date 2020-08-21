@@ -24,6 +24,7 @@ class CellProvider {
         collectionView.register(ImageCollectionViewCell.self)
         collectionView.register(HeaderCollectionViewCell.self)
         collectionView.register(ContactCollectionViewCell.self)
+        collectionView.register(AboutCollectionViewCell.self)
     }
     
     func provideCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
@@ -37,6 +38,8 @@ class CellProvider {
             return provideImageSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
         case .personal:
             return providePersonalSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
+        case .about:
+            return provideAboutSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
         default:
             // TODO: Fix later
             return collectionView.dequeueReusableCell(withReuseIdentifier: ContactCollectionViewCell.reuseIdentifier, for: indexPath)
@@ -74,6 +77,19 @@ private extension CellProvider {
         case .contact(type: let type, value: let value):
             let cell: ContactCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.set(type: type, value: value)
+            return cell
+        }
+    }
+    
+    func provideAboutSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
+        guard let sectionItem = item as? DataSource.AboutSectionItem else {
+            logger.assert("Invalid item type: \(item) for index path: \(indexPath).")
+            return nil
+        }
+        switch sectionItem {
+        case .text(let text):
+            let cell: AboutCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.setText(text)
             return cell
         }
     }

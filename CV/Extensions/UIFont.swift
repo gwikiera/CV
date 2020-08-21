@@ -18,6 +18,8 @@
 import UIKit
 
 extension UIFont {
-    static var header: UIFont? { UIFont(name: "BebasNeue", size: 40) }
-    static var paragraph: UIFont? { UIFont(name: "OpenSans", size: 12) }
+    static var header: UIFont { UIFont(name: "BebasNeue", size: 40)! }
+    static var header1: UIFont { UIFont(name: "BebasNeue", size: 28)! }
+    static var paragraph: UIFont { UIFont(name: "OpenSans", size: 12)! }
+    static var paragraph1: UIFont { UIFont(name: "OpenSans", size: 14)! }
 }
