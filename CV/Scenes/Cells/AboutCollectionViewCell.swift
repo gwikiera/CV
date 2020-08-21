@@ -23,6 +23,7 @@ class AboutCollectionViewCell: UICollectionViewCell {
         label.font = .header1
         label.textColor = UIColor.Text.secondary
         label.textAlignment = .center
+        label.text = String.Localized.about
         return label
     }()
     
@@ -50,11 +51,7 @@ class AboutCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func setHeaderText(_ text: String) {
-        headerLabel.text = text
-    }
-    
+        
     func setText(_ text: String) {
         textLabel.text = text
     }
@@ -64,11 +61,10 @@ class AboutCollectionViewCell: UICollectionViewCell {
 import SwiftUI
 
 struct AboutCellViewRepresentable: UIViewRepresentable {
-    let headerText, text: String
+    let text: String
     
     func makeUIView(context: Context) -> UIView {
         let cell = AboutCollectionViewCell()
-        cell.setHeaderText(headerText)
         cell.setText(text)
         return cell
     }
@@ -79,7 +75,7 @@ struct AboutCellViewRepresentable: UIViewRepresentable {
 struct AboutCellViewRepresentable_Preview: PreviewProvider { //swiftlint:disable:this type_name
     static var previews: some View {
         Group {
-            AboutCellViewRepresentable(headerText: "ABOUT ME", text: String.loremIpsum)
+            AboutCellViewRepresentable(text: String.loremIpsum)
                 .previewLayout(.fixed(width: 320, height: .infinity))
         }
     }

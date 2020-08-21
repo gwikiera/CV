@@ -89,7 +89,6 @@ private extension CellProvider {
         switch sectionItem {
         case .text(let text):
             let cell: AboutCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            cell.setHeaderText("ABOUT ME")
             cell.setText(text)
             return cell
         }
