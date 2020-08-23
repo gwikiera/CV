@@ -33,7 +33,6 @@ extension Logger {
                 file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
         critical(message(), metadata: metadata(), source: source(), file: "\(file)", function: "\(function)", line: line)
         #if DEBUG
-        let isRunningUnitTests = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
         guard !isRunningUnitTests else { return }
         assertionFailure(message().description, file: file, line: line)
         #endif

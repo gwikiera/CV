@@ -22,12 +22,17 @@ class ViewController: UICollectionViewController {
     private var dataSource: UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>?
     private lazy var cellProvider = CellProvider(collectionView: collectionView)
     
+    convenience init() {
+        self.init(collectionViewLayout: CollectionViewLayoutGenerator().generateLayout())
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.backgroundColor = .white
+        
         dataSource = UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>(collectionView: collectionView, cellProvider: cellProvider.provideCell(collectionView:indexPath:item:))
         collectionView.dataSource = dataSource
-        collectionView.collectionViewLayout = CollectionViewLayoutGenerator().generateLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +59,7 @@ import SwiftUI
 
 struct ViewRepresentable: UIViewRepresentable {
     func makeUIView(context: Context) -> UIView {
-        UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ViewController").view
+        ViewController().view
     }
     
     func updateUIView(_ view: UIView, context: Context) {}
