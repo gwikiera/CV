@@ -101,6 +101,31 @@ class CellProviderTests: QuickSpec {
                     }
                 }
             }
+            
+            context("for about section") {
+                let indexPath = IndexPath(row: 0, section: DataSource.Section.about.rawValue)
+                context("and invalid object") {
+                    it("returns nil") {
+                        let cell = tested.provideCell(collectionView: collectionView,
+                                                      indexPath: indexPath,
+                                                      item: invalidItem)
+                        
+                        expect(cell).to(beNil())
+                    }
+                }
+
+                context("and ImageSectionItem.url object") {
+                    let item = DataSource.AboutSectionItem.text(.loremIpsum)
+                    
+                    it("provides AboutCollectionViewCell cell") {
+                        let cell = tested.provideCell(collectionView: collectionView,
+                                                      indexPath: indexPath,
+                                                      item: item)
+                        
+                        expect(cell).to(beAnInstanceOf(AboutCollectionViewCell.self))
+                    }
+                }
+            }
         }
     }
 }

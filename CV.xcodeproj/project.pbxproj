@@ -313,8 +313,8 @@
 		2D957C4324C3A00D000BDC86 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				2DAF344024D8B98400F33949 /* Cells */,
 				2D1C272F24CB283000787E61 /* DataSourceTests.swift */,
+				2DAF344124D8B99800F33949 /* CellProviderTests.swift */,
 				2D957C4424C3A01E000BDC86 /* Image  */,
 			);
 			path = Scenes;
@@ -329,14 +329,6 @@
 				2D2BB9C824C6F88200235BE9 /* ImagePresenterTests.swift */,
 			);
 			path = "Image ";
-			sourceTree = "<group>";
-		};
-		2DAF344024D8B98400F33949 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				2DAF344124D8B99800F33949 /* CellProviderTests.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		2DAF344724D9FCC000F33949 /* Fonts */ = {
