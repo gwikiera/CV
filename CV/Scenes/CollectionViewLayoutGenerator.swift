@@ -28,11 +28,11 @@ final class CollectionViewLayoutGenerator {
             switch dataSection {
             case .image:
                 return self.imageSectionLayout(for: environment)
-            case .personal:
-                return self.personalSectionLayout(for: environment)
+            case .personal, .about:
+                return self.fullWidthSectionLayout(for: environment)
             default:
                 // TODO: Fix later
-                return self.personalSectionLayout(for: environment)
+                return self.fullWidthSectionLayout(for: environment)
             }
         }
         return layout
@@ -51,7 +51,7 @@ private extension CollectionViewLayoutGenerator {
         return NSCollectionLayoutSection(group: group)
     }
     
-    func personalSectionLayout(for environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+    func fullWidthSectionLayout(for environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .estimated(100))
