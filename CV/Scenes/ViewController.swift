@@ -31,7 +31,7 @@ class ViewController: UICollectionViewController {
         
         collectionView.backgroundColor = .white
         
-        dataSource = UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>(collectionView: collectionView, cellProvider: cellProvider.provideCell(collectionView:indexPath:item:))
+        dataSource = UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>(collectionView: collectionView, cellProvider: cellProvider.provideCell)
         collectionView.dataSource = dataSource
     }
     

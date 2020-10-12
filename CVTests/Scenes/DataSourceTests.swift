@@ -112,7 +112,7 @@ class DataSourceTests: QuickSpec {
                 
                 context("and carrer history") {
                     let carrerHistory = [ViewModel.CarrerSection.init(title: "1", items: [ViewModel.CarrerItem(title: "title1", subtitle: "subtitle1", description: "description1")]),
-                                         ViewModel.CarrerSection.init(title: "", items: [ViewModel.CarrerItem(title: "title2", subtitle: "subtitle2", description: "description2")])]
+                                         ViewModel.CarrerSection.init(title: "", items: [ViewModel.CarrerItem(title: "title2", subtitle: "subtitle2", description: "description2"), ViewModel.CarrerItem(title: "title3", subtitle: "subtitle3", description: "description3")])]
                     let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: [], carrerHistory: carrerHistory, additionalInfo: [])
                     
                     it("contains two sections") {
@@ -128,7 +128,8 @@ class DataSourceTests: QuickSpec {
                                                              DataSource.CarrerSectionItem.title("1"),
                                                              DataSource.CarrerSectionItem.item(title: "title1", subtitle: "subtitle1", text: "description1"),
                                                              DataSource.CarrerSectionItem.title(""),
-                                                             DataSource.CarrerSectionItem.item(title: "title2", subtitle: "subtitle2", text: "description2")]
+                                                             DataSource.CarrerSectionItem.item(title: "title2", subtitle: "subtitle2", text: "description2"),
+                                                             DataSource.CarrerSectionItem.item(title: "title3", subtitle: "subtitle3", text: "description3")]
                     }
                 }
                 
