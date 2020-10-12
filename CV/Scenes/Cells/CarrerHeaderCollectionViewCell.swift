@@ -14,17 +14,19 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+    
+import UIKit
 
-func stub<T>(of value: T) -> T {
-    fatalError()
-}
-
-func dummy<T>() -> ((T) -> Void) {
-    return { _ in }
-}
-
-func stubCompletion<A, T>(with value: T) -> ((A, @escaping (T) -> Void) -> Void) {
-    return { _, completion in
-        completion(value)
+class CarrerHeaderCollectionViewCell: UICollectionViewCell {
+    private lazy var label: UILabel = {
+        let label = UILabel()
+        label.font = .header1
+        center(view: label)
+        heightAnchor.constraint(equalTo: label.heightAnchor, constant: 20).isActive = true
+        return label
+    }()
+    
+    func set(text: String) {
+        label.text = text
     }
 }

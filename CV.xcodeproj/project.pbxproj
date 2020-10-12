@@ -46,6 +46,8 @@
 		2DAF344424D9FCB200F33949 /* BebasNeue-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DAF344324D9FCB200F33949 /* BebasNeue-Regular.ttf */; };
 		2DAF344624D9FCBC00F33949 /* BebasNeue-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DAF344524D9FCBB00F33949 /* BebasNeue-Bold.ttf */; };
 		2DAF344B24DA006500F33949 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DAF344A24DA006500F33949 /* OpenSans-Regular.ttf */; };
+		2DAFA1992534EBD800D9775E /* CarrerHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD811EB2534D6CA00DE47F6 /* CarrerHeaderCollectionViewCell.swift */; };
+		2DAFA19E2534EEBC00D9775E /* CarrerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAFA19D2534EEBC00D9775E /* CarrerCollectionViewCell.swift */; };
 		2DDFEAE124C3A5A700E016BC /* Spy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFEADF24C3A5A700E016BC /* Spy.swift */; };
 		2DDFEAE224C3A5A700E016BC /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFEAE024C3A5A700E016BC /* Stub.swift */; };
 		2DDFEAE524C3A5E500E016BC /* ImagePresenterMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFEAE424C3A5E500E016BC /* ImagePresenterMocks.swift */; };
@@ -119,6 +121,8 @@
 		2DAF344324D9FCB200F33949 /* BebasNeue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Regular.ttf"; sourceTree = "<group>"; };
 		2DAF344524D9FCBB00F33949 /* BebasNeue-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BebasNeue-Bold.ttf"; sourceTree = "<group>"; };
 		2DAF344A24DA006500F33949 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		2DAFA19D2534EEBC00D9775E /* CarrerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrerCollectionViewCell.swift; sourceTree = "<group>"; };
+		2DD811EB2534D6CA00DE47F6 /* CarrerHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrerHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DDFEADF24C3A5A700E016BC /* Spy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spy.swift; sourceTree = "<group>"; };
 		2DDFEAE024C3A5A700E016BC /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		2DDFEAE424C3A5E500E016BC /* ImagePresenterMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePresenterMocks.swift; sourceTree = "<group>"; };
@@ -167,6 +171,8 @@
 				2D0E735C24D6B6C100B697EA /* ContactCollectionViewCell.swift */,
 				2D2C087C24D99707001EFA58 /* ImageCollectionViewCell.swift */,
 				2D865DB324EFD12500407205 /* AboutCollectionViewCell.swift */,
+				2DD811EB2534D6CA00DE47F6 /* CarrerHeaderCollectionViewCell.swift */,
+				2DAFA19D2534EEBC00D9775E /* CarrerCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -563,9 +569,11 @@
 				2D0E735D24D6B6C100B697EA /* ContactCollectionViewCell.swift in Sources */,
 				2D0D778624DA0A3C0037C377 /* UIFont.swift in Sources */,
 				2D0D778424DA088F0037C377 /* UIColor.swift in Sources */,
+				2DAFA1992534EBD800D9775E /* CarrerHeaderCollectionViewCell.swift in Sources */,
 				2D2F27DC24C39352004C8D8E /* ViewController.swift in Sources */,
 				2D2F27D824C39352004C8D8E /* AppDelegate.swift in Sources */,
 				2D2D0A8524C452A00023FA22 /* Logger.swift in Sources */,
+				2DAFA19E2534EEBC00D9775E /* CarrerCollectionViewCell.swift in Sources */,
 				2DAF343D24D8AC1700F33949 /* UICollectionViewCell.swift in Sources */,
 				2D1C272E24CB24C600787E61 /* DataSource.swift in Sources */,
 				2D2F281024C397BC004C8D8E /* ImageViewController.swift in Sources */,
