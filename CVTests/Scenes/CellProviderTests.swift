@@ -126,6 +126,44 @@ class CellProviderTests: QuickSpec {
                     }
                 }
             }
+            
+            context("for carrer section") {
+                let indexPath = IndexPath(row: 0, section: DataSource.Section.carrer.rawValue)
+
+                context("and invalid object") {
+                    it("returns nil") {
+                        let cell = tested.provideCell(collectionView: collectionView,
+                                                      indexPath: indexPath,
+                                                      item: invalidItem)
+                        
+                        expect(cell).to(beNil())
+                    }
+                }
+
+                context("and CarrerSectionItem.title object") {
+                    let item = DataSource.CarrerSectionItem.title("title")
+
+                    it("provides CarrerHeaderCollectionViewCell cell") {
+                        let cell = tested.provideCell(collectionView: collectionView,
+                                                      indexPath: indexPath,
+                                                      item: item)
+                        
+                        expect(cell).to(beAnInstanceOf(CarrerHeaderCollectionViewCell.self))
+                    }
+                }
+                
+                context("and PersonalSectionItem.contact object") {
+                    let item = DataSource.CarrerSectionItem.item(title: "title", subtitle: "subtitle", text: "text")
+
+                    it("provides CarrerCollectionViewCell cell") {
+                        let cell = tested.provideCell(collectionView: collectionView,
+                                                      indexPath: indexPath,
+                                                      item: item)
+                        
+                        expect(cell).to(beAnInstanceOf(CarrerCollectionViewCell.self))
+                    }
+                }
+            }
         }
     }
 }
