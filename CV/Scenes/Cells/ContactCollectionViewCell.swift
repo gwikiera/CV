@@ -27,6 +27,7 @@ class ContactCollectionViewCell: UICollectionViewCell {
         textView.isEditable = false
         textView.textColor = UIColor.Text.secondary
         textView.font = .paragraph
+        textView.backgroundColor = .clear
         contentView.center(view: textView)
         contentView.heightAnchor.constraint(equalTo: textView.heightAnchor, multiplier: 1).isActive = true
         return textView
