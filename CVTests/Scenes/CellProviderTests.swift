@@ -163,6 +163,18 @@ class CellProviderTests: QuickSpec {
                         expect(cell).to(beAnInstanceOf(CarrerCollectionViewCell.self))
                     }
                 }
+                
+                context("and MoreSectionItem.item object") {
+                    let item = DataSource.MoreSectionItem.item(title: "title", content: "content")
+
+                    it("provides AboutCollectionViewCell cell") {
+                        let cell = tested.provideCell(collectionView: collectionView,
+                                                      indexPath: indexPath,
+                                                      item: item)
+                        
+                        expect(cell).to(beAnInstanceOf(AboutCollectionViewCell.self))
+                    }
+                }
             }
         }
     }

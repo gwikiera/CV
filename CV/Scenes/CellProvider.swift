@@ -44,9 +44,8 @@ class CellProvider {
             return provideAboutSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
         case .carrer:
             return provideCarrerSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
-        default:
-            // TODO: Fix later
-            return collectionView.dequeueReusableCell(withReuseIdentifier: ContactCollectionViewCell.reuseIdentifier, for: indexPath)
+        case .more:
+            return provideMoreSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
         }
     }
 }
@@ -93,7 +92,7 @@ private extension CellProvider {
         switch sectionItem {
         case .text(let text):
             let cell: AboutCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-            cell.setText(text)
+            cell.setHeader(String.Localized.about, text: text)
             return cell
         }
     }
@@ -111,6 +110,19 @@ private extension CellProvider {
         case .item(let title, let subtitle, let description):
             let cell: CarrerCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.set(title: title, subtitle: subtitle, description: description)
+            return cell
+        }
+    }
+    
+    func provideMoreSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
+        guard let sectionItem = item as? DataSource.MoreSectionItem else {
+            logger.assert("Invalid item type: \(item) for index path: \(indexPath).")
+            return nil
+        }
+        switch sectionItem {
+        case .item(let title, let content):
+            let cell: AboutCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.setHeader(title, text: content)
             return cell
         }
     }

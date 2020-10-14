@@ -112,7 +112,8 @@ class DataSourceTests: QuickSpec {
                 
                 context("and carrer history") {
                     let carrerHistory = [ViewModel.CarrerSection.init(title: "1", items: [ViewModel.CarrerItem(title: "title1", subtitle: "subtitle1", description: "description1")]),
-                                         ViewModel.CarrerSection.init(title: "", items: [ViewModel.CarrerItem(title: "title2", subtitle: "subtitle2", description: "description2"), ViewModel.CarrerItem(title: "title3", subtitle: "subtitle3", description: "description3")])]
+                                         ViewModel.CarrerSection.init(title: "", items: [ViewModel.CarrerItem(title: "title2", subtitle: "subtitle2", description: "description2"),
+                                                                                         ViewModel.CarrerItem(title: "title3", subtitle: "subtitle3", description: "description3")])]
                     let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: [], carrerHistory: carrerHistory, additionalInfo: [])
                     
                     it("contains two sections") {
@@ -148,10 +149,8 @@ class DataSourceTests: QuickSpec {
                         let snapshot = DataSource.snapshot(from: viewModel)
                         
                         expect(snapshot.itemIdentifiers) == [DataSource.ImageSectionItem.url(.stub),
-                                                             DataSource.MoreSectionItem.title("1"),
-                                                             DataSource.MoreSectionItem.content("12"),
-                                                             DataSource.MoreSectionItem.title("3"),
-                                                             DataSource.MoreSectionItem.content("45")]
+                                                             DataSource.MoreSectionItem.item(title: "1", content: "12"),
+                                                             DataSource.MoreSectionItem.item(title: "3", content: "45")]
                     }
                 }
             }
@@ -179,8 +178,7 @@ class DataSourceTests: QuickSpec {
                                                          DataSource.AboutSectionItem.text("introduction"),
                                                          DataSource.CarrerSectionItem.title("title"),
                                                          DataSource.CarrerSectionItem.item(title: "title", subtitle: "subtitle", text: "description"),
-                                                         DataSource.MoreSectionItem.title("title"),
-                                                         DataSource.MoreSectionItem.content("content")]
+                                                         DataSource.MoreSectionItem.item(title: "title", content: "content")]
                 }
             }
         }
