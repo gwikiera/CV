@@ -72,21 +72,21 @@ extension ViewModel {
                                          CarrerSection(title: "Education", items: [CarrerItem(title: "AGH University of Science and Technology", subtitle: "Master's degree (2011 – 2012)", description: ""),
                                                                                    CarrerItem(title: "AGH University of Science and Technology", subtitle: "Bachelor's degree (2007 – 2011)", description: "")])],
                          additionalInfo: [AdditionalInfoItem(title: "Skills", content: """
-                         Swift, Objective C
-                         Clean Swift, Viper, MVVM, MVC
-                         Core Data, Realm
-                         REST API
-                         TDD, BDD, Quick, Nimble
-                         UITests, Robot Pattern
-                         Carthage, Rome, CocoaPods, SPM
-                         Fastlane, Danger, Swiftlint, GitLab CI, CircleCI
-                         JIRA, Trello, Confluence Agile/Scrum
+Swift, Objective C
+Clean Swift, Viper, MVVM, MVC
+Core Data, Realm
+REST API
+TDD, BDD, Quick, Nimble
+UITests, Robot Pattern
+Carthage, Rome, CocoaPods, SPM
+Fastlane, Danger, Swiftlint, GitLab CI, CircleCI
+JIRA, Trello, Confluence Agile/Scrum
 """), AdditionalInfoItem(title: "Interests", content: """
-                         Climbing
-                         Cycling
-                         Running
-                         Billiard
-                         Urban infrastructure
+Climbing
+Cycling
+Running
+Billiard
+Urban infrastructure
 """)])
     }
 }

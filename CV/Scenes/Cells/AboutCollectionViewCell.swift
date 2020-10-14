@@ -23,7 +23,6 @@ class AboutCollectionViewCell: UICollectionViewCell {
         label.font = .header1
         label.textColor = UIColor.Text.secondary
         label.textAlignment = .center
-        label.text = String.Localized.about
         return label
     }()
     
@@ -52,7 +51,8 @@ class AboutCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
         
-    func setText(_ text: String) {
+    func setHeader(_ header: String, text: String) {
+        headerLabel.text = header
         textLabel.text = text
     }
 }
@@ -65,7 +65,7 @@ struct AboutCellViewRepresentable: UIViewRepresentable {
     
     func makeUIView(context: Context) -> UIView {
         let cell = AboutCollectionViewCell()
-        cell.setText(text)
+        cell.setHeader(String.Localized.about, text: text)
         return cell
     }
     

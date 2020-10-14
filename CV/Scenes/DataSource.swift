@@ -45,8 +45,7 @@ enum DataSource {
     }
     
     enum MoreSectionItem: Hashable {
-        case title(String)
-        case content(String)
+        case item(title: String, content: String)
     }
 }
 
@@ -90,7 +89,7 @@ extension DataSource {
             }
         case .more:
             return viewModel.additionalInfo.reduce(.init()) { (result, section) in
-                return result + [MoreSectionItem.title(section.title)] + [MoreSectionItem.content(section.content)]
+                return result + [MoreSectionItem.item(title: section.title, content: section.content)]
             }
         }
     }
