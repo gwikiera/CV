@@ -32,6 +32,7 @@
 		2D5BB3C424C45BD1006DE8E2 /* ImageProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BB3C324C45BD1006DE8E2 /* ImageProviderTests.swift */; };
 		2D5BB3C924C4647B006DE8E2 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D5BB3C824C4647B006DE8E2 /* empty.json */; };
 		2D5BB3CB24C464A7006DE8E2 /* TestsFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5BB3CA24C464A7006DE8E2 /* TestsFiles.swift */; };
+		2D62F2602544375F00462F6D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D62F25F2544375F00462F6D /* View.swift */; };
 		2D865DB424EFD12500407205 /* AboutCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D865DB324EFD12500407205 /* AboutCollectionViewCell.swift */; };
 		2D8C6E7E24EFE01B006D8B5C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D8C6E8024EFE01B006D8B5C /* Localizable.strings */; };
 		2D957C4224C39E0B000BDC86 /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D957C4124C39E0B000BDC86 /* ImageProvider.swift */; };
@@ -48,6 +49,7 @@
 		2DAF344B24DA006500F33949 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DAF344A24DA006500F33949 /* OpenSans-Regular.ttf */; };
 		2DAFA1992534EBD800D9775E /* CarrerHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD811EB2534D6CA00DE47F6 /* CarrerHeaderCollectionViewCell.swift */; };
 		2DAFA19E2534EEBC00D9775E /* CarrerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAFA19D2534EEBC00D9775E /* CarrerCollectionViewCell.swift */; };
+		2DD82CAF2544329C001EBDC3 /* GenericViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD82CAE2544329C001EBDC3 /* GenericViewRepresentable.swift */; };
 		2DDFEAE124C3A5A700E016BC /* Spy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFEADF24C3A5A700E016BC /* Spy.swift */; };
 		2DDFEAE224C3A5A700E016BC /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFEAE024C3A5A700E016BC /* Stub.swift */; };
 		2DDFEAE524C3A5E500E016BC /* ImagePresenterMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDFEAE424C3A5E500E016BC /* ImagePresenterMocks.swift */; };
@@ -109,6 +111,7 @@
 		2D5BB3C324C45BD1006DE8E2 /* ImageProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProviderTests.swift; sourceTree = "<group>"; };
 		2D5BB3C824C4647B006DE8E2 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		2D5BB3CA24C464A7006DE8E2 /* TestsFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestsFiles.swift; sourceTree = "<group>"; };
+		2D62F25F2544375F00462F6D /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		2D865DB324EFD12500407205 /* AboutCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D8C6E7F24EFE01B006D8B5C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2D957C4124C39E0B000BDC86 /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 		2DAF344A24DA006500F33949 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		2DAFA19D2534EEBC00D9775E /* CarrerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrerCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DD811EB2534D6CA00DE47F6 /* CarrerHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrerHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		2DD82CAE2544329C001EBDC3 /* GenericViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericViewRepresentable.swift; sourceTree = "<group>"; };
 		2DDFEADF24C3A5A700E016BC /* Spy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spy.swift; sourceTree = "<group>"; };
 		2DDFEAE024C3A5A700E016BC /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		2DDFEAE424C3A5E500E016BC /* ImagePresenterMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePresenterMocks.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 			children = (
 				2D2F280724C39490004C8D8E /* AppDelegate */,
 				2D2F280A24C39502004C8D8E /* Scenes */,
+				2DD82CAD2544327E001EBDC3 /* Helpers */,
 				2DDFEAEF24C44DE900E016BC /* Extensions */,
 				2D2F280924C394D0004C8D8E /* Storyboards */,
 				2D2F280B24C3951C004C8D8E /* Resources */,
@@ -347,6 +352,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		2DD82CAD2544327E001EBDC3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2DD82CAE2544329C001EBDC3 /* GenericViewRepresentable.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		2DDFEADE24C3A59900E016BC /* Tests Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +394,7 @@
 				2D0D778524DA0A3C0037C377 /* UIFont.swift */,
 				2DEB5AD424EFDBAC002D2F3B /* String.swift */,
 				2D9FFA7524F0E4E0009C9B33 /* UnitTests.swift */,
+				2D62F25F2544375F00462F6D /* View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -565,8 +579,10 @@
 				2DDFEAF124C44E8300E016BC /* UIViewController.swift in Sources */,
 				2D865DB424EFD12500407205 /* AboutCollectionViewCell.swift in Sources */,
 				2DFAFE6C24C9693D00E84DC9 /* ViewModel.swift in Sources */,
+				2DD82CAF2544329C001EBDC3 /* GenericViewRepresentable.swift in Sources */,
 				2D2C087D24D99707001EFA58 /* ImageCollectionViewCell.swift in Sources */,
 				2D0E735D24D6B6C100B697EA /* ContactCollectionViewCell.swift in Sources */,
+				2D62F2602544375F00462F6D /* View.swift in Sources */,
 				2D0D778624DA0A3C0037C377 /* UIFont.swift in Sources */,
 				2D0D778424DA088F0037C377 /* UIColor.swift in Sources */,
 				2DAFA1992534EBD800D9775E /* CarrerHeaderCollectionViewCell.swift in Sources */,

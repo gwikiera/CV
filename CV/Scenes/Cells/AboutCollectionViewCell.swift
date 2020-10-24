@@ -60,23 +60,13 @@ class AboutCollectionViewCell: UICollectionViewCell {
 #if DEBUG
 import SwiftUI
 
-struct AboutCellViewRepresentable: UIViewRepresentable {
-    let text: String
-    
-    func makeUIView(context: Context) -> UIView {
-        let cell = AboutCollectionViewCell()
-        cell.setHeader(String.Localized.about, text: text)
-        return cell
-    }
-    
-    func updateUIView(_ view: UIView, context: Context) {}
-}
-
-struct AboutCellViewRepresentable_Preview: PreviewProvider { //swiftlint:disable:this type_name
+struct AboutCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
     static var previews: some View {
         Group {
-            AboutCellViewRepresentable(text: String.loremIpsum)
-                .previewLayout(.fixed(width: 320, height: .infinity))
+            GenericViewRepresentable(initializer: AboutCollectionViewCell.init,
+                                     cofigurator: { $0.setHeader(String.Localized.about, text: String.loremIpsum) })
+                .previewCell()
+                .previewColorSchemes()
         }
     }
 }

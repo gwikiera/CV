@@ -52,23 +52,13 @@ class HeaderCollectionViewCell: UICollectionViewCell {
 #if DEBUG
 import SwiftUI
 
-struct HeaderCellViewRepresentable: UIViewRepresentable {
-    let text: String
-    
-    func makeUIView(context: Context) -> UIView {
-        let cell = HeaderCollectionViewCell()
-        cell.setText(text)
-        return cell
-    }
-    
-    func updateUIView(_ view: UIView, context: Context) {}
-}
-
-struct HeaderCellViewRepresentable_Preview: PreviewProvider { //swiftlint:disable:this type_name
+struct HeaderCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
     static var previews: some View {
         Group {
-            HeaderCellViewRepresentable(text: "Test")
-                .previewLayout(.fixed(width: 320, height: 100))
+            GenericViewRepresentable(initializer: HeaderCollectionViewCell.init,
+                                     cofigurator: { $0.setText("Test")})
+                .previewCell()
+                .previewColorSchemes()
         }
     }
 }

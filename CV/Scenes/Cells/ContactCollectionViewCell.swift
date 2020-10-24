@@ -41,24 +41,13 @@ class ContactCollectionViewCell: UICollectionViewCell {
 #if DEBUG
 import SwiftUI
 
-struct ContactCellViewRepresentable: UIViewRepresentable {
-    let type: String
-    let value: String
-    
-    func makeUIView(context: Context) -> UIView {
-        let cell = ContactCollectionViewCell()
-        cell.set(type: type, value: value)
-        return cell
-    }
-    
-    func updateUIView(_ view: UIView, context: Context) {}
-}
-
-struct ContactCellViewRepresentable_Preview: PreviewProvider { //swiftlint:disable:this type_name
+struct ContactCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
     static var previews: some View {
         Group {
-            ContactCellViewRepresentable(type: "Test", value: "http://www.google.com")
-                .previewLayout(.fixed(width: 320, height: 100))
+            GenericViewRepresentable(initializer: ContactCollectionViewCell.init,
+                                     cofigurator: { $0.set(type: "Test", value: "http://www.google.com")})
+                .previewCell(height: 30)
+                .previewColorSchemes()
         }
     }
 }

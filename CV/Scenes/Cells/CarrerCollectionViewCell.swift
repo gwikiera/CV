@@ -64,3 +64,18 @@ class CarrerCollectionViewCell: UICollectionViewCell {
         descriptionLabel.text = description
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+struct CarrerCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
+    static var previews: some View {
+        Group {
+            GenericViewRepresentable(initializer: CarrerCollectionViewCell.init,
+                                     cofigurator: { $0.set(title: "title", subtitle: "subtitle", description: "description") })
+                .previewCell(height: 120)
+                .previewColorSchemes()
+        }
+    }
+}
+#endif
