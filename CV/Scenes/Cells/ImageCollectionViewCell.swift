@@ -82,15 +82,14 @@ extension ImageCollectionViewCell: ImageViewLogic {
 #if DEBUG
 import SwiftUI
 
-struct ImageCellViewRepresentable: UIViewRepresentable {
+struct ImageCollectionViewCellConfigurator {
     enum Mode: CaseIterable {
         case loading, error, image
     }
     
     let mode: Mode
 
-    func makeUIView(context: Context) -> UIView {
-        let cell = ImageCollectionViewCell()
+    func configure(_ cell: ImageCollectionViewCell) {
         switch mode {
         case .loading:
             cell.displayLoading()
@@ -99,18 +98,16 @@ struct ImageCellViewRepresentable: UIViewRepresentable {
         case .image:
             cell.displayImage(at: Bundle.main.path(forResource: "Profile", ofType: "jpeg")!)
         }
-        return cell
     }
-    
-    func updateUIView(_ view: UIView, context: Context) {}
 }
 
-struct ImageCellViewRepresentable_Preview: PreviewProvider { //swiftlint:disable:this type_name
+struct ImageCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
     static var previews: some View {
         Group {
-            ForEach(ImageCellViewRepresentable.Mode.allCases, id: \.self) { mode in
-                ImageCellViewRepresentable(mode: mode)
-                    .previewLayout(.fixed(width: 320, height: 100))
+            ForEach(ImageCollectionViewCellConfigurator.Mode.allCases, id: \.self) { mode in
+                GenericViewRepresentable(initializer: ImageCollectionViewCell.init, cofigurator: ImageCollectionViewCellConfigurator(mode: mode).configure)
+                    .previewCell()
+                    .previewColorSchemes()
             }
         }
     }

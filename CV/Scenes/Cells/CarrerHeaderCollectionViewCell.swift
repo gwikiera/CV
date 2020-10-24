@@ -30,3 +30,18 @@ class CarrerHeaderCollectionViewCell: UICollectionViewCell {
         label.text = text
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+struct CarrerHeaderCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
+    static var previews: some View {
+        Group {
+            GenericViewRepresentable(initializer: CarrerHeaderCollectionViewCell.init,
+                                     cofigurator: { $0.set(text: "text") })
+                .previewCell()
+                .previewColorSchemes()
+        }
+    }
+}
+#endif
