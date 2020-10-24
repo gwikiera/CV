@@ -52,6 +52,7 @@ class CarrerCollectionViewCell: UICollectionViewCell {
                                      stackView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
                                      stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
                                      stackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)])
+        contentView.backgroundColor = .tertiarySystemBackground
     }
     
     required init?(coder: NSCoder) {

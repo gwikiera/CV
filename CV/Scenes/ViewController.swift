@@ -29,7 +29,7 @@ class ViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .black
         
         dataSource = UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>(collectionView: collectionView, cellProvider: cellProvider.provideCell)
         collectionView.dataSource = dataSource
@@ -46,6 +46,10 @@ class ViewController: UICollectionViewController {
         super.traitCollectionDidChange(previousTraitCollection)
         
         collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
     }
     
     func display(viewModel: ViewModel) {
