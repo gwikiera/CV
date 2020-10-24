@@ -26,6 +26,16 @@ class CarrerHeaderCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        contentView.backgroundColor = .tertiarySystemBackground
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func set(text: String) {
         label.text = text
     }
