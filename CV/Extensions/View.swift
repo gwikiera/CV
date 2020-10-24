@@ -20,9 +20,7 @@ import SwiftUI
 
 extension View {
     func previewCell(width: CGFloat = 320, height: CGFloat = 80) -> some View {
-        Group {
-            previewLayout(.fixed(width: width, height: height))
-        }
+        previewLayout(.fixed(width: width, height: height))
     }
     
     func previewColorSchemes() -> some View {

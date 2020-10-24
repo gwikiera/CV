@@ -67,7 +67,6 @@ struct AboutCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:th
                                      cofigurator: { $0.setHeader(String.Localized.about, text: String.loremIpsum) })
                 .previewCell()
                 .previewColorSchemes()
-
         }
     }
 }
