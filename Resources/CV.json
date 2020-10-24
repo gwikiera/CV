@@ -1,0 +1,95 @@
+{
+    "introduction": "I am an iOS developer with more than ten years of experience. I participated in many different projects, from building simple games for kids to designing and developing iOS frameworks. As a principal developer, I set up the standards of iOS development in the matter of architecture, tools, and code standards. I was presenting my findings on internal presentations and local meet-ups. Currently, I am leading one of the iOS teams in the company, which is responsible for most of the applications. I am still covering for the tech part, with some extra responsibilities. I am managing people, working on their development, motivation, and everything else which allows them to create the best products in an agile way.",
+    "imageURL": "https://raw.githubusercontent.com/gwikiera/CV/develop/Resources/Profile.jpeg",
+    "contactItems": [
+        {
+            "name": "phone",
+            "value": "+48 791 597 001"
+        },
+        {
+            "name": "email",
+            "value": "gwikiera@gmail.com"
+        },
+        {
+            "name": "LinkedIn",
+            "value": "https://www.linkedin.com/in/gwikiera"
+        },
+        {
+            "name": "GitHub",
+            "value": "https://github.com/gwikiera"
+        }
+    ],
+    "carrerHistory": [
+        {
+            "title": "Experience",
+            "items": [
+                {
+                    "title": "Senior iOS Developer",
+                    "subtitle": "HSBC (10.2020 – now)",
+                    "description": "Working in the Core team on shared, reusable components for other iOS teams in the company. Researching and developing new solutions, tools, and opportunities for the app used by millions of HSBC's clients."
+                },
+                {
+                    "title": "iOS Team Lead",
+                    "subtitle": "William Hill (02.2019 – now)",
+                    "description": "Leading one of the two iOS teams responsible for all William Hill’s iOS apps, used by millions of our customers. Focusing on both aspects of the role: technical and managerial. I am mentoring other developers, setting up the standards for the whole process of creating iOS applications (development, testing, CI/CD), helping them with their career progress."
+                },
+                {
+                    "title": "Principal Software Developer",
+                    "subtitle": "William Hill (04.2018 – 01.2019)",
+                    "description": "Setting up the standards for the iOS developers inside the company, mentoring other developers, cooperating with other teams on shared projects. Conducting presentations on external meetups."
+                },
+                {
+                    "title": "Senior iOS Developer",
+                    "subtitle": "William Hill (05.2017 – 03.2018)",
+                    "description": "Working in the mobile core team on robust, reusable components for William Hill’s mobile applications. Working with Android developer on shared solution."
+                },
+                {
+                    "title": "Senior iOS Developer",
+                    "subtitle": "IG KnowHow (08.2016 – 04.2017)",
+                    "description": "Creating complex mobile applications using modern mobile solutions (VIPER, Dependency Injection). Working on applications dedicated to the company clients to let them gather knowledge about trading and markets, with the possibility to trade on them."
+                },
+                {
+                    "title": "Mobile Application Developer",
+                    "subtitle": "Trifork (09.2012 – 07.2016)",
+                    "description": "Creating applications for iOS devices. Participation in international projects with developing software for foreign customers. Created many applications for internal use by customers and available on the AppStore."
+                },
+                {
+                    "title": "iOS Developer",
+                    "subtitle": "HanBright (06.2011 – 08.2012)",
+                    "description": "Creating applications for iOS devices, mostly simple games for kids based on the games created in Flash, using frameworks like: Sparrow, cocos2d, box2d."
+                },
+                {
+                    "title": "iOS Developer",
+                    "subtitle": "CocoLab (05.2010 – 05.2011)",
+                    "description": "Creating first iOS (then even iPhoneOS) applications for first available iPhones and iPods. Learning iOS development, later on helping new colleagues with their first steps into the iOS dev world."
+                }
+            ]
+        },
+        {
+            "title": "Education",
+            "items": [
+                {
+                    "title": "AGH University of Science and Technology",
+                    "subtitle": "Master's degree (2011 – 2012)",
+                    "description": ""
+                },
+                {
+                    "title": "AGH University of Science and Technology",
+                    "subtitle": "Bachelor's degree (2007 – 2011)",
+                    "description": ""
+                }
+            ]
+        }
+    ],
+    "fullname": "Grzegorz Wikiera",
+    "additionalInfo": [
+        {
+            "title": "Skills",
+            "content": "Swift, Objective C\nClean Swift, Viper, MVVM, MVC\nCore Data, Realm\nREST API\nTDD, BDD, Quick, Nimble\nUITests, Robot Pattern\nCarthage, Rome, CocoaPods, SPM\nFastlane, Danger, Swiftlint, GitLab CI, CircleCI\nJIRA, Trello, Confluence Agile/Scrum"
+        },
+        {
+            "title": "Interests",
+            "content": "Climbing\nCycling\nRunning\nBilliard\nUrban infrastructure"
+        }
+    ]
+}
