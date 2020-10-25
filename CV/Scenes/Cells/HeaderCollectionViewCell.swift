@@ -33,7 +33,8 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         underlineView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(underlineView)
         contentView.center(view: label)
-
+        contentView.backgroundColor = .tertiarySystemBackground
+        
         underlineView.widthAnchor.constraint(equalTo: label.widthAnchor, multiplier: 1, constant: 20).isActive = true
         underlineView.heightAnchor.constraint(equalTo: label.heightAnchor, multiplier: 0.4, constant: 0).isActive = true
         underlineView.centerXAnchor.constraint(equalTo: label.centerXAnchor).isActive = true

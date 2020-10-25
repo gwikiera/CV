@@ -33,6 +33,16 @@ class ContactCollectionViewCell: UICollectionViewCell {
         return textView
     }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        contentView.backgroundColor = .tertiarySystemBackground
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func set(type: String, value: String) {
         textView.text = "\(type): \(value)"
     }
