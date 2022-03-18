@@ -1,6 +1,6 @@
 default_platform(:ios)
 
-xcversion(version: "~> 11.5")
+xcversion(version: "~> 13")
 
 platform :ios do
   desc "Perform unit tests"
