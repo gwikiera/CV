@@ -21,7 +21,7 @@ import Nimble
 @testable import CV
 
 class CellProviderTests: QuickSpec {
-    override func spec() { //swiftlint:disable:this function_body_length
+    override func spec() { // swiftlint:disable:this function_body_length
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
         let tested = CellProvider(collectionView: collectionView)
         let invalidItem = ""

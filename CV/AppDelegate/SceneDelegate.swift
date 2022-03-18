@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         #if DEBUG
         guard !isRunningUnitTests else { return }
-        window?.rootViewController = ViewController()
+        window?.rootViewController = CollectionViewController(viewModel: .init(viewModelClient: .hardcodedJSON))
         #endif
 
         window?.makeKeyAndVisible()

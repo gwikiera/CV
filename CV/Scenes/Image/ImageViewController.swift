@@ -27,7 +27,7 @@ final class ImageViewController: UIViewController {
     let interactor: ImageBusinessLogic
     
     private var imageView: UIImageView {
-        view as! UIImageView //swiftlint:disable:this force_cast
+        view as! UIImageView // swiftlint:disable:this force_cast
     }
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
@@ -120,7 +120,7 @@ struct ImageViewRepresentable: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: Context) {}
 }
 
-struct ImageViewRepresentable_Preview: PreviewProvider { //swiftlint:disable:this type_name
+struct ImageViewRepresentable_Preview: PreviewProvider { // swiftlint:disable:this type_name
     static var devices = ["iPhone SE", "iPhone XS Max", "iPad Pro (11-inch)"]
 
     static var previews: some View {

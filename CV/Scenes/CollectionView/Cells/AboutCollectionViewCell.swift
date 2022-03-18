@@ -60,7 +60,7 @@ class AboutCollectionViewCell: UICollectionViewCell {
 #if DEBUG
 import SwiftUI
 
-struct AboutCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
+struct AboutCollectionViewCell_Preview: PreviewProvider { // swiftlint:disable:this type_name
     static var previews: some View {
         Group {
             GenericViewRepresentable(initializer: AboutCollectionViewCell.init,
