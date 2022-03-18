@@ -127,8 +127,8 @@ class CellProviderTests: QuickSpec {
                 }
             }
             
-            context("for carrer section") {
-                let indexPath = IndexPath(row: 0, section: DataSource.Section.carrer.rawValue)
+            context("for career section") {
+                let indexPath = IndexPath(row: 0, section: DataSource.Section.career.rawValue)
 
                 context("and invalid object") {
                     it("returns nil") {
@@ -140,27 +140,27 @@ class CellProviderTests: QuickSpec {
                     }
                 }
 
-                context("and CarrerSectionItem.title object") {
-                    let item = DataSource.CarrerSectionItem.title("title")
+                context("and CareerSectionItem.title object") {
+                    let item = DataSource.CareerSectionItem.title("title")
 
-                    it("provides CarrerHeaderCollectionViewCell cell") {
+                    it("provides CareerHeaderCollectionViewCell cell") {
                         let cell = tested.provideCell(collectionView: collectionView,
                                                       indexPath: indexPath,
                                                       item: item)
                         
-                        expect(cell).to(beAnInstanceOf(CarrerHeaderCollectionViewCell.self))
+                        expect(cell).to(beAnInstanceOf(CareerHeaderCollectionViewCell.self))
                     }
                 }
                 
                 context("and PersonalSectionItem.contact object") {
-                    let item = DataSource.CarrerSectionItem.item(title: "title", subtitle: "subtitle", text: "text")
+                    let item = DataSource.CareerSectionItem.item(title: "title", subtitle: "subtitle", text: "text")
 
-                    it("provides CarrerCollectionViewCell cell") {
+                    it("provides CareerCollectionViewCell cell") {
                         let cell = tested.provideCell(collectionView: collectionView,
                                                       indexPath: indexPath,
                                                       item: item)
                         
-                        expect(cell).to(beAnInstanceOf(CarrerCollectionViewCell.self))
+                        expect(cell).to(beAnInstanceOf(CareerCollectionViewCell.self))
                     }
                 }
             }

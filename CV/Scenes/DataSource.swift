@@ -22,7 +22,7 @@ enum DataSource {
         case image
         case personal
         case about
-        case carrer
+        case career
         case more
     }
     
@@ -39,7 +39,7 @@ enum DataSource {
         case text(String)
     }
     
-    enum CarrerSectionItem: Hashable {
+    enum CareerSectionItem: Hashable {
         case title(String)
         case item(title: String, subtitle: String, text: String)
     }
@@ -79,10 +79,10 @@ extension DataSource {
                 return []
             }
             return [AboutSectionItem.text(viewModel.introduction)]
-        case .carrer:
-            return viewModel.carrerHistory.reduce(.init()) { (result, section) in
-                return result + [CarrerSectionItem.title(section.title)] + section.items.map { item in
-                    CarrerSectionItem.item(title: item.title,
+        case .career:
+            return viewModel.careerHistory.reduce(.init()) { (result, section) in
+                return result + [CareerSectionItem.title(section.title)] + section.items.map { item in
+                    CareerSectionItem.item(title: item.title,
                                            subtitle: item.subtitle,
                                            text: item.description)
                 }

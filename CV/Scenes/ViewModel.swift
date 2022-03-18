@@ -28,12 +28,12 @@ struct ViewModel {
         let content: String
     }
     
-    struct CarrerSection {
+    struct CareerSection {
         let title: String
-        let items: [CarrerItem]
+        let items: [CareerItem]
     }
     
-    struct CarrerItem {
+    struct CareerItem {
         let title: String
         let subtitle: String
         let description: String
@@ -43,7 +43,7 @@ struct ViewModel {
     let fullname: String
     let introduction: String
     let contactItems: [ContactItem]
-    let carrerHistory: [CarrerSection]
+    let careerHistory: [CareerSection]
     let additionalInfo: [AdditionalInfoItem]
 }
 
@@ -63,14 +63,14 @@ extension ViewModel {
                                         ContactItem(name: "email", value: "gwikiera@gmail.com"),
                                         ContactItem(name: "LinkedIn", value: "https://www.linkedin.com/in/gwikiera"),
                                         ContactItem(name: "GitHub", value: "https://github.com/gwikiera")],
-                         carrerHistory: [CarrerSection(title: "Experience", items: [CarrerItem(title: "iOS Team Lead",
+                         careerHistory: [CareerSection(title: "Experience", items: [CareerItem(title: "iOS Team Lead",
                                                                                                subtitle: "William Hill (02.2019 – now)",
                                                                                                description: "Leading one of the two iOS teams responsible for all William Hill’s iOS apps, used by millions of our customers. Focusing on both aspects of the role: technical and managerial. I am mentoring other developers, setting up the standards for the whole process of creating iOS applications (development, testing, CI/CD), helping them with their career progress."),
-                                                                                    CarrerItem(title: "Principal Software Developer",
+                                                                                    CareerItem(title: "Principal Software Developer",
                                                                                                subtitle: "William Hill (04.2018 – 01.2019)",
                                                                                                description: "Setting up the standards for the iOS developers inside the company, mentoring other developers, cooperating with other teams on shared projects. Conducting presentations on external meetups.")]),
-                                         CarrerSection(title: "Education", items: [CarrerItem(title: "AGH University of Science and Technology", subtitle: "Master's degree (2011 – 2012)", description: ""),
-                                                                                   CarrerItem(title: "AGH University of Science and Technology", subtitle: "Bachelor's degree (2007 – 2011)", description: "")])],
+                                         CareerSection(title: "Education", items: [CareerItem(title: "AGH University of Science and Technology", subtitle: "Master's degree (2011 – 2012)", description: ""),
+                                                                                   CareerItem(title: "AGH University of Science and Technology", subtitle: "Bachelor's degree (2007 – 2011)", description: "")])],
                          additionalInfo: [AdditionalInfoItem(title: "Skills", content: """
 Swift, Objective C
 Clean Swift, Viper, MVVM, MVC

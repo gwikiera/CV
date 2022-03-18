@@ -28,7 +28,7 @@ final class CollectionViewLayoutGenerator {
             switch dataSection {
             case .image:
                 return self.imageSectionLayout(for: environment)
-            case .personal, .about, .carrer:
+            case .personal, .about, .career:
                 return self.fullWidthSectionLayout(for: environment)
             default:
                 // TODO: Fix later

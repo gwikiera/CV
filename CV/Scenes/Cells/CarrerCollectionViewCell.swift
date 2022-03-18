@@ -17,7 +17,7 @@
     
 import UIKit
 
-class CarrerCollectionViewCell: UICollectionViewCell {
+class CareerCollectionViewCell: UICollectionViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -69,10 +69,10 @@ class CarrerCollectionViewCell: UICollectionViewCell {
 #if DEBUG
 import SwiftUI
 
-struct CarrerCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
+struct CareerCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
     static var previews: some View {
         Group {
-            GenericViewRepresentable(initializer: CarrerCollectionViewCell.init,
+            GenericViewRepresentable(initializer: CareerCollectionViewCell.init,
                                      cofigurator: { $0.set(title: "title", subtitle: "subtitle", description: "description") })
                 .previewCell(height: 120)
                 .previewColorSchemes()
