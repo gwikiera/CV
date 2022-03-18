@@ -101,7 +101,7 @@ struct ImageCollectionViewCellConfigurator {
     }
 }
 
-struct ImageCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
+struct ImageCollectionViewCell_Preview: PreviewProvider { // swiftlint:disable:this type_name
     static var previews: some View {
         Group {
             ForEach(ImageCollectionViewCellConfigurator.Mode.allCases, id: \.self) { mode in

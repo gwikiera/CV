@@ -17,15 +17,23 @@
 
 import UIKit
 import Logging
+import Combine
 
-class ViewController: UICollectionViewController {
+class CollectionViewController: UICollectionViewController {
+    private let viewModel: CollectionViewModel
     private var dataSource: UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>?
     private lazy var cellProvider = CellProvider(collectionView: collectionView)
-    
-    convenience init() {
-        self.init(collectionViewLayout: CollectionViewLayoutGenerator().generateLayout())
+    private var cancellable: Cancellable?
+
+    init(viewModel: CollectionViewModel) {
+        self.viewModel = viewModel
+        super.init(collectionViewLayout: CollectionViewLayoutGenerator().generateLayout())
     }
-    
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,13 +41,11 @@ class ViewController: UICollectionViewController {
         
         dataSource = UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>(collectionView: collectionView, cellProvider: cellProvider.provideCell)
         collectionView.dataSource = dataSource
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // TODO: Placeholder
-        display(viewModel: .example)
+
+        cancellable = viewModel.viewModelPublisher
+            .sink { [weak self] viewModel in
+                self?.display(viewModel: viewModel)
+            }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -61,11 +67,9 @@ class ViewController: UICollectionViewController {
 #if DEBUG
 import SwiftUI
 
-struct ViewRepresentable_Preview: PreviewProvider { //swiftlint:disable:this type_name
-    static var devices = ["iPhone SE", "iPhone XS Max", "iPad Pro (11-inch)"]
-
+struct ViewRepresentable_Preview: PreviewProvider { // swiftlint:disable:this type_name
     static var previews: some View {
-        GenericViewRepresentable(view: ViewController().view)
+        GenericViewRepresentable(view: CollectionViewController(viewModel: .init(viewModelClient: .hardcodedJSON)).view)
             .previewForDevices()
     }
 }

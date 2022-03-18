@@ -20,7 +20,7 @@ import UIKit
 class TestFile {
     let url: URL
     var data: Data {
-        try! Data(contentsOf: url) //swiftlint:disable:this force_try
+        try! Data(contentsOf: url) // swiftlint:disable:this force_try
     }
 
     init(url: URL) {

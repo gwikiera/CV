@@ -69,7 +69,7 @@ class CareerCollectionViewCell: UICollectionViewCell {
 #if DEBUG
 import SwiftUI
 
-struct CareerCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
+struct CareerCollectionViewCell_Preview: PreviewProvider { // swiftlint:disable:this type_name
     static var previews: some View {
         Group {
             GenericViewRepresentable(initializer: CareerCollectionViewCell.init,

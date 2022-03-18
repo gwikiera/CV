@@ -17,23 +17,23 @@
 
 import Foundation
 
-struct ViewModel {
+struct ViewModel: Equatable {
     struct ContactItem: Hashable {
         let name: String
         let value: String
     }
     
-    struct AdditionalInfoItem {
+    struct AdditionalInfoItem: Equatable {
         let title: String
         let content: String
     }
     
-    struct CareerSection {
+    struct CareerSection: Equatable {
         let title: String
         let items: [CareerItem]
     }
     
-    struct CareerItem {
+    struct CareerItem: Equatable {
         let title: String
         let subtitle: String
         let description: String
@@ -48,7 +48,7 @@ struct ViewModel {
 }
 
 extension ViewModel {
-    static var example: ViewModel { //swiftlint:disable line_length
+    static var example: ViewModel { // swiftlint:disable line_length
         guard let path = Bundle.main.path(forResource: "Profile", ofType: "jpeg") else {
             fatalError()
         }

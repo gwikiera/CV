@@ -20,7 +20,7 @@ import Nimble
 @testable import CV
 
 class DataSourceTests: QuickSpec {
-    override func spec() { //swiftlint:disable:this function_body_length
+    override func spec() { // swiftlint:disable:this function_body_length
         describe("DataSource snapshot created from") {
             context("view model with image url") {
                 let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: [], careerHistory: [], additionalInfo: [])

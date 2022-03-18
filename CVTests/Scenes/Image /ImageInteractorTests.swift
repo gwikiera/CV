@@ -46,7 +46,7 @@ class ImageInteractorTests: QuickSpec {
                 it("presents image") {
                     let presenter = ImagePresentationLogic.Spy()
                     let imageProvider = ImageProviding.Stub()
-                    imageProvider.imagePathStub = { url, completion in completion(.success(.stub)) }
+                    imageProvider.imagePathStub = { _, completion in completion(.success(.stub)) }
                     let tested = ImageInteractor(presenter: presenter, imageUrl: .stub, provider: imageProvider)
                     
                     tested.loadImage()
@@ -60,7 +60,7 @@ class ImageInteractorTests: QuickSpec {
                     let error = ErrorStub()
                     let presenter = ImagePresentationLogic.Spy()
                     let imageProvider = ImageProviding.Stub()
-                    imageProvider.imagePathStub = { url, completion in completion(.failure(error)) }
+                    imageProvider.imagePathStub = { _, completion in completion(.failure(error)) }
                     let tested = ImageInteractor(presenter: presenter, imageUrl: .stub, provider: imageProvider)
                     
                     tested.loadImage()

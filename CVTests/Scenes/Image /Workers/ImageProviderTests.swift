@@ -49,14 +49,14 @@ class ImageProviderTests: QuickSpec {
 
                 beforeEach {
                     storagePath = NSTemporaryDirectory() + UUID().uuidString + "/"
-                    try! fileManager.createDirectory(atPath: storagePath, withIntermediateDirectories: true, attributes: nil) //swiftlint:disable:this force_try
+                    try! fileManager.createDirectory(atPath: storagePath, withIntermediateDirectories: true, attributes: nil) // swiftlint:disable:this force_try
                     imagePath = storagePath + url.lastPathComponent
                     tested = ImageProvider(storagePath: storagePath)
                     completionSpy = .init()
                 }
                 
                 afterEach {
-                    try! fileManager.removeItem(atPath: storagePath) //swiftlint:disable:this force_try
+                    try! fileManager.removeItem(atPath: storagePath) // swiftlint:disable:this force_try
                 }
                 
                 it("downloads the image") {

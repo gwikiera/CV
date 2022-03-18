@@ -17,20 +17,13 @@
     
 import UIKit
 
-class ContactCollectionViewCell: UICollectionViewCell {
-    private lazy var textView: UITextView = {
-        let textView = UITextView()
-        textView.isScrollEnabled = false
-        DispatchQueue.main.async {
-            textView.dataDetectorTypes = [.link, .phoneNumber]
-        }
-        textView.isEditable = false
-        textView.textColor = UIColor.Text.secondary
-        textView.font = .paragraph
-        textView.backgroundColor = .clear
-        contentView.center(view: textView)
-        contentView.heightAnchor.constraint(equalTo: textView.heightAnchor, multiplier: 1).isActive = true
-        return textView
+class CareerHeaderCollectionViewCell: UICollectionViewCell {
+    private lazy var label: UILabel = {
+        let label = UILabel()
+        label.font = .header1
+        center(view: label)
+        heightAnchor.constraint(equalTo: label.heightAnchor, constant: 20).isActive = true
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -43,20 +36,20 @@ class ContactCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(type: String, value: String) {
-        textView.text = "\(type): \(value)"
+    func set(text: String) {
+        label.text = text
     }
 }
 
 #if DEBUG
 import SwiftUI
 
-struct ContactCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
+struct CareerHeaderCollectionViewCell_Preview: PreviewProvider { // swiftlint:disable:this type_name
     static var previews: some View {
         Group {
-            GenericViewRepresentable(initializer: ContactCollectionViewCell.init,
-                                     cofigurator: { $0.set(type: "Test", value: "http://www.google.com")})
-                .previewCell(height: 30)
+            GenericViewRepresentable(initializer: CareerHeaderCollectionViewCell.init,
+                                     cofigurator: { $0.set(text: "text") })
+                .previewCell()
                 .previewColorSchemes()
         }
     }
