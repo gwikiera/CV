@@ -23,7 +23,7 @@ class DataSourceTests: QuickSpec {
     override func spec() { //swiftlint:disable:this function_body_length
         describe("DataSource snapshot created from") {
             context("view model with image url") {
-                let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: [], carrerHistory: [], additionalInfo: [])
+                let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: [], careerHistory: [], additionalInfo: [])
                 
                 it("contains one section") {
                     let snapshot = DataSource.snapshot(from: viewModel)
@@ -39,7 +39,7 @@ class DataSourceTests: QuickSpec {
                 
                 context("and contact items") {
                     let contactItems = (1...3).map { ViewModel.ContactItem(name: "\($0)", value: "\($0)\($0)") }
-                    let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: contactItems, carrerHistory: [], additionalInfo: [])
+                    let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: contactItems, careerHistory: [], additionalInfo: [])
                     
                     it("contains one section") {
                         let snapshot = DataSource.snapshot(from: viewModel)
@@ -56,7 +56,7 @@ class DataSourceTests: QuickSpec {
                 
                 context("and fullname") {
                     let fullname = "Full Name"
-                    let viewModel = ViewModel(imageURL: .stub, fullname: fullname, introduction: "", contactItems: [], carrerHistory: [], additionalInfo: [])
+                    let viewModel = ViewModel(imageURL: .stub, fullname: fullname, introduction: "", contactItems: [], careerHistory: [], additionalInfo: [])
                     
                     it("contains two sections") {
                         let snapshot = DataSource.snapshot(from: viewModel)
@@ -73,7 +73,7 @@ class DataSourceTests: QuickSpec {
                     
                     context("and contact items") {
                         let contactItems = (1...3).map { ViewModel.ContactItem(name: "\($0)", value: "\($0)\($0)") }
-                        let viewModel = ViewModel(imageURL: .stub, fullname: fullname, introduction: "", contactItems: contactItems, carrerHistory: [], additionalInfo: [])
+                        let viewModel = ViewModel(imageURL: .stub, fullname: fullname, introduction: "", contactItems: contactItems, careerHistory: [], additionalInfo: [])
                         
                         it("contains two sections") {
                             let snapshot = DataSource.snapshot(from: viewModel)
@@ -94,7 +94,7 @@ class DataSourceTests: QuickSpec {
                 
                 context("and introduction") {
                     let introduction = "introduction"
-                    let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: introduction, contactItems: [], carrerHistory: [], additionalInfo: [])
+                    let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: introduction, contactItems: [], careerHistory: [], additionalInfo: [])
                     
                     it("contains two sections") {
                         let snapshot = DataSource.snapshot(from: viewModel)
@@ -110,34 +110,34 @@ class DataSourceTests: QuickSpec {
                     }
                 }
                 
-                context("and carrer history") {
-                    let carrerHistory = [ViewModel.CarrerSection.init(title: "1", items: [ViewModel.CarrerItem(title: "title1", subtitle: "subtitle1", description: "description1")]),
-                                         ViewModel.CarrerSection.init(title: "", items: [ViewModel.CarrerItem(title: "title2", subtitle: "subtitle2", description: "description2"),
-                                                                                         ViewModel.CarrerItem(title: "title3", subtitle: "subtitle3", description: "description3")])]
-                    let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: [], carrerHistory: carrerHistory, additionalInfo: [])
+                context("and career history") {
+                    let careerHistory = [ViewModel.CareerSection.init(title: "1", items: [ViewModel.CareerItem(title: "title1", subtitle: "subtitle1", description: "description1")]),
+                                         ViewModel.CareerSection.init(title: "", items: [ViewModel.CareerItem(title: "title2", subtitle: "subtitle2", description: "description2"),
+                                                                                         ViewModel.CareerItem(title: "title3", subtitle: "subtitle3", description: "description3")])]
+                    let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: [], careerHistory: careerHistory, additionalInfo: [])
                     
                     it("contains two sections") {
                         let snapshot = DataSource.snapshot(from: viewModel)
                         
-                        expect(snapshot.sectionIdentifiers) == [.image, .carrer]
+                        expect(snapshot.sectionIdentifiers) == [.image, .career]
                     }
                     
                     it("contains many items") {
                         let snapshot = DataSource.snapshot(from: viewModel)
                         
                         expect(snapshot.itemIdentifiers) == [DataSource.ImageSectionItem.url(.stub),
-                                                             DataSource.CarrerSectionItem.title("1"),
-                                                             DataSource.CarrerSectionItem.item(title: "title1", subtitle: "subtitle1", text: "description1"),
-                                                             DataSource.CarrerSectionItem.title(""),
-                                                             DataSource.CarrerSectionItem.item(title: "title2", subtitle: "subtitle2", text: "description2"),
-                                                             DataSource.CarrerSectionItem.item(title: "title3", subtitle: "subtitle3", text: "description3")]
+                                                             DataSource.CareerSectionItem.title("1"),
+                                                             DataSource.CareerSectionItem.item(title: "title1", subtitle: "subtitle1", text: "description1"),
+                                                             DataSource.CareerSectionItem.title(""),
+                                                             DataSource.CareerSectionItem.item(title: "title2", subtitle: "subtitle2", text: "description2"),
+                                                             DataSource.CareerSectionItem.item(title: "title3", subtitle: "subtitle3", text: "description3")]
                     }
                 }
                 
                 context("and additional info") {
                     let additionalInfo = [ViewModel.AdditionalInfoItem(title: "1", content: "12"),
                                           ViewModel.AdditionalInfoItem(title: "3", content: "45")]
-                    let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: [], carrerHistory: [], additionalInfo: additionalInfo)
+                    let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: [], careerHistory: [], additionalInfo: additionalInfo)
                     
                     it("contains two sections") {
                         let snapshot = DataSource.snapshot(from: viewModel)
@@ -160,13 +160,13 @@ class DataSourceTests: QuickSpec {
                                           fullname: "Full Name",
                                           introduction: "introduction",
                                           contactItems: [.init(name: "name", value: "value")],
-                                          carrerHistory: [.init(title: "title", items: [.init(title: "title", subtitle: "subtitle", description: "description")])],
+                                          careerHistory: [.init(title: "title", items: [.init(title: "title", subtitle: "subtitle", description: "description")])],
                                           additionalInfo: [.init(title: "title", content: "content")])
                 
                 it("contains two sections") {
                     let snapshot = DataSource.snapshot(from: viewModel)
                     
-                    expect(snapshot.sectionIdentifiers) == [.image, .personal, .about, .carrer, .more]
+                    expect(snapshot.sectionIdentifiers) == [.image, .personal, .about, .career, .more]
                 }
                 
                 it("contains many items") {
@@ -176,8 +176,8 @@ class DataSourceTests: QuickSpec {
                                                          DataSource.PersonalSectionItem.fullname("Full Name"),
                                                          DataSource.PersonalSectionItem.contact(type: "name", value: "value"),
                                                          DataSource.AboutSectionItem.text("introduction"),
-                                                         DataSource.CarrerSectionItem.title("title"),
-                                                         DataSource.CarrerSectionItem.item(title: "title", subtitle: "subtitle", text: "description"),
+                                                         DataSource.CareerSectionItem.title("title"),
+                                                         DataSource.CareerSectionItem.item(title: "title", subtitle: "subtitle", text: "description"),
                                                          DataSource.MoreSectionItem.item(title: "title", content: "content")]
                 }
             }

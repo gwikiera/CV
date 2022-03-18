@@ -25,8 +25,8 @@ class CellProvider {
         collectionView.register(HeaderCollectionViewCell.self)
         collectionView.register(ContactCollectionViewCell.self)
         collectionView.register(AboutCollectionViewCell.self)
-        collectionView.register(CarrerHeaderCollectionViewCell.self)
-        collectionView.register(CarrerCollectionViewCell.self)
+        collectionView.register(CareerHeaderCollectionViewCell.self)
+        collectionView.register(CareerCollectionViewCell.self)
     }
     
     func provideCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
@@ -42,8 +42,8 @@ class CellProvider {
             return providePersonalSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
         case .about:
             return provideAboutSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
-        case .carrer:
-            return provideCarrerSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
+        case .career:
+            return provideCareerSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
         case .more:
             return provideMoreSectionCell(collectionView: collectionView, indexPath: indexPath, item: item)
         }
@@ -97,18 +97,18 @@ private extension CellProvider {
         }
     }
     
-    func provideCarrerSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
-        guard let sectionItem = item as? DataSource.CarrerSectionItem else {
+    func provideCareerSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
+        guard let sectionItem = item as? DataSource.CareerSectionItem else {
             logger.assert("Invalid item type: \(item) for index path: \(indexPath).")
             return nil
         }
         switch sectionItem {
         case .title(let text):
-            let cell: CarrerHeaderCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            let cell: CareerHeaderCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.set(text: text)
             return cell
         case .item(let title, let subtitle, let description):
-            let cell: CarrerCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            let cell: CareerCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.set(title: title, subtitle: subtitle, description: description)
             return cell
         }

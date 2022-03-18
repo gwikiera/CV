@@ -17,7 +17,7 @@
     
 import UIKit
 
-class CarrerHeaderCollectionViewCell: UICollectionViewCell {
+class CareerHeaderCollectionViewCell: UICollectionViewCell {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.font = .header1
@@ -44,10 +44,10 @@ class CarrerHeaderCollectionViewCell: UICollectionViewCell {
 #if DEBUG
 import SwiftUI
 
-struct CarrerHeaderCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
+struct CareerHeaderCollectionViewCell_Preview: PreviewProvider { //swiftlint:disable:this type_name
     static var previews: some View {
         Group {
-            GenericViewRepresentable(initializer: CarrerHeaderCollectionViewCell.init,
+            GenericViewRepresentable(initializer: CareerHeaderCollectionViewCell.init,
                                      cofigurator: { $0.set(text: "text") })
                 .previewCell()
                 .previewColorSchemes()
