@@ -45,7 +45,7 @@ extension Publisher where Output: Equatable {
                     output = $0
                 })
 
-        expect(file, line: line, expression: { output }).to(equal(expectedValue))
+        expect(file: file, line: line, { output }).to(equal(expectedValue))
     }
 
     func expectLastValue(
@@ -61,7 +61,7 @@ extension Publisher where Output: Equatable {
                 output = $0
             })
 
-        expect(file, line: line, expression: { output }).to(equal(expectedValue))
+        expect(file: file, line: line, { output }).to(equal(expectedValue))
     }
 
     func expectValues(
@@ -77,7 +77,7 @@ extension Publisher where Output: Equatable {
                     outputs.append($0)
                 })
 
-            expect(file, line: line, expression: { outputs }).to(equal(expectedValues))
+        expect(file: file, line: line, { outputs }).to(equal(expectedValues))
         }
 
     func expectNoValues(
@@ -106,7 +106,7 @@ extension Publisher {
             receiveValue: { _ in  /* receiveValue is a Combine requirement */ }
         )
 
-        expect(file, line: line, expression: { completed }).to(beTrue())
+        expect(file: file, line: line, { completed }).to(beTrue())
     }
 
     func expectFailure(
@@ -124,6 +124,6 @@ extension Publisher {
                 }
             }, receiveValue: { _ in  /* No value */ })
 
-        expect(file, line: line, expression: { expectFailure }).to(matchError(expected))
+        expect(file: file, line: line, { expectFailure }).to(matchError(expected))
     }
 }
