@@ -15,8 +15,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Combine
 import Foundation
+import Combine
+
+private let url: URL = "https://raw.githubusercontent.com/gwikiera/CV/develop/Resources/CV.json"
 
 // Based on pointfree.co dependencies style
 // Reference: https://www.pointfree.co/collections/dependencies
@@ -25,14 +27,22 @@ struct ViewModelClient {
 }
 
 extension ViewModelClient {
-    static let hardcodedJSON = Self {
-        Just<ViewModel>(.example)
-            .setFailureType(to: Error.self)
+    static let live = Self {
+        URLSession.shared.dataTaskPublisher(for: url)
+            .map { (data: Data, _) in
+                return data
+            }
+            .decode(type: ViewModel.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
 
-    static let failure = Self {
-        Fail(error: NSError())
+    #if DEBUG
+    static let mock = Self {
+        let path = Bundle.main.path(forResource: "CV", ofType: "json")!
+        let data = try! Data(contentsOf: URL(fileURLWithPath: path)) // swiftlint:disable:this force_try
+        return Just(data)
+            .decode(type: ViewModel.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
+    #endif
 }

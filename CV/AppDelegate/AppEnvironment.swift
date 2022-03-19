@@ -14,15 +14,29 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-    
-import Combine
 
-extension Publisher {
-    func ignoreFailure() -> AnyPublisher<Output, Never> {
-        self.catch { error -> Empty<Output, Never> in
-            logger.trace("Ignoring error: \(error)")
-            return Empty(completeImmediately: false)
-        }
-            .eraseToAnyPublisher()
-    }
+import Foundation
+import Logging
+
+struct AppEnvironment {
+    var viewModelClient: ViewModelClient
+    var logger: Logger
+}
+
+extension AppEnvironment {
+    static var current: AppEnvironment = .live
+}
+
+extension AppEnvironment {
+    static let live = AppEnvironment(
+        viewModelClient: .live,
+        logger: .live
+    )
+
+    #if DEBUG
+    static let mock = AppEnvironment(
+        viewModelClient: .mock,
+        logger: .mock
+    )
+    #endif
 }

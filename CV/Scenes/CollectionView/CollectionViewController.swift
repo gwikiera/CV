@@ -69,7 +69,7 @@ import SwiftUI
 
 struct ViewRepresentable_Preview: PreviewProvider { // swiftlint:disable:this type_name
     static var previews: some View {
-        GenericViewRepresentable(view: CollectionViewController(viewModel: .init(viewModelClient: .hardcodedJSON)).view)
+        GenericViewRepresentable(view: CollectionViewController(viewModel: .init(viewModelClient: .mock)).view)
             .previewForDevices()
     }
 }
