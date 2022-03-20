@@ -16,24 +16,27 @@
 // limitations under the License.
 
 import Foundation
-@testable import CV
+import Logging
 
-extension ViewModel {
-    static func stub(
-        imageURL: URL = .stub,
-        fullname: String = "",
-        introduction: String = "",
-        contactItems: [ContactItem] = [],
-        careerHistory: [CareerSection] = [],
-        additionalInfo: [AdditionalInfoItem] = []
-    ) -> Self {
-        .init(
-            imageURL: imageURL,
-            fullname: fullname,
-            introduction: introduction,
-            contactItems: contactItems,
-            careerHistory: careerHistory,
-            additionalInfo: additionalInfo
-        )
-    }
+struct AppEnvironment {
+    var viewModelClient: ViewModelClient
+    var logger: Logger
+}
+
+extension AppEnvironment {
+    static var current: AppEnvironment = .live
+}
+
+extension AppEnvironment {
+    static let live = AppEnvironment(
+        viewModelClient: .live,
+        logger: .live
+    )
+
+    #if DEBUG
+    static let mock = AppEnvironment(
+        viewModelClient: .mock,
+        logger: .mock
+    )
+    #endif
 }

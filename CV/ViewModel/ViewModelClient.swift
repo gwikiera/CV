@@ -15,24 +15,50 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Combine
 import Foundation
+import Combine
+
+private let baseURL: URL = "https://raw.githubusercontent.com/gwikiera/CV/feature/remoteData/Resources"
 
 // Based on pointfree.co dependencies style
 // Reference: https://www.pointfree.co/collections/dependencies
 struct ViewModelClient {
-    let viewModel: () -> AnyPublisher<ViewModel, Error>
+    let viewModelPublisher: () -> AnyPublisher<ViewModel, Error>
 }
 
 extension ViewModelClient {
-    static let hardcodedJSON = Self {
-        Just<ViewModel>(.example)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
+    static let live = ViewModelClient.client(
+        baseURL: baseURL,
+        dataTaskPublisher: { url in
+            URLSession.shared.dataTaskPublisher(for: url).map(\.data)
+        }
+    )
 
-    static let failure = Self {
-        Fail(error: NSError())
-            .eraseToAnyPublisher()
+#if DEBUG
+    static let mock = ViewModelClient.client(
+        baseURL: URL(fileURLWithPath: Bundle.main.path(forResource: "CV", ofType: "json")!).deletingLastPathComponent(),
+        dataTaskPublisher: { url in
+            Future<Data, Error> { promise in
+                do {
+                    let data = try Data(contentsOf: url)
+                    promise(.success(data))
+                } catch {
+                    promise(.failure(error))
+                }
+            }
+        }
+    )
+#endif
+}
+
+extension ViewModelClient {
+    static func client<P: Publisher>(baseURL: URL,
+                                     dataTaskPublisher: @escaping (URL) -> P
+    ) -> ViewModelClient where P.Output == Data {
+        self.init {
+            dataTaskPublisher(baseURL.appendingPathComponent("CV.json"))
+                .decode(type: ViewModel.self, decoder: JSONDecoder())
+                .eraseToAnyPublisher()
+        }
     }
 }

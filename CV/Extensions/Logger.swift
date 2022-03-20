@@ -18,13 +18,19 @@
 import Logging
 import Foundation
 
-let logger: Logger = {
-    var logger = Logger(label: "com.gwikiera.CV")
-    #if DEBUG
-    logger.logLevel = .trace
-    #endif
-    return logger
-}()
+var logger: Logger {
+    AppEnvironment.current.logger
+}
+
+extension Logger {
+    static let live = Logger(label: "com.gwikiera.CV")
+
+    static let mock: Logger = {
+        var logger = Logger(label: "com.gwikiera.CV.mock")
+        logger.logLevel = .trace
+        return logger
+    }()
+}
 
 extension Logger {
     func assert(_ message: @autoclosure () -> Logger.Message,

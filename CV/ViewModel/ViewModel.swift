@@ -17,23 +17,23 @@
 
 import Foundation
 
-struct ViewModel: Equatable {
-    struct ContactItem: Hashable {
+struct ViewModel: Equatable, Codable {
+    struct ContactItem: Hashable, Codable {
         let name: String
         let value: String
     }
     
-    struct AdditionalInfoItem: Equatable {
+    struct AdditionalInfoItem: Equatable, Codable {
         let title: String
         let content: String
     }
     
-    struct CareerSection: Equatable {
+    struct CareerSection: Equatable, Codable {
         let title: String
         let items: [CareerItem]
     }
     
-    struct CareerItem: Equatable {
+    struct CareerItem: Equatable, Codable {
         let title: String
         let subtitle: String
         let description: String
@@ -45,48 +45,4 @@ struct ViewModel: Equatable {
     let contactItems: [ContactItem]
     let careerHistory: [CareerSection]
     let additionalInfo: [AdditionalInfoItem]
-}
-
-extension ViewModel {
-    static var example: ViewModel { // swiftlint:disable line_length
-        guard let path = Bundle.main.path(forResource: "Profile", ofType: "jpeg") else {
-            fatalError()
-        }
-        logger.debug("Loading image at path: \(path)")
-        
-        let url = URL(fileURLWithPath: path)
-        
-        return ViewModel(imageURL: url,
-                         fullname: "Grzegorz Wikiera",
-                         introduction: "I am an iOS developer with more than ten years of experience. I participated in many different projects, from building simple games for kids to designing and developing iOS frameworks. As a principal developer, I set up the standards of iOS development in the matter of architecture, tools, and code standards. I was presenting my findings on internal presentations and local meet-ups. Currently, I am leading one of the iOS teams in the company, which is responsible for most of the applications. I am still covering for the tech part, with some extra responsibilities. I am managing people, working on their development, motivation, and everything else which allows them to create the best products in an agile way.",
-                         contactItems: [ContactItem(name: "phone", value: "+48 791 597 001"),
-                                        ContactItem(name: "email", value: "gwikiera@gmail.com"),
-                                        ContactItem(name: "LinkedIn", value: "https://www.linkedin.com/in/gwikiera"),
-                                        ContactItem(name: "GitHub", value: "https://github.com/gwikiera")],
-                         careerHistory: [CareerSection(title: "Experience", items: [CareerItem(title: "iOS Team Lead",
-                                                                                               subtitle: "William Hill (02.2019 – now)",
-                                                                                               description: "Leading one of the two iOS teams responsible for all William Hill’s iOS apps, used by millions of our customers. Focusing on both aspects of the role: technical and managerial. I am mentoring other developers, setting up the standards for the whole process of creating iOS applications (development, testing, CI/CD), helping them with their career progress."),
-                                                                                    CareerItem(title: "Principal Software Developer",
-                                                                                               subtitle: "William Hill (04.2018 – 01.2019)",
-                                                                                               description: "Setting up the standards for the iOS developers inside the company, mentoring other developers, cooperating with other teams on shared projects. Conducting presentations on external meetups.")]),
-                                         CareerSection(title: "Education", items: [CareerItem(title: "AGH University of Science and Technology", subtitle: "Master's degree (2011 – 2012)", description: ""),
-                                                                                   CareerItem(title: "AGH University of Science and Technology", subtitle: "Bachelor's degree (2007 – 2011)", description: "")])],
-                         additionalInfo: [AdditionalInfoItem(title: "Skills", content: """
-Swift, Objective C
-Clean Swift, Viper, MVVM, MVC
-Core Data, Realm
-REST API
-TDD, BDD, Quick, Nimble
-UITests, Robot Pattern
-Carthage, Rome, CocoaPods, SPM
-Fastlane, Danger, Swiftlint, GitLab CI, CircleCI
-JIRA, Trello, Confluence Agile/Scrum
-"""), AdditionalInfoItem(title: "Interests", content: """
-Climbing
-Cycling
-Running
-Billiard
-Urban infrastructure
-""")])
-    }
 }

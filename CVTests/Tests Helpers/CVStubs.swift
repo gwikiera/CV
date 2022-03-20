@@ -15,8 +15,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 @testable import CV
 
 extension ImagePath {
     static var stub: ImagePath = ""
+}
+
+extension ViewModel {
+    static func stub(
+        imageURL: URL = .stub,
+        fullname: String = "",
+        introduction: String = "",
+        contactItems: [ContactItem] = [],
+        careerHistory: [CareerSection] = [],
+        additionalInfo: [AdditionalInfoItem] = []
+    ) -> Self {
+        .init(
+            imageURL: imageURL,
+            fullname: fullname,
+            introduction: introduction,
+            contactItems: contactItems,
+            careerHistory: careerHistory,
+            additionalInfo: additionalInfo
+        )
+    }
 }

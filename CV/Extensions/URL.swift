@@ -1,7 +1,7 @@
 //
 //  CV
 //
-//  Copyright 2020 - Grzegorz Wikiera - https://github.com/gwikiera
+//  Copyright 2022 - Grzegorz Wikiera - https://github.com/gwikiera
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,22 +15,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-func stub<T>(of value: T) -> T {
-    fatalError()
-}
+import Foundation
 
-func noop<T>() -> ((T) -> Void) {
-    return { _ in }
-}
-
-func stubReturn<A, T>(with value: T) -> (A) -> T {
-    return { _ in
-        return value
-    }
-}
-
-func stubCompletion<A, T>(with value: T) -> ((A, @escaping (T) -> Void) -> Void) {
-    return { _, completion in
-        completion(value)
+extension URL: ExpressibleByStringLiteral {
+    public init(stringLiteral value: String) {
+        self.init(string: value)!
     }
 }

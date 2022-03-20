@@ -26,7 +26,7 @@ struct CollectionViewModel {
     }
 
     var viewModelPublisher: AnyPublisher<ViewModel, Never> {
-        viewModelClient.viewModel()
+        viewModelClient.viewModelPublisher()
             .ignoreFailure()
     }
 }
