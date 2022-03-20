@@ -19,8 +19,14 @@ func stub<T>(of value: T) -> T {
     fatalError()
 }
 
-func dummy<T>() -> ((T) -> Void) {
+func noop<T>() -> ((T) -> Void) {
     return { _ in }
+}
+
+func stubReturn<A, T>(with value: T) -> (A) -> T {
+    return { _ in
+        return value
+    }
 }
 
 func stubCompletion<A, T>(with value: T) -> ((A, @escaping (T) -> Void) -> Void) {

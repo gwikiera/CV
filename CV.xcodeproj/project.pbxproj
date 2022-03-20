@@ -66,11 +66,11 @@
 		EB73C94627E51AA700E55DE5 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C94527E51AA700E55DE5 /* Publisher.swift */; };
 		EB73C94827E51B5A00E55DE5 /* CollectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C94727E51B5A00E55DE5 /* CollectionViewModelTests.swift */; };
 		EB73C94B27E51D5700E55DE5 /* ViewModelClientMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C94A27E51D5700E55DE5 /* ViewModelClientMocks.swift */; };
-		EB73C94D27E51F4500E55DE5 /* ViewModelMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C94C27E51F4500E55DE5 /* ViewModelMocks.swift */; };
 		EB73C94F27E5232A00E55DE5 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C94E27E5232A00E55DE5 /* Publisher.swift */; };
 		EB73C95127E65D4E00E55DE5 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C95027E65D4E00E55DE5 /* AppEnvironment.swift */; };
 		EB73C95327E65E2400E55DE5 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C95227E65E2300E55DE5 /* URL.swift */; };
 		EB73C95527E662B600E55DE5 /* CV.json in Resources */ = {isa = PBXBuildFile; fileRef = EB73C95427E662B600E55DE5 /* CV.json */; };
+		EB73C95B27E6760A00E55DE5 /* ViewModelClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C95A27E6760A00E55DE5 /* ViewModelClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,11 +153,11 @@
 		EB73C94527E51AA700E55DE5 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		EB73C94727E51B5A00E55DE5 /* CollectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModelTests.swift; sourceTree = "<group>"; };
 		EB73C94A27E51D5700E55DE5 /* ViewModelClientMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelClientMocks.swift; sourceTree = "<group>"; };
-		EB73C94C27E51F4500E55DE5 /* ViewModelMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelMocks.swift; sourceTree = "<group>"; };
 		EB73C94E27E5232A00E55DE5 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		EB73C95027E65D4E00E55DE5 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		EB73C95227E65E2300E55DE5 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		EB73C95427E662B600E55DE5 /* CV.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = CV.json; path = Resources/CV.json; sourceTree = SOURCE_ROOT; };
+		EB73C95A27E6760A00E55DE5 /* ViewModelClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				EB73C94427E51A5300E55DE5 /* CollectionView */,
+				EB73C95927E675EE00E55DE5 /* ViewModel */,
 				2D957C4424C3A01E000BDC86 /* Image  */,
 			);
 			path = Scenes;
@@ -456,9 +457,16 @@
 			isa = PBXGroup;
 			children = (
 				EB73C94A27E51D5700E55DE5 /* ViewModelClientMocks.swift */,
-				EB73C94C27E51F4500E55DE5 /* ViewModelMocks.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		EB73C95927E675EE00E55DE5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EB73C95A27E6760A00E55DE5 /* ViewModelClientTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -681,7 +689,6 @@
 				2D5BB3C424C45BD1006DE8E2 /* ImageProviderTests.swift in Sources */,
 				2D1C273024CB283000787E61 /* DataSourceTests.swift in Sources */,
 				2DAF344224D8B99800F33949 /* CellProviderTests.swift in Sources */,
-				EB73C94D27E51F4500E55DE5 /* ViewModelMocks.swift in Sources */,
 				EB73C94827E51B5A00E55DE5 /* CollectionViewModelTests.swift in Sources */,
 				2DDFEAE224C3A5A700E016BC /* Stub.swift in Sources */,
 				EB73C94F27E5232A00E55DE5 /* Publisher.swift in Sources */,
@@ -690,6 +697,7 @@
 				2D957C4624C3A039000BDC86 /* ImageInteractorTests.swift in Sources */,
 				2D2BB9C924C6F88200235BE9 /* ImagePresenterTests.swift in Sources */,
 				2DDFEAE724C42CA400E016BC /* Stubs.swift in Sources */,
+				EB73C95B27E6760A00E55DE5 /* ViewModelClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
