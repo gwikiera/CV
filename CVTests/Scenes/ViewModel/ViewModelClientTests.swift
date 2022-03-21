@@ -22,6 +22,7 @@ import Combine
 
 class ViewModelClientTests: XCTestCase {
     let baseURL: URL = "baseURL"
+    
     func testViewModelPublisher_AskForDataForURL() {
         // Given
         var expectedUrl: URL?
