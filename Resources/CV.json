@@ -1,5 +1,5 @@
 {
-    "introduction": "I am an iOS developer with more than ten years of experience. I participated in many different projects, from building simple games for kids to designing and developing iOS frameworks. As a principal developer, I set up the standards of iOS development in the matter of architecture, tools, and code standards. I was presenting my findings on internal presentations and local meet-ups. Currently, I am leading one of the iOS teams in the company, which is responsible for most of the applications. I am still covering for the tech part, with some extra responsibilities. I am managing people, working on their development, motivation, and everything else which allows them to create the best products in an agile way.",
+    "introduction": "I am an iOS developer and team lead with almost twelve years of experience.\nCurrently, I am developing Vodafone Smart app, which allows users to control their IoT devices. The app is built using the newest frameworks like SwiftUI and Combine.\nAt HSBC I was a part of the team responsible for improving and maintaining their banking apps. I worked with hundreds of iOS developers from around the world on apps used by millions of users.\nWorking as a principal developer at William Hill, I have set up the standards of iOS development in terms of architecture, tools, and code quality. I presented my findings on internal events and local meet-ups. As a team lead, I never lost touch with developing code while picking up additional responsibilities. Managing people, motivating them, working on their development were only some of the actions I took to create the best products in an agile way.",
     "imageURL": "https://raw.githubusercontent.com/gwikiera/CV/develop/Resources/Profile.jpeg",
     "contactItems": [
         {
@@ -25,7 +25,12 @@
             "items": [
                 {
                     "title": "Senior iOS Developer",
-                    "subtitle": "HSBC (10.2020 – now)",
+                    "subtitle": "Vodafone (09.2021 – now)",
+                    "description": "I am developing the Vodafone Smart App app that allows the users of smart devices to control them. I am a part of the core team, which is responsible for creating the app foundations and the common components. Among other things, I worked on the new design system using SwiftUI, improving the networking layer using MQTT, and establishing the connection to new devices via BLE."
+                },
+                {
+                    "title": "Senior iOS Developer",
+                    "subtitle": "HSBC (10.2020 – 08.2021)",
                     "description": "Working in the Core team on shared, reusable components for other iOS teams in the company. Researching and developing new solutions, tools, and opportunities for the app used by millions of HSBC's clients."
                 },
                 {
@@ -85,7 +90,7 @@
     "additionalInfo": [
         {
             "title": "Skills",
-            "content": "Swift, Objective C\nClean Swift, Viper, MVVM, MVC\nCore Data, Realm\nREST API\nTDD, BDD, Quick, Nimble\nUITests, Robot Pattern\nCarthage, Rome, CocoaPods, SPM\nFastlane, Danger, Swiftlint, GitLab CI, CircleCI\nJIRA, Trello, Confluence Agile/Scrum"
+            "content": "Swift, Objective C\nClean Swift, Viper, MVVM, MVC\nUIKit, SwiftUI, the TCA\nCombine, RxSwift, ReactiveSwift\nCore Bluetooth, BLE\nCore Data, Realm\nREST API\nTDD, BDD, Quick, Nimble\nUITests, Robot Pattern\nCarthage, Rome, CocoaPods, SPM\nFastlane, Danger, Swiftlint,  GitLab CI, CircleCI\nJIRA, Trello, Confluence\nAgile/Scrum"
         },
         {
             "title": "Interests",
