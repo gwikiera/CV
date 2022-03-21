@@ -43,6 +43,7 @@ class CollectionViewController: UICollectionViewController {
         collectionView.dataSource = dataSource
 
         cancellable = viewModel.viewModelPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] viewModel in
                 self?.display(viewModel: viewModel)
             }
@@ -62,6 +63,25 @@ class CollectionViewController: UICollectionViewController {
         let snapshot = DataSource.snapshot(from: viewModel)
         dataSource?.apply(snapshot, animatingDifferences: false)
     }
+
+#if DEBUG
+    /// Helper function to record preview video of the app
+    func scrollToRecordPreview() {
+        guard let numberOfSections = dataSource?.numberOfSections(in: collectionView), numberOfSections > 0 else { return }
+        let scrollingPublisher = (2..<numberOfSections).publisher
+            .map { IndexPath(item: 0, section: $0)}
+        let timerPublisher = Timer.publish(every: 1.5, on: .main, in: .common).autoconnect().delay(for: .seconds(1), scheduler: DispatchQueue.main, options: .none)
+
+        cancellable = Publishers.Zip(scrollingPublisher, timerPublisher)
+            .sink { [collectionView] indexPath, _ in
+                collectionView?.scrollToItem(
+                    at: indexPath,
+                    at: .top,
+                    animated: true
+                )
+            }
+    }
+#endif
 }
 
 #if DEBUG
