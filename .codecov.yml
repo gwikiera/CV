@@ -1,0 +1,17 @@
+codecov.ymlcodecov:
+  branch: develop
+
+coverage:
+  precision: 2
+  round: down
+  range: 50...80
+
+  ignore:
+    - CVTests/.*
+    - CVUITests/.*
+
+  status:
+    project:
+      default:
+        target: 75
+        threshold: 1

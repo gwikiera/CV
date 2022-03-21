@@ -18,7 +18,7 @@
 import Foundation
 import Combine
 
-private let baseURL: URL = "https://raw.githubusercontent.com/gwikiera/CV/feature/remoteData/Resources"
+private let baseURL: URL = "https://raw.githubusercontent.com/gwikiera/CV/develop/Resources"
 
 // Based on pointfree.co dependencies style
 // Reference: https://www.pointfree.co/collections/dependencies
