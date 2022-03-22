@@ -16,7 +16,9 @@
 // limitations under the License.
     
 @testable import CV
+@testable import Networking
 import Combine
+import Data
 
 extension ViewModelClient {
     static func stub<P: Publisher>(_ publisher: P) -> ViewModelClient where P.Output == ViewModel, P.Failure == Swift.Error {

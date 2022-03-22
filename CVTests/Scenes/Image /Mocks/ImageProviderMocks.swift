@@ -16,6 +16,7 @@
 // limitations under the License.
     
 import Foundation
+import TestHelpers
 @testable import CV
 
 enum ImageProviding {
