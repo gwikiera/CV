@@ -15,22 +15,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-func stub<T>(of value: T) -> T {
-    fatalError()
-}
+import UIKit
 
-func noop<T>() -> ((T) -> Void) {
-    return { _ in }
-}
-
-func stubReturn<A, T>(with value: T) -> (A) -> T {
-    return { _ in
-        return value
+public class ErrorStub: Error, LocalizedError {
+    public init() {}
+    public var errorDescription: String? {
+        "errorDescription"
     }
 }
 
-func stubCompletion<A, T>(with value: T) -> ((A, @escaping (T) -> Void) -> Void) {
-    return { _, completion in
-        completion(value)
-    }
+public extension URL {
+    static let stub = URL(string: "scheme://host")!
+}
+
+public extension URLRequest {
+    static let stub = URLRequest(url: .stub)
+}
+
+public extension Data {
+    static let stub = Data()
+}
+
+public extension UIImage {
+    static let stub = UIImage()
 }

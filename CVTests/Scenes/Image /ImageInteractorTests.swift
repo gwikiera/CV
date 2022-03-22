@@ -17,6 +17,7 @@
     
 import Quick
 import Nimble
+import TestHelpers
 @testable import CV
 
 class ImageInteractorTests: QuickSpec {

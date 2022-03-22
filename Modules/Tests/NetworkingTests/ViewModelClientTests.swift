@@ -18,10 +18,12 @@
 import XCTest
 import Nimble
 import Combine
-@testable import CV
+import Data
+import TestHelpers
+@testable import Networking
 
 class ViewModelClientTests: XCTestCase {
-    let baseURL: URL = "baseURL"
+    let baseURL: URL = .stub
     
     func testViewModelPublisher_AskForDataForURL() {
         // Given

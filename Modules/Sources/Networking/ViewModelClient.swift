@@ -17,16 +17,18 @@
 
 import Foundation
 import Combine
+import Common
+import Data
 
 private let baseURL: URL = "https://raw.githubusercontent.com/gwikiera/CV/develop/Resources"
 
 // Based on pointfree.co dependencies style
 // Reference: https://www.pointfree.co/collections/dependencies
-struct ViewModelClient {
-    let viewModelPublisher: () -> AnyPublisher<ViewModel, Error>
+public struct ViewModelClient {
+    public let viewModelPublisher: () -> AnyPublisher<ViewModel, Error>
 }
 
-extension ViewModelClient {
+public extension ViewModelClient {
     static let live = ViewModelClient.client(
         baseURL: baseURL,
         dataTaskPublisher: { url in

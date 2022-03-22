@@ -17,13 +17,15 @@
 
 import Quick
 import Nimble
+import TestHelpers
+@testable import Data
 @testable import CV
 
 class DataSourceTests: QuickSpec {
     override func spec() { // swiftlint:disable:this function_body_length
         describe("DataSource snapshot created from") {
             context("view model with image url") {
-                let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: [], careerHistory: [], additionalInfo: [])
+                let viewModel = ViewModel.stub()
                 
                 it("contains one section") {
                     let snapshot = DataSource.snapshot(from: viewModel)
@@ -39,7 +41,7 @@ class DataSourceTests: QuickSpec {
                 
                 context("and contact items") {
                     let contactItems = (1...3).map { ViewModel.ContactItem(name: "\($0)", value: "\($0)\($0)") }
-                    let viewModel = ViewModel(imageURL: .stub, fullname: "", introduction: "", contactItems: contactItems, careerHistory: [], additionalInfo: [])
+                    let viewModel = ViewModel.stub(contactItems: contactItems)
                     
                     it("contains one section") {
                         let snapshot = DataSource.snapshot(from: viewModel)
@@ -56,7 +58,7 @@ class DataSourceTests: QuickSpec {
                 
                 context("and fullname") {
                     let fullname = "Full Name"
-                    let viewModel = ViewModel(imageURL: .stub, fullname: fullname, introduction: "", contactItems: [], careerHistory: [], additionalInfo: [])
+                    let viewModel = ViewModel.stub(fullname: fullname)
                     
                     it("contains two sections") {
                         let snapshot = DataSource.snapshot(from: viewModel)

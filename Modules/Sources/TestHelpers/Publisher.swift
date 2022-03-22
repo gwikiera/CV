@@ -18,7 +18,7 @@
 import Combine
 import Nimble
 
-extension Publisher {
+public extension Publisher {
     static func stubOutput(_ value: Output) -> AnyPublisher<Output, Failure> {
         Just(value)
             .setFailureType(to: Failure.self)
@@ -30,7 +30,7 @@ extension Publisher {
     }
 }
 
-extension Publisher where Output: Equatable {
+public extension Publisher where Output: Equatable {
     func expectFirstValue(
         _ expectedValue: Output,
         file: FileString = #file,
@@ -88,7 +88,7 @@ extension Publisher where Output: Equatable {
     }
 }
 
-extension Publisher {
+public extension Publisher {
     func firstResult() async -> Result<Output, Error> {
         return await withCheckedContinuation { continuation in
             _ = first()

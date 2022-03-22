@@ -19,6 +19,8 @@ import UIKit
 import Quick
 import Nimble
 import Combine
+import Data
+import TestHelpers
 @testable import CV
 
 class CollectionViewModelTests: QuickSpec {

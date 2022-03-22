@@ -18,6 +18,7 @@
 import UIKit
 import Logging
 import Combine
+import Data
 
 class CollectionViewController: UICollectionViewController {
     private let viewModel: CollectionViewModel

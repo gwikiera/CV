@@ -17,6 +17,8 @@
 
 import Foundation
 import Combine
+import Networking
+import Data
 
 struct CollectionViewModel {
     private let viewModelClient: ViewModelClient

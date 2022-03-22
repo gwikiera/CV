@@ -16,13 +16,9 @@
 // limitations under the License.
 
 import Foundation
-@testable import CV
+@testable import Data
 
-extension ImagePath {
-    static var stub: ImagePath = ""
-}
-
-extension ViewModel {
+public extension ViewModel {
     static func stub(
         imageURL: URL = .stub,
         fullname: String = "",
