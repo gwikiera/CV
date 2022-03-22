@@ -21,6 +21,7 @@ import Nimble
 import Combine
 import Data
 import TestHelpers
+@testable import Networking
 @testable import CV
 
 class CollectionViewModelTests: QuickSpec {
@@ -28,8 +29,13 @@ class CollectionViewModelTests: QuickSpec {
         describe("CollectionViewModel") {
             context("when client publish value") {
                 let viewModel = ViewModel.stub()
-                let viewModelClient = AnyPublisher<ViewModel, Error>.stubOutput(viewModel)
-                let sut = CollectionViewModel(viewModelClient: .stub(viewModelClient))
+                let data = (try? JSONEncoder().encode(viewModel)) ?? Data()
+                let apiClient = APIClient(
+                    baseURL: { .stub },
+                    dataTask: stubReturn(with: .stubOutput(data)),
+                    downloadTask: stubReturn(with: .stubOutput(.stub))
+                )
+                let sut = CollectionViewModel(client: apiClient)
 
                 it("pass it forward") {
 
@@ -38,14 +44,18 @@ class CollectionViewModelTests: QuickSpec {
             }
 
             context("when client fails") {
-                let viewModelClient = AnyPublisher<ViewModel, Error>.stubFailure(ErrorStub())
-                let sut = CollectionViewModel(viewModelClient: .stub(viewModelClient))
+                let apiClient = APIClient(
+                    baseURL: { .stub },
+                    dataTask: stubReturn(with: .stubFailure(ErrorStub())),
+                    downloadTask: stubReturn(with: .stubFailure(ErrorStub()))
+                )
+
+                let sut = CollectionViewModel(client: apiClient)
 
                 it("does nothing") {
                     sut.viewModelPublisher.expectNoValues()
                 }
             }
         }
-        
     }
 }

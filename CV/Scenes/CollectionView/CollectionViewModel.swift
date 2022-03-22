@@ -21,14 +21,14 @@ import Networking
 import Data
 
 struct CollectionViewModel {
-    private let viewModelClient: ViewModelClient
+    private let client: APIClient
 
-    init(viewModelClient: ViewModelClient) {
-        self.viewModelClient = viewModelClient
+    init(client: APIClient) {
+        self.client = client
     }
 
     var viewModelPublisher: AnyPublisher<ViewModel, Never> {
-        viewModelClient.viewModelPublisher()
+        client.request(endpoint: .data, as: ViewModel.self)
             .ignoreFailure()
     }
 }

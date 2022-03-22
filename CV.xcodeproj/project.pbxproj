@@ -60,7 +60,6 @@
 		EB340E5327E5135E008BE7C6 /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB340E5227E5135E008BE7C6 /* CollectionViewModel.swift */; };
 		EB73C94627E51AA700E55DE5 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C94527E51AA700E55DE5 /* Publisher.swift */; };
 		EB73C94827E51B5A00E55DE5 /* CollectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C94727E51B5A00E55DE5 /* CollectionViewModelTests.swift */; };
-		EB73C94B27E51D5700E55DE5 /* ViewModelClientMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C94A27E51D5700E55DE5 /* ViewModelClientMocks.swift */; };
 		EB73C95127E65D4E00E55DE5 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C95027E65D4E00E55DE5 /* AppEnvironment.swift */; };
 		EB73C95527E662B600E55DE5 /* CV.json in Resources */ = {isa = PBXBuildFile; fileRef = EB73C95427E662B600E55DE5 /* CV.json */; };
 		EB7EE40827EA027F005B9344 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = EB7EE40727EA027F005B9344 /* Networking */; };
@@ -144,7 +143,6 @@
 		EB6F544327EA02FE00741821 /* Modules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Modules; sourceTree = "<group>"; };
 		EB73C94527E51AA700E55DE5 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		EB73C94727E51B5A00E55DE5 /* CollectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModelTests.swift; sourceTree = "<group>"; };
-		EB73C94A27E51D5700E55DE5 /* ViewModelClientMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelClientMocks.swift; sourceTree = "<group>"; };
 		EB73C95027E65D4E00E55DE5 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		EB73C95427E662B600E55DE5 /* CV.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = CV.json; path = Resources/CV.json; sourceTree = SOURCE_ROOT; };
 		EBE9F81627EA147D00A8AC9B /* ImagePathStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePathStub.swift; sourceTree = "<group>"; };
@@ -432,20 +430,11 @@
 		EB73C94427E51A5300E55DE5 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				EB73C94927E51D4300E55DE5 /* Mocks */,
 				2D1C272F24CB283000787E61 /* DataSourceTests.swift */,
 				2DAF344124D8B99800F33949 /* CellProviderTests.swift */,
 				EB73C94727E51B5A00E55DE5 /* CollectionViewModelTests.swift */,
 			);
 			path = CollectionView;
-			sourceTree = "<group>";
-		};
-		EB73C94927E51D4300E55DE5 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				EB73C94A27E51D5700E55DE5 /* ViewModelClientMocks.swift */,
-			);
-			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -668,7 +657,6 @@
 				2D1C273024CB283000787E61 /* DataSourceTests.swift in Sources */,
 				2DAF344224D8B99800F33949 /* CellProviderTests.swift in Sources */,
 				EB73C94827E51B5A00E55DE5 /* CollectionViewModelTests.swift in Sources */,
-				EB73C94B27E51D5700E55DE5 /* ViewModelClientMocks.swift in Sources */,
 				2D2BB9CB24C6F8F600235BE9 /* ImageViewLogicMocks.swift in Sources */,
 				EBE9F81727EA147D00A8AC9B /* ImagePathStub.swift in Sources */,
 				2D957C4624C3A039000BDC86 /* ImageInteractorTests.swift in Sources */,
