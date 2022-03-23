@@ -12,3 +12,12 @@ platform :ios do
   )
   end
 end
+
+platform :ios do
+  desc "Submit tests report to codecov"
+  lane :codecov do
+  codecov_reporter(
+    token: "CODECOV_TOKEN"
+  )
+  end
+end
