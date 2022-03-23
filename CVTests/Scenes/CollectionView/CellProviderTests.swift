@@ -40,7 +40,7 @@ class CellProviderTests: QuickSpec {
             }
             
             context("for image section") {
-                let indexPath = IndexPath(row: 0, section: DataSource.Section.image.rawValue)
+                let indexPath = IndexPath(row: 0, section: CollectionViewState.Section.Kind.image.rawValue)
                 context("and invalid object") {
                     it("returns nil") {
                         let cell = tested.provideCell(collectionView: collectionView,
@@ -52,7 +52,7 @@ class CellProviderTests: QuickSpec {
                 }
 
                 context("and ImageSectionItem.url object") {
-                    let item = DataSource.ImageSectionItem.url(.stub)
+                    let item = CollectionViewState.ImageSectionItem.url(.stub)
                     
                     it("provides ImageCollectionViewCell cell") {
                         let cell = tested.provideCell(collectionView: collectionView,
@@ -65,7 +65,7 @@ class CellProviderTests: QuickSpec {
             }
             
             context("for personal section") {
-                let indexPath = IndexPath(row: 0, section: DataSource.Section.personal.rawValue)
+                let indexPath = IndexPath(row: 0, section: CollectionViewState.Section.Kind.personal.rawValue)
 
                 context("and invalid object") {
                     it("returns nil") {
@@ -78,7 +78,7 @@ class CellProviderTests: QuickSpec {
                 }
 
                 context("and PersonalSectionItem.fullname object") {
-                    let item = DataSource.PersonalSectionItem.fullname("fullname")
+                    let item = CollectionViewState.PersonalSectionItem.fullname("fullname")
 
                     it("provides HeaderCollectionViewCell cell") {
                         let cell = tested.provideCell(collectionView: collectionView,
@@ -90,7 +90,7 @@ class CellProviderTests: QuickSpec {
                 }
                 
                 context("and PersonalSectionItem.contact object") {
-                    let item = DataSource.PersonalSectionItem.contact(type: "type", value: "value")
+                    let item = CollectionViewState.PersonalSectionItem.contact(type: "type", value: "value")
 
                     it("provides ContactCollectionViewCell cell") {
                         let cell = tested.provideCell(collectionView: collectionView,
@@ -103,7 +103,7 @@ class CellProviderTests: QuickSpec {
             }
             
             context("for about section") {
-                let indexPath = IndexPath(row: 0, section: DataSource.Section.about.rawValue)
+                let indexPath = IndexPath(row: 0, section: CollectionViewState.Section.Kind.about.rawValue)
                 context("and invalid object") {
                     it("returns nil") {
                         let cell = tested.provideCell(collectionView: collectionView,
@@ -115,7 +115,7 @@ class CellProviderTests: QuickSpec {
                 }
 
                 context("and ImageSectionItem.url object") {
-                    let item = DataSource.AboutSectionItem.text(.loremIpsum)
+                    let item = CollectionViewState.AboutSectionItem.text(.loremIpsum)
                     
                     it("provides AboutCollectionViewCell cell") {
                         let cell = tested.provideCell(collectionView: collectionView,
@@ -128,7 +128,7 @@ class CellProviderTests: QuickSpec {
             }
             
             context("for career section") {
-                let indexPath = IndexPath(row: 0, section: DataSource.Section.career.rawValue)
+                let indexPath = IndexPath(row: 0, section: CollectionViewState.Section.Kind.career.rawValue)
 
                 context("and invalid object") {
                     it("returns nil") {
@@ -141,7 +141,7 @@ class CellProviderTests: QuickSpec {
                 }
 
                 context("and CareerSectionItem.title object") {
-                    let item = DataSource.CareerSectionItem.title("title")
+                    let item = CollectionViewState.CareerSectionItem.title("title")
 
                     it("provides CareerHeaderCollectionViewCell cell") {
                         let cell = tested.provideCell(collectionView: collectionView,
@@ -153,7 +153,7 @@ class CellProviderTests: QuickSpec {
                 }
                 
                 context("and PersonalSectionItem.contact object") {
-                    let item = DataSource.CareerSectionItem.item(title: "title", subtitle: "subtitle", text: "text")
+                    let item = CollectionViewState.CareerSectionItem.item(title: "title", subtitle: "subtitle", text: "text")
 
                     it("provides CareerCollectionViewCell cell") {
                         let cell = tested.provideCell(collectionView: collectionView,
@@ -166,7 +166,7 @@ class CellProviderTests: QuickSpec {
             }
             
             context("for more section") {
-                let indexPath = IndexPath(row: 0, section: DataSource.Section.more.rawValue)
+                let indexPath = IndexPath(row: 0, section: CollectionViewState.Section.Kind.more.rawValue)
                 context("and invalid object") {
                     it("returns nil") {
                         let cell = tested.provideCell(collectionView: collectionView,
@@ -178,7 +178,7 @@ class CellProviderTests: QuickSpec {
                 }
 
                 context("and MoreSectionItem.item object") {
-                    let item = DataSource.MoreSectionItem.item(title: "title", content: "content")
+                    let item = CollectionViewState.MoreSectionItem.item(title: "title", content: "content")
 
                     it("provides AboutCollectionViewCell cell") {
                         let cell = tested.provideCell(collectionView: collectionView,

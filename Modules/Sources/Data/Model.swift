@@ -17,7 +17,7 @@
 
 import Foundation
 
-public struct ViewModel: Equatable, Codable {
+public struct Model: Equatable, Codable {
     public struct ContactItem: Hashable, Codable {
         public let name: String
         public let value: String
@@ -39,7 +39,6 @@ public struct ViewModel: Equatable, Codable {
         public let description: String
     }
     
-    public let imageURL: URL
     public let fullname: String
     public let introduction: String
     public let contactItems: [ContactItem]

@@ -28,6 +28,10 @@ public extension Publisher {
     static func stubFailure(_ error: Failure) -> AnyPublisher<Output, Failure> {
         Fail(outputType: Output.self, failure: error).eraseToAnyPublisher()
     }
+
+    static func noop(completeImmediately: Bool = false) -> AnyPublisher<Output, Failure> {
+        Empty(completeImmediately: completeImmediately).eraseToAnyPublisher()
+    }
 }
 
 public extension Publisher where Output: Equatable {

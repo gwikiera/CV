@@ -35,6 +35,12 @@ public func stubReturn<A, T>(with value: T) -> (A) -> T {
     }
 }
 
+public func stubReturn<T>(with value: T) -> () -> T {
+    return {
+        return value
+    }
+}
+
 public func stubCompletion<A, T>(with value: T) -> ((A, @escaping (T) -> Void) -> Void) {
     return { _, completion in
         completion(value)
