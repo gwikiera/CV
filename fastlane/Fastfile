@@ -5,6 +5,9 @@ xcversion(version: "~> 13")
 platform :ios do
   desc "Perform unit tests"
   lane :test do
-	run_tests(scheme: "CV")
+	run_tests(
+    scheme: "CV",
+    derived_data_path: "build"
+  )
   end
 end
