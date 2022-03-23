@@ -80,9 +80,11 @@ private extension CollectionViewState {
         case .career:
             return model.careerHistory.reduce(.init()) { (result, section) in
                 return result + [CollectionViewState.CareerSectionItem.title(section.title)] + section.items.map { item in
-                    CollectionViewState.CareerSectionItem.item(title: item.title,
-                                           subtitle: item.subtitle,
-                                           text: item.description)
+                    CollectionViewState.CareerSectionItem.item(
+                        title: item.title,
+                        subtitle: item.subtitle,
+                        text: item.description
+                    )
                 }
             }
         case .more:

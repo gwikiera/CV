@@ -32,8 +32,17 @@ class ImageInteractorTests: QuickSpec {
                     
                     expect(presenter.presentLoadingSpy.wasInvoked) == true
                 }
-                
-                it("asks for image") {
+
+                it("does nothing for nil url") {
+                    let imageProvider = ImageProviding.Spy()
+                    let tested = ImageInteractor(presenter: ImagePresentationLogic.Dummy(), imageUrl: nil, provider: imageProvider)
+
+                    tested.loadImage()
+
+                    expect(imageProvider.imagePathSpy.wasInvoked(with: .stub)) == false
+                }
+
+                it("asks for image if url is not nil") {
                     let imageProvider = ImageProviding.Spy()
                     let tested = ImageInteractor(presenter: ImagePresentationLogic.Dummy(), imageUrl: .stub, provider: imageProvider)
                     

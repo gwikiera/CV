@@ -22,13 +22,13 @@ import TestHelpers
 
 extension APIClient {
     static let failing = Self(
-        baseURL: { .stub },
+        baseURL: stubReturn(with: .stub),
         dataTask: stubReturn(with: .stubFailure(ErrorStub())),
         downloadTask: stubReturn(with: .stubFailure(ErrorStub()))
     )
 
     static let noop = Self(
-        baseURL: { .stub },
+        baseURL: stubReturn(with: .stub),
         dataTask: stubReturn(with: .noop()),
         downloadTask: stubReturn(with: .noop())
     )

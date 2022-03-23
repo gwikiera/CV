@@ -29,16 +29,10 @@ class CollectionViewModelTests: XCTestCase {
     var apiClient: APIClient!
 
     func testViewStatePublisher_FailingApiClient() {
-        // Given
-        apiClient = .failing
-        sut = CollectionViewModel(client: apiClient)
-
-        // When
-        let viewStatePublisher = sut.viewStatePublisher
-        sut.viewLoaded()
-
-        // Then
-        viewStatePublisher.expectValues([])
+        testViewStatePublisher(
+            apiClient: .failing,
+            expectedViewState: nil
+        )
     }
 
     func testViewStatePublisher_FirstDataTaskFinished() {
@@ -88,6 +82,7 @@ class CollectionViewModelTests: XCTestCase {
 
     // MARK: -
     private func testViewStatePublisher(
+        apiClient client: APIClient = .noop,
         model: Model? = nil,
         imageResult: Result<URL, Error>? = nil,
         expectedViewState: CollectionViewState? = nil,
@@ -95,7 +90,7 @@ class CollectionViewModelTests: XCTestCase {
         line: UInt = #line
     ) {
         // Given
-        apiClient = .noop
+        var apiClient = client
         if let model = model {
             apiClient.overrideDataTask(endpoint: .data, with: model)
 
