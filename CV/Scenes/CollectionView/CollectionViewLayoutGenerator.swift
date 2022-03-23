@@ -20,7 +20,7 @@ import UIKit
 final class CollectionViewLayoutGenerator {
     func generateLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (section, environment) -> NSCollectionLayoutSection? in
-            guard let dataSection = DataSource.Section(rawValue: section) else {
+            guard let dataSection = CollectionViewState.Section.Kind(rawValue: section) else {
                 logger.assert("Unknown section: \(section)")
                 return nil
             }

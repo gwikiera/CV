@@ -23,11 +23,11 @@ protocol ImageBusinessLogic {
 
 final class ImageInteractor: ImageBusinessLogic {
     let presenter: ImagePresentationLogic
-    let imageUrl: URL
+    let imageUrl: URL?
     let provider: ImageProviding
     
     init(presenter: ImagePresentationLogic,
-         imageUrl: URL,
+         imageUrl: URL?,
          provider: ImageProviding) {
         self.presenter = presenter
         self.imageUrl = imageUrl
@@ -36,6 +36,8 @@ final class ImageInteractor: ImageBusinessLogic {
     
     func loadImage() {
         presenter.presentLoading()
+        guard let imageUrl = imageUrl else { return }
+
         provider.imagePath(for: imageUrl) { [presenter] result in
             switch result {
             case .success(let image):

@@ -22,7 +22,7 @@ import Data
 
 class CollectionViewController: UICollectionViewController {
     private let viewModel: CollectionViewModel
-    private var dataSource: UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>?
+    private var dataSource: UICollectionViewDiffableDataSource<CollectionViewState.Section.Kind, CollectionViewState.Item>?
     private lazy var cellProvider = CellProvider(collectionView: collectionView)
     private var cancellable: Cancellable?
 
@@ -40,16 +40,30 @@ class CollectionViewController: UICollectionViewController {
         
         collectionView.backgroundColor = .black
         
-        dataSource = UICollectionViewDiffableDataSource<DataSource.Section, AnyHashable>(collectionView: collectionView, cellProvider: cellProvider.provideCell)
+        dataSource = UICollectionViewDiffableDataSource<CollectionViewState.Section.Kind, CollectionViewState.Item>(collectionView: collectionView, cellProvider: cellProvider.provideCell)
         collectionView.dataSource = dataSource
 
-        cancellable = viewModel.viewModelPublisher
+        cancellable = viewModel.viewStatePublisher
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] viewModel in
-                self?.display(viewModel: viewModel)
+            .map({ viewState in
+                var snapshot = NSDiffableDataSourceSnapshot<CollectionViewState.Section.Kind, CollectionViewState.Item>()
+                viewState.sections.forEach { section in
+                    snapshot.appendSections([section.kind])
+                    snapshot.appendItems(section.items, toSection: section.kind)
+                }
+                return snapshot
+            })
+            .sink { [dataSource] snapshot in
+                dataSource?.apply(snapshot, animatingDifferences: false)
             }
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        viewModel.viewLoaded()
+    }
+
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
@@ -58,11 +72,6 @@ class CollectionViewController: UICollectionViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
-    }
-    
-    func display(viewModel: ViewModel) {
-        let snapshot = DataSource.snapshot(from: viewModel)
-        dataSource?.apply(snapshot, animatingDifferences: false)
     }
 
 #if DEBUG
@@ -88,7 +97,7 @@ class CollectionViewController: UICollectionViewController {
 #if DEBUG
 import SwiftUI
 
-struct ViewRepresentable_Preview: PreviewProvider { // swiftlint:disable:this type_name
+struct CollectionViewController_Preview: PreviewProvider { // swiftlint:disable:this type_name
     static var previews: some View {
         GenericViewRepresentable(view: CollectionViewController(viewModel: .init(client: .mock)).view)
             .previewForDevices()

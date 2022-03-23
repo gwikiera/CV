@@ -16,46 +16,104 @@
 // limitations under the License.
 
 import UIKit
-import Quick
 import Nimble
 import Combine
-import Data
 import TestHelpers
+import XCTest
 @testable import Networking
+@testable import Data
 @testable import CV
 
-class CollectionViewModelTests: QuickSpec {
-    override func spec() {
-        describe("CollectionViewModel") {
-            context("when client publish value") {
-                let viewModel = ViewModel.stub()
-                let data = (try? JSONEncoder().encode(viewModel)) ?? Data()
-                let apiClient = APIClient(
-                    baseURL: { .stub },
-                    dataTask: stubReturn(with: .stubOutput(data)),
-                    downloadTask: stubReturn(with: .stubOutput(.stub))
-                )
-                let sut = CollectionViewModel(client: apiClient)
+class CollectionViewModelTests: XCTestCase {
+    var sut: CollectionViewModel!
+    var apiClient: APIClient!
 
-                it("pass it forward") {
+    func testViewStatePublisher_FailingApiClient() {
+        // Given
+        apiClient = .failing
+        sut = CollectionViewModel(client: apiClient)
 
-                    sut.viewModelPublisher.expectFirstValue(viewModel)
-                }
-            }
+        // When
+        let viewStatePublisher = sut.viewStatePublisher
+        sut.viewLoaded()
 
-            context("when client fails") {
-                let apiClient = APIClient(
-                    baseURL: { .stub },
-                    dataTask: stubReturn(with: .stubFailure(ErrorStub())),
-                    downloadTask: stubReturn(with: .stubFailure(ErrorStub()))
-                )
+        // Then
+        viewStatePublisher.expectValues([])
+    }
 
-                let sut = CollectionViewModel(client: apiClient)
+    func testViewStatePublisher_FirstDataTaskFinished() {
+        testViewStatePublisher(
+            model: .stub(),
+            expectedViewState: .stub(imageItems: [.url(.none)])
+        )
+    }
 
-                it("does nothing") {
-                    sut.viewModelPublisher.expectNoValues()
-                }
-            }
+    func testViewStatePublisher_FirstImageTaskFinished() {
+        testViewStatePublisher(
+            model: .stub(),
+            expectedViewState: .stub(imageItems: [.url(.none)])
+        )
+    }
+
+    func testViewStatePublisher_EmptyModel() {
+        testViewStatePublisher(
+            model: .stub(),
+            imageResult: .success(.stub),
+            expectedViewState: .stub(imageItems: [.url(.stub)])
+        )
+    }
+
+    func testViewStatePublisher_FullModel() {
+        let model = Model.stub(
+            fullname: "Full Name",
+            introduction: "introduction",
+            contactItems: [.init(name: "name", value: "value")],
+            careerHistory: [.init(title: "title", items: [.init(title: "title", subtitle: "subtitle", description: "description")])],
+            additionalInfo: [.init(title: "title", content: "content")]
+        )
+        let expectedViewState = CollectionViewState.stub(
+            imageItems: [.url(.stub)],
+            personalItems: [.fullname("Full Name"), .contact(type: "name", value: "value")],
+            aboutItems: [.text("introduction")],
+            careerItems: [.title("title"), .item(title: "title", subtitle: "subtitle", text: "description")],
+            moreItems: [.item(title: "title", content: "content")]
+        )
+
+        testViewStatePublisher(
+            model: model,
+            imageResult: .success(.stub),
+            expectedViewState: expectedViewState
+        )
+    }
+
+    // MARK: -
+    private func testViewStatePublisher(
+        model: Model? = nil,
+        imageResult: Result<URL, Error>? = nil,
+        expectedViewState: CollectionViewState? = nil,
+        file: FileString = #file,
+        line: UInt = #line
+    ) {
+        // Given
+        apiClient = .noop
+        if let model = model {
+            apiClient.overrideDataTask(endpoint: .data, with: model)
+
+        }
+        if let imageResult = imageResult {
+            apiClient.overrideDownloadTask(endpoint: .image, withResult: imageResult)
+        }
+        sut = CollectionViewModel(client: apiClient)
+
+        // When
+        let observer = sut.viewStatePublisher.testObserver()
+        sut.viewLoaded()
+
+        // Then
+        if let expectedViewState = expectedViewState {
+            observer.assertLastValue(expectedViewState, file: file, line: line)
+        } else {
+            observer.assertNil(file: file, line: line)
         }
     }
 }

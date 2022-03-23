@@ -52,8 +52,8 @@ public struct APIClient {
     }
 }
 
-private extension APIClient {
-    private func url(for endpoint: Endpoint) -> URL {
+extension APIClient {
+    func url(for endpoint: Endpoint) -> URL {
         endpoint.urlBuilder(baseURL())
     }
 }

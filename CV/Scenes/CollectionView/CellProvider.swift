@@ -18,7 +18,7 @@
 import UIKit
 
 class CellProvider {
-    typealias SectionCellProvider = (UICollectionView, IndexPath, AnyHashable) -> UICollectionViewCell?
+    typealias SectionCellProvider = (UICollectionView, IndexPath, CollectionViewState.Item) -> UICollectionViewCell?
     
     init(collectionView: UICollectionView) {
         collectionView.register(ImageCollectionViewCell.self)
@@ -29,8 +29,8 @@ class CellProvider {
         collectionView.register(CareerCollectionViewCell.self)
     }
     
-    func provideCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
-        guard let section = DataSource.Section(rawValue: indexPath.section) else {
+    func provideCell(collectionView: UICollectionView, indexPath: IndexPath, item: CollectionViewState.Item) -> UICollectionViewCell? {
+        guard let section = CollectionViewState.Section.Kind(rawValue: indexPath.section) else {
             logger.assert("Unknown section for indexPath: \(indexPath)")
             return nil
         }
@@ -51,9 +51,9 @@ class CellProvider {
 }
 
 private extension CellProvider {
-    func provideImageSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
+    func provideImageSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: CollectionViewState.Item) -> UICollectionViewCell? {
         let cell: ImageCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        guard let sectionItem = item as? DataSource.ImageSectionItem, case .url(let url) = sectionItem else {
+        guard let sectionItem = item as? CollectionViewState.ImageSectionItem, case .url(let url) = sectionItem else {
             logger.assert("Invalid item type: \(item) for index path: \(indexPath).")
             return nil
         }
@@ -67,8 +67,8 @@ private extension CellProvider {
         return cell
     }
     
-    func providePersonalSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
-        guard let sectionItem = item as? DataSource.PersonalSectionItem else {
+    func providePersonalSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: CollectionViewState.Item) -> UICollectionViewCell? {
+        guard let sectionItem = item as? CollectionViewState.PersonalSectionItem else {
             logger.assert("Invalid item type: \(item) for index path: \(indexPath).")
             return nil
         }
@@ -84,8 +84,8 @@ private extension CellProvider {
         }
     }
     
-    func provideAboutSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
-        guard let sectionItem = item as? DataSource.AboutSectionItem else {
+    func provideAboutSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: CollectionViewState.Item) -> UICollectionViewCell? {
+        guard let sectionItem = item as? CollectionViewState.AboutSectionItem else {
             logger.assert("Invalid item type: \(item) for index path: \(indexPath).")
             return nil
         }
@@ -97,8 +97,8 @@ private extension CellProvider {
         }
     }
     
-    func provideCareerSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
-        guard let sectionItem = item as? DataSource.CareerSectionItem else {
+    func provideCareerSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: CollectionViewState.Item) -> UICollectionViewCell? {
+        guard let sectionItem = item as? CollectionViewState.CareerSectionItem else {
             logger.assert("Invalid item type: \(item) for index path: \(indexPath).")
             return nil
         }
@@ -114,8 +114,8 @@ private extension CellProvider {
         }
     }
     
-    func provideMoreSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: AnyHashable) -> UICollectionViewCell? {
-        guard let sectionItem = item as? DataSource.MoreSectionItem else {
+    func provideMoreSectionCell(collectionView: UICollectionView, indexPath: IndexPath, item: CollectionViewState.Item) -> UICollectionViewCell? {
+        guard let sectionItem = item as? CollectionViewState.MoreSectionItem else {
             logger.assert("Invalid item type: \(item) for index path: \(indexPath).")
             return nil
         }

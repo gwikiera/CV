@@ -20,15 +20,75 @@ import Combine
 import Networking
 import Data
 
-struct CollectionViewModel {
+final class CollectionViewModel {
     private let client: APIClient
+    private let viewStateSubject = PassthroughSubject<CollectionViewState, Never>()
+    private var cancellables = Set<AnyCancellable>()
 
     init(client: APIClient) {
         self.client = client
     }
 
-    var viewModelPublisher: AnyPublisher<ViewModel, Never> {
-        client.request(endpoint: .data, as: ViewModel.self)
-            .ignoreFailure()
+    var viewStatePublisher: AnyPublisher<CollectionViewState, Never> {
+        viewStateSubject
+            .eraseToAnyPublisher()
+    }
+
+    func viewLoaded() {
+        Publishers.CombineLatest(
+            client.downloadTaskPublisher(.image)
+                .map { url -> URL? in url }
+                .prepend(.none),
+            client.request(endpoint: .data, as: Model.self)
+        )
+        .map(CollectionViewState.init)
+        .ignoreFailure()
+        .sink { [viewStateSubject] viewState in
+            viewStateSubject.send(viewState)
+        }
+        .store(in: &cancellables)
+    }
+}
+
+private extension CollectionViewState {
+    init(imageURL: URL?, model: Model) {
+        let sections = CollectionViewState.Section.Kind.allCases
+            .map { kind -> CollectionViewState.Section in
+                let items = CollectionViewState.items(for: kind, from: imageURL, model: model)
+                return CollectionViewState.Section(kind: kind, items: items)
+            }
+        self.init(sections: sections)
+    }
+
+    static func items(for section: CollectionViewState.Section.Kind, from imageURL: URL?, model: Model) -> [CollectionViewState.Item] {
+        switch section {
+        case .image:
+            return [CollectionViewState.ImageSectionItem.url(imageURL)]
+        case .personal:
+            guard !model.fullname.isEmpty else {
+                logger.error("Empty full name, personal section will not be presented.")
+                return []
+            }
+            let contactInfo = model.contactItems.map { CollectionViewState.PersonalSectionItem.contact(type: $0.name, value: $0.value) }
+            return [CollectionViewState.PersonalSectionItem.fullname(model.fullname)] + contactInfo
+        case .about:
+            guard !model.introduction.isEmpty else {
+                logger.error("Empty introduction, about section will not be presented.")
+                return []
+            }
+            return [CollectionViewState.AboutSectionItem.text(model.introduction)]
+        case .career:
+            return model.careerHistory.reduce(.init()) { (result, section) in
+                return result + [CollectionViewState.CareerSectionItem.title(section.title)] + section.items.map { item in
+                    CollectionViewState.CareerSectionItem.item(title: item.title,
+                                           subtitle: item.subtitle,
+                                           text: item.description)
+                }
+            }
+        case .more:
+            return model.additionalInfo.reduce(.init()) { (result, section) in
+                return result + [CollectionViewState.MoreSectionItem.item(title: section.title, content: section.content)]
+            }
+        }
     }
 }

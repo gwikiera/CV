@@ -1,6 +1,5 @@
 {
     "introduction": "I am an iOS developer and team lead with almost twelve years of experience.\nCurrently, I am developing Vodafone Smart app, which allows users to control their IoT devices. The app is built using the newest frameworks like SwiftUI and Combine.\nAt HSBC I was a part of the team responsible for improving and maintaining their banking apps. I worked with hundreds of iOS developers from around the world on apps used by millions of users.\nWorking as a principal developer at William Hill, I have set up the standards of iOS development in terms of architecture, tools, and code quality. I presented my findings on internal events and local meet-ups. As a team lead, I never lost touch with developing code while picking up additional responsibilities. Managing people, motivating them, working on their development were only some of the actions I took to create the best products in an agile way.",
-    "imageURL": "https://raw.githubusercontent.com/gwikiera/CV/develop/Resources/Profile.jpeg",
     "contactItems": [
         {
             "name": "phone",

@@ -18,9 +18,8 @@
 import Foundation
 @testable import Data
 
-public extension ViewModel {
+public extension Model {
     static func stub(
-        imageURL: URL = .stub,
         fullname: String = "",
         introduction: String = "",
         contactItems: [ContactItem] = [],
@@ -28,7 +27,6 @@ public extension ViewModel {
         additionalInfo: [AdditionalInfoItem] = []
     ) -> Self {
         .init(
-            imageURL: imageURL,
             fullname: fullname,
             introduction: introduction,
             contactItems: contactItems,
