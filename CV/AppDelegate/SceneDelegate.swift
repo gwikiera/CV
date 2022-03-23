@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         #if DEBUG
         guard !isRunningUnitTests else { return }
-        window?.rootViewController = CollectionViewController(viewModel: .init(viewModelClient: AppEnvironment.current.viewModelClient))
+        window?.rootViewController = CollectionViewController(viewModel: .init(client: AppEnvironment.current.apiClient))
         #endif
 
         window?.makeKeyAndVisible()
