@@ -16,6 +16,7 @@
 // limitations under the License.
     
 import UIKit
+import UIKitHelpers
 
 class CellProvider {
     typealias SectionCellProvider = (UICollectionView, IndexPath, CollectionViewState.Item) -> UICollectionViewCell?

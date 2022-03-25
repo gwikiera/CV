@@ -16,6 +16,7 @@
 // limitations under the License.
     
 import UIKit
+import UIKitHelpers
 
 class CareerHeaderCollectionViewCell: UICollectionViewCell {
     private lazy var label: UILabel = {

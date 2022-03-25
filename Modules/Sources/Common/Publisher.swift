@@ -17,11 +17,10 @@
     
 import Combine
 
-extension Publisher {
-    func ignoreFailure() -> AnyPublisher<Output, Never> {
-        self.catch { error -> Empty<Output, Never> in
-            logger.trace("Ignoring error: \(error)")
-            return Empty(completeImmediately: false)
+public extension Publisher {
+    func ignoreFailure(completeImmediately: Bool = false) -> AnyPublisher<Output, Never> {
+        self.catch { _ -> Empty<Output, Never> in
+            return Empty(completeImmediately: completeImmediately)
         }
             .eraseToAnyPublisher()
     }

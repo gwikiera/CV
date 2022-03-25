@@ -17,14 +17,15 @@
     
 import UIKit
 
-extension UIViewController {
-    func embed(viewController: UIViewController) {
-        embed(viewController: viewController, containerView: view)
+public extension UICollectionView {
+    func register(_ cellClass: UICollectionViewCell.Type) {
+        register(cellClass, forCellWithReuseIdentifier: cellClass.reuseIdentifier)
     }
     
-    func embed(viewController: UIViewController, containerView: UIView) {
-        addChild(viewController)
-        containerView.embed(view: viewController.view)
-        viewController.didMove(toParent: self)
+    func dequeueReusableCell<T: UICollectionViewCell>(for indexPath: IndexPath) -> T {
+        guard let cell = dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath) as? T else {
+            fatalError("Remember to register cell for identifier: \(T.reuseIdentifier)")
+        }
+        return cell
     }
 }

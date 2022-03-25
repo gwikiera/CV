@@ -17,7 +17,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     func embed(view: UIView, offset: CGFloat = 0) {
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
