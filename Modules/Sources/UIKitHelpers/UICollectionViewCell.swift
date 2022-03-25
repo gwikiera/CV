@@ -17,7 +17,7 @@
     
 import UIKit
 
-extension UICollectionViewCell {
+public extension UICollectionViewCell {
     static var reuseIdentifier: String {
         String.init(describing: self)
     }

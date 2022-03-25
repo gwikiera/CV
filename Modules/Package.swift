@@ -6,7 +6,6 @@ import PackageDescription
 let package = Package(
     name: "Modules",
     platforms: [
-        .macOS(.v10_15),
         .iOS(.v13)
     ],
     products: [
@@ -21,7 +20,10 @@ let package = Package(
             targets: ["Networking"]),
         .library(
             name: "TestHelpers",
-            targets: ["TestHelpers"])
+            targets: ["TestHelpers"]),
+        .library(
+            name: "UIKitHelpers",
+            targets: ["UIKitHelpers"])
     ],
     dependencies: [
         .package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0")
@@ -48,6 +50,8 @@ let package = Package(
             dependencies: [
                 "Data",
                 .product(name: "Nimble", package: "Nimble")
-            ])
+            ]),
+        .target(
+            name: "UIKitHelpers")
     ]
 )

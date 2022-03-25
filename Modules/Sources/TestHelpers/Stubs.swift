@@ -15,7 +15,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import UIKit
+import Foundation
 
 public class ErrorStub: Error, LocalizedError {
     public init() {}
@@ -34,8 +34,4 @@ public extension URLRequest {
 
 public extension Data {
     static let stub = Data()
-}
-
-public extension UIImage {
-    static let stub = UIImage()
 }

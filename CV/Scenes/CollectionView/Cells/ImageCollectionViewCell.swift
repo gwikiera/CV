@@ -16,6 +16,7 @@
 // limitations under the License.
     
 import UIKit
+import UIKitHelpers
 
 class ImageCollectionViewCell: UICollectionViewCell {
     var interactor: ImageBusinessLogic?

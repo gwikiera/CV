@@ -16,6 +16,7 @@
 // limitations under the License.
     
 import UIKit
+import UIKitHelpers
 
 protocol ImageViewLogic: AnyObject {
     func displayLoading()
