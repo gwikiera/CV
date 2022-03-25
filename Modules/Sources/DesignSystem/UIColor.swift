@@ -17,15 +17,15 @@
     
 import UIKit
 
-extension UIColor {
+public extension UIColor {
     enum Image {
-        static var background: UIColor { return UIColor(named: "ImageBG")! }
-        static var tint: UIColor { return UIColor(named: "ImageTint")! }
+        public static var background: UIColor { return UIColor(named: "ImageBG", in: .module, compatibleWith: nil)! }
+        public static var tint: UIColor { return UIColor(named: "ImageTint", in: .module, compatibleWith: nil)! }
     }
     
     enum Text {
-        static var primary: UIColor { return UIColor(named: "PrimaryText")! }
-        static var secondary: UIColor { return UIColor(named: "SecondaryText")! }
-        static var underline: UIColor { return UIColor(named: "TextUnderline")! }
+        public static var primary: UIColor { return UIColor(named: "PrimaryText", in: .module, compatibleWith: nil)! }
+        public static var secondary: UIColor { return UIColor(named: "SecondaryText", in: .module, compatibleWith: nil)! }
+        public static var underline: UIColor { return UIColor(named: "TextUnderline", in: .module, compatibleWith: nil)! }
     }
 }
