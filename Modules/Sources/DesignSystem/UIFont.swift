@@ -17,7 +17,7 @@
     
 import UIKit
 
-extension UIFont {
+public extension UIFont {
     static var header: UIFont { UIFont(name: "BebasNeue", size: 40)! }
     static var header1: UIFont { UIFont(name: "BebasNeue", size: 28)! }
     static var header2: UIFont { UIFont(name: "BebasNeue-Bold", size: 18)! }
@@ -25,3 +25,28 @@ extension UIFont {
     static var paragraph: UIFont { UIFont(name: "OpenSans", size: 12)! }
     static var paragraph1: UIFont { UIFont(name: "OpenSans", size: 14)! }
 }
+
+public extension UIFont {
+    static func registerFonts() {
+        ["BebasNeue-Bold", "BebasNeue-Regular", "OpenSans-Regular"]
+            .compactMap { fontName in
+                guard
+                    let url = Bundle.module.url(forResource: fontName, withExtension: "ttf"),
+                    let dataProvider = CGDataProvider(url: url as CFURL) else { return nil }
+                return CGFont(dataProvider)
+            }
+            .forEach { font in
+                CTFontManagerRegisterGraphicsFont(font, nil)
+            }
+    }
+}
+
+#if DEBUG && canImport(SwiftUI)
+import SwiftUI
+public extension View {
+    func previewWithCustomFonts() -> some View {
+        UIFont.registerFonts()
+        return self
+    }
+}
+#endif

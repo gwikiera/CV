@@ -16,6 +16,7 @@
 // limitations under the License.
     
 import UIKit
+import DesignSystem
 
 class AboutCollectionViewCell: UICollectionViewCell {
     private lazy var headerLabel: UILabel = {

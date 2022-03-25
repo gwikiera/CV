@@ -23,7 +23,10 @@ let package = Package(
             targets: ["TestHelpers"]),
         .library(
             name: "UIKitHelpers",
-            targets: ["UIKitHelpers"])
+            targets: ["UIKitHelpers"]),
+        .library(
+            name: "DesignSystem",
+            targets: ["DesignSystem"])
     ],
     dependencies: [
         .package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0")
@@ -52,6 +55,13 @@ let package = Package(
                 .product(name: "Nimble", package: "Nimble")
             ]),
         .target(
-            name: "UIKitHelpers")
+            name: "UIKitHelpers"),
+        .target(
+            name: "DesignSystem",
+            resources: [
+                .copy("Resources/Fonts/BebasNeue-Bold.ttf"),
+                .copy("Resources/Fonts/BebasNeue-Regular.ttf"),
+                .copy("Resources/Fonts/OpenSans-Regular.ttf")
+            ])
     ]
 )
