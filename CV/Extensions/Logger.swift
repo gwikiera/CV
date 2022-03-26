@@ -15,29 +15,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
     
-import Logging
 import Foundation
+import Logger
+import Common
 
-var logger: Logger {
-    AppEnvironment.current.logger
-}
-
-extension Logger {
-    static let live = Logger(label: "com.gwikiera.CV")
-
-    static let mock: Logger = {
-        var logger = Logger(label: "com.gwikiera.CV.mock")
-        logger.logLevel = .trace
-        return logger
-    }()
-}
-
-extension Logger {
-    func assert(_ message: @autoclosure () -> Logger.Message,
-                metadata: @autoclosure () -> Logger.Metadata? = nil,
-                source: @autoclosure () -> String? = nil,
+extension LoggerType {
+    func assert(_ message: @autoclosure () -> String,
                 file: StaticString = #file, function: StaticString = #function, line: UInt = #line) {
-        critical(message(), metadata: metadata(), source: source(), file: "\(file)", function: "\(function)", line: line)
+        critical(message(), file: "\(file)", function: "\(function)", line: line)
         #if DEBUG
         guard !isRunningUnitTests else { return }
         assertionFailure(message().description, file: file, line: line)

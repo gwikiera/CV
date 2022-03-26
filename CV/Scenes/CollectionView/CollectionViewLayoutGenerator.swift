@@ -16,6 +16,7 @@
 // limitations under the License.
     
 import UIKit
+import Logger
 
 final class CollectionViewLayoutGenerator {
     func generateLayout() -> UICollectionViewLayout {

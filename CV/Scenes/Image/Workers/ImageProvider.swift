@@ -16,6 +16,7 @@
 // limitations under the License.
     
 import UIKit
+import Logger
 
 protocol ImageProviding {    
     func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Error>) -> Void)

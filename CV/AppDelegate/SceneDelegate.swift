@@ -16,6 +16,7 @@
 // limitations under the License.
 
 import UIKit
+import Common
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -26,6 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(windowScene: scene)
         #if DEBUG
+        setupAppEnvironment()
         guard !isRunningUnitTests else { return }
         window?.rootViewController = CollectionViewController(viewModel: .init(client: AppEnvironment.current.apiClient))
         #endif
