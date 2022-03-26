@@ -73,7 +73,7 @@ class LoggerLiveTests: XCTestCase {
 
     // MARK: -
     private func test(
-        method: (LoggerType) -> (@autoclosure () -> String, String, String, UInt) -> (),
+        method: (LoggerType) -> (@autoclosure () -> String, String, String, UInt) -> Void,
         logLevel: Logger.Level,
         function: String = #function,
         file: FileString = #file,

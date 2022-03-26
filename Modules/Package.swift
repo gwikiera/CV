@@ -89,6 +89,6 @@ let package = Package(
             dependencies: [
                 "LoggerLive",
                 .product(name: "Nimble", package: "Nimble")
-            ]),
+            ])
     ]
 )
