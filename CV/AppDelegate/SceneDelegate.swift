@@ -16,6 +16,7 @@
 // limitations under the License.
 
 import UIKit
+import Common
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

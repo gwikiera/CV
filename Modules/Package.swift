@@ -26,10 +26,17 @@ let package = Package(
             targets: ["UIKitHelpers"]),
         .library(
             name: "DesignSystem",
-            targets: ["DesignSystem"])
+            targets: ["DesignSystem"]),
+        .library(
+            name: "Logger",
+            targets: ["Logger"]),
+        .library(
+            name: "LoggerLive",
+            targets: ["LoggerLive"])
     ],
     dependencies: [
-        .package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0")
+        .package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0"),
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.4.0")
     ],
     targets: [
         .target(
@@ -62,6 +69,20 @@ let package = Package(
                 .copy("Resources/Fonts/BebasNeue-Bold.ttf"),
                 .copy("Resources/Fonts/BebasNeue-Regular.ttf"),
                 .copy("Resources/Fonts/OpenSans-Regular.ttf")
+            ]),
+        .target(
+            name: "Logger"),
+        .testTarget(
+            name: "LoggerTests",
+            dependencies: [
+                "Logger",
+                .product(name: "Nimble", package: "Nimble")
+            ]),
+        .target(
+            name: "LoggerLive",
+            dependencies: [
+                "Logger",
+                .product(name: "Logging", package: "swift-log")
             ])
     ]
 )

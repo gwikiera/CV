@@ -18,14 +18,16 @@
 import Foundation
 import Logging
 import Networking
+import Logger
+import LoggerLive
 
 struct AppEnvironment {
     var apiClient: APIClient
-    var logger: Logger
+    var logger: LoggerType
 }
 
 extension AppEnvironment {
-    static var current: AppEnvironment = .live
+    static var current: AppEnvironment!
 }
 
 extension AppEnvironment {
@@ -40,4 +42,9 @@ extension AppEnvironment {
         logger: .mock
     )
     #endif
+}
+
+func setupAppEnvironment() {
+    AppEnvironment.current = .live
+    logger = AppEnvironment.current.logger
 }

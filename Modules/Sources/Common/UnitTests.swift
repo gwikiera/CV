@@ -18,5 +18,5 @@
 #if DEBUG
 import Foundation
 
-let isRunningUnitTests = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+public let isRunningUnitTests = ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
 #endif

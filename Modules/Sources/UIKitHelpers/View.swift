@@ -18,7 +18,7 @@
 #if DEBUG
 import SwiftUI
 
-extension View {
+public extension View {
     func previewCell(width: CGFloat = 320, height: CGFloat = 80) -> some View {
         previewLayout(.fixed(width: width, height: height))
     }

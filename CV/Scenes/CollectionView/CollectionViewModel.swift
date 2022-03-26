@@ -19,6 +19,7 @@ import Foundation
 import Combine
 import Networking
 import Data
+import Logger
 
 final class CollectionViewModel {
     private let client: APIClient
