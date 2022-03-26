@@ -17,11 +17,11 @@
     
 import Foundation
 import TestHelpers
-@testable import CV
+@testable import CV_UIKit
 
 enum ImageProviding {
     // MARK: - Stub
-    class Stub: CV.ImageProviding {
+    class Stub: CV_UIKit.ImageProviding {
         lazy var imagePathStub = stub(of: imagePath)
         func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Error>) -> Void) {
             imagePathStub(url, completion)
@@ -29,7 +29,7 @@ enum ImageProviding {
     }
     
     // MARK: - Spy
-    class Spy: CV.ImageProviding {
+    class Spy: CV_UIKit.ImageProviding {
         lazy var imagePathSpy = spyCompletion(of: imagePath)
         func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Error>) -> Void) {
             imagePathSpy.register(with: url)
@@ -37,7 +37,7 @@ enum ImageProviding {
     }
 
     // MARK: - Dummy
-    class Dummy: CV.ImageProviding {
+    class Dummy: CV_UIKit.ImageProviding {
         func imagePath(for url: URL, completion: @escaping (Result<ImagePath, Error>) -> Void) {}
     }
 }

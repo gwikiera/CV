@@ -16,11 +16,11 @@
 // limitations under the License.
 
 import Foundation
-@testable import CV
+@testable import CV_UIKit
 
 enum ImageViewLogic {
     // MARK: - Spy
-    class Spy: CV.ImageViewLogic {
+    class Spy: CV_UIKit.ImageViewLogic {
         lazy var displayLoadingSpy = spy(of: displayLoading)
         func displayLoading() {
             displayLoadingSpy.register()

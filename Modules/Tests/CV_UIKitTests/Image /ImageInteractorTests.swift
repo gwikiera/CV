@@ -18,7 +18,7 @@
 import Quick
 import Nimble
 import TestHelpers
-@testable import CV
+@testable import CV_UIKit
 
 class ImageInteractorTests: QuickSpec {
     override func spec() {

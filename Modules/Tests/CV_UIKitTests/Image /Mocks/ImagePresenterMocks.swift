@@ -16,11 +16,11 @@
 // limitations under the License.
     
 import UIKit
-@testable import CV
+@testable import CV_UIKit
 
 enum ImagePresentationLogic {
     // MARK: - Spy
-    class Spy: CV.ImagePresentationLogic {
+    class Spy: CV_UIKit.ImagePresentationLogic {
         lazy var presentLoadingSpy = spy(of: presentLoading)
         func presentLoading() {
             presentLoadingSpy.register()
@@ -38,7 +38,7 @@ enum ImagePresentationLogic {
     }
     
     // MARK: - Dummy
-    class Dummy: CV.ImagePresentationLogic {
+    class Dummy: CV_UIKit.ImagePresentationLogic {
         func presentLoading() {}        
         func presentImage(at imagePath: ImagePath) {}
         func presentError(_ error: Error) {}

@@ -18,7 +18,7 @@
 import UIKit
 import Quick
 import Nimble
-@testable import CV
+@testable import CV_UIKit
 
 class ImageProviderTests: QuickSpec {
     override func spec() {

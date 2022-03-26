@@ -39,6 +39,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0"),
+        .package(url: "https://github.com/Quick/Quick.git", from: "4.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.4.0")
     ],
     targets: [
@@ -98,7 +99,20 @@ let package = Package(
             dependencies: [
                 "UIKitHelpers",
                 "DesignSystem",
-                "Logger"
+                "Logger",
+                "Networking"
+            ]),
+        .testTarget(
+            name: "CV_UIKitTests",
+            dependencies: [
+                "CV_UIKit",
+                "TestHelpers",
+                .product(name: "Nimble", package: "Nimble"),
+                .product(name: "Quick", package: "Quick")
+            ],
+            resources: [
+                .copy("Resources/empty.json"),
+                .copy("Resources/whitePixel.png")
             ])
     ]
 )

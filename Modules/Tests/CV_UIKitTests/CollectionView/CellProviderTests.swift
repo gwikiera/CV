@@ -18,14 +18,18 @@
 import UIKit
 import Quick
 import Nimble
-@testable import CV
+@testable import CV_UIKit
 
 class CellProviderTests: QuickSpec {
     override func spec() { // swiftlint:disable:this function_body_length
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
         let tested = CellProvider(collectionView: collectionView)
         let invalidItem = ""
-        
+
+        beforeSuite {
+            UIFont.registerFonts()
+        }
+
         describe("CellProvider") {
             context("for invalid section") {
                 let indexPath = IndexPath(row: 0, section: 999)

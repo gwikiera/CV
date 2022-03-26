@@ -27,7 +27,7 @@ class TestFile {
         self.url = url
     }
     
-    convenience init(resource: String?, ofType type: String?, bundle: Bundle = .testsBundle) {
+    convenience init(resource: String?, ofType type: String?, bundle: Bundle = .module) {
         let path = bundle.path(forResource: resource, ofType: type)!
         self.init(url: URL(fileURLWithPath: path))
     }
@@ -36,7 +36,7 @@ class TestFile {
 class JSON: TestFile {
     static let empty = JSON(resource: "empty")
 
-    convenience init(resource: String?, bundle: Bundle = .testsBundle) {
+    convenience init(resource: String?, bundle: Bundle = .module) {
         self.init(resource: resource, ofType: "json", bundle: bundle)
     }
 }
@@ -48,13 +48,7 @@ class Image: TestFile {
         UIImage(data: data)!
     }
     
-    convenience init(resource: String?, bundle: Bundle = .testsBundle) {
+    convenience init(resource: String?, bundle: Bundle = .module) {
         self.init(resource: resource, ofType: "png", bundle: bundle)
-    }
-}
-
-extension Bundle {
-    static var testsBundle: Bundle {
-        return Bundle(for: TestFile.self)
     }
 }

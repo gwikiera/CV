@@ -22,7 +22,7 @@ import TestHelpers
 import XCTest
 @testable import Networking
 @testable import Data
-@testable import CV
+@testable import CV_UIKit
 
 class CollectionViewModelTests: XCTestCase {
     var sut: CollectionViewModel!
