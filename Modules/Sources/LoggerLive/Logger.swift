@@ -27,7 +27,7 @@ public extension LoggerType {
     }()
 }
 
-private extension LoggerType {
+extension LoggerType {
     init(logger: Logger) {
         self.init(
             trace: { message, file, function, line in

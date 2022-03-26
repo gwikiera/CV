@@ -83,6 +83,12 @@ let package = Package(
             dependencies: [
                 "Logger",
                 .product(name: "Logging", package: "swift-log")
-            ])
+            ]),
+        .testTarget(
+            name: "LoggerLiveTests",
+            dependencies: [
+                "LoggerLive",
+                .product(name: "Nimble", package: "Nimble")
+            ]),
     ]
 )
