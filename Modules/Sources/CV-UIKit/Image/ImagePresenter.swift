@@ -1,7 +1,7 @@
 //
 //  CV
 //
-//  Copyright 2022 - Grzegorz Wikiera - https://github.com/gwikiera
+//  Copyright 2020 - Grzegorz Wikiera - https://github.com/gwikiera
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,20 +15,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
     
-import Combine
-import Foundation
+import UIKit
 
-public extension Publisher {
-    func ignoreFailure(completeImmediately: Bool = false) -> AnyPublisher<Output, Never> {
-        self.catch { _ -> Empty<Output, Never> in
-            return Empty(completeImmediately: completeImmediately)
-        }
-            .eraseToAnyPublisher()
-    }
+protocol ImagePresentationLogic {
+    func presentLoading()
+    func presentImage(at imagePath: String)
+    func presentError(_ error: Error)
 }
 
-public extension Publisher {
-    static var noop: AnyPublisher<Output, Failure> {
-        Empty().eraseToAnyPublisher()
+final class ImagePresenter: ImagePresentationLogic {
+    weak var view: ImageViewLogic!
+    
+    func presentLoading() {
+        view.displayLoading()
+    }
+    
+    func presentImage(at imagePath: String) {
+        view.displayImage(at: imagePath)
+    }
+
+    func presentError(_ error: Error) {
+        view.displayErrorMessage(error.localizedDescription)
     }
 }

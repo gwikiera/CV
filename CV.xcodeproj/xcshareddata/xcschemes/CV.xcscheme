@@ -111,9 +111,19 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CV_UIKitTests"
-               BuildableName = "CV_UIKitTests"
-               BlueprintName = "CV_UIKitTests"
+               BlueprintIdentifier = "NetworkingLiveTests"
+               BuildableName = "NetworkingLiveTests"
+               BlueprintName = "NetworkingLiveTests"
+               ReferencedContainer = "container:Modules">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CV-UIKitTests"
+               BuildableName = "CV-UIKitTests"
+               BlueprintName = "CV-UIKitTests"
                ReferencedContainer = "container:Modules">
             </BuildableReference>
          </TestableReference>

@@ -16,32 +16,69 @@
 // limitations under the License.
 
 import Foundation
-import Data
 import Combine
 import Common
-
-public typealias BaseURL = URL
-
-public struct Endpoint {
-    let urlBuilder: (BaseURL) -> URL
-}
 
 // Based on pointfree.co dependencies style
 // Reference: https://www.pointfree.co/collections/dependencies
 public struct APIClient {
-    public var baseURL: () -> BaseURL
-    public var dataTask: (URL) -> AnyPublisher<Data, Error>
-    public var downloadTask: (URL) -> AnyPublisher<URL, Error>
+    public typealias BaseURL = URL
 
-    public func dataTaskPublisher(_ endpoint: Endpoint) -> AnyPublisher<Data, Error> {
-        dataTask(url(for: endpoint))
+    public struct Endpoint {
+        let urlBuilder: (BaseURL) -> URL
+
+        public init(urlBuilder: @escaping (BaseURL) -> URL) {
+            self.urlBuilder = urlBuilder
+        }
     }
 
-    public func downloadTaskPublisher(_ endpoint: Endpoint) -> AnyPublisher<URL, Error> {
-        downloadTask(url(for: endpoint))
+    var baseURL: () -> BaseURL
+    var dataTask: (URL) -> AnyPublisher<Data, Error>
+    var downloadTask: (URL) -> AnyPublisher<URL, Error>
+
+    public init(
+        baseURL: @escaping () -> BaseURL,
+        dataTask: @escaping (URL) -> AnyPublisher<Data, Error>,
+        downloadTask: @escaping (URL) -> AnyPublisher<URL, Error>
+    ) {
+        self.baseURL = baseURL
+        self.dataTask = dataTask
+        self.downloadTask = downloadTask
+    }
+}
+
+public extension APIClient {
+    static let noop = Self(
+        baseURL: { "/" },
+        dataTask: { _ in .noop },
+        downloadTask: { _ in .noop }
+    )
+
+    static let failing = Self(
+        baseURL: { fatalError() },
+        dataTask: { _ in fatalError() },
+        downloadTask: { _ in fatalError() }
+    )
+}
+
+public extension APIClient {
+    func dataTaskPublisher(_ url: URL) -> AnyPublisher<Data, Error> {
+        dataTask(url)
     }
 
-    public func request<A: Decodable>(
+    func dataTaskPublisher(_ endpoint: Endpoint) -> AnyPublisher<Data, Error> {
+        dataTaskPublisher(url(for: endpoint))
+    }
+
+    func downloadTaskPublisher(_ url: URL) -> AnyPublisher<URL, Error> {
+        downloadTask(url)
+    }
+
+    func downloadTaskPublisher(_ endpoint: Endpoint) -> AnyPublisher<URL, Error> {
+        downloadTaskPublisher(url(for: endpoint))
+    }
+
+    func request<A: Decodable>(
         endpoint: Endpoint,
         as type: A.Type,
         decoder: JSONDecoder = JSONDecoder()
@@ -50,9 +87,7 @@ public struct APIClient {
             .decode(type: A.self, decoder: decoder)
             .eraseToAnyPublisher()
     }
-}
 
-extension APIClient {
     func url(for endpoint: Endpoint) -> URL {
         endpoint.urlBuilder(baseURL())
     }

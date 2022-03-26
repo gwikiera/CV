@@ -15,25 +15,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@testable import Networking
+import XCTest
+import Nimble
 import TestHelpers
-import Foundation
-import Combine
+@testable import Networking
+@testable import NetworkingLive
 
-extension APIClient.Endpoint {
-    static let stub = Self(urlBuilder: stubReturn(with: .stub))
-}
+class APIClientLiveTests: XCTestCase {
+    func testDataEndpoint() {
+        // Given
+        let sut = APIClient.live
 
-extension APIClient {
-    static func client(
-        baseURL: @escaping () -> URL = { .stub },
-        dataTask: @escaping (URL) -> AnyPublisher<Data, Error> = unimplemented(),
-        downloadTask: @escaping (URL) -> AnyPublisher<URL, Error> = unimplemented()
-    ) -> APIClient {
-        self.init(
-            baseURL: baseURL,
-            dataTask: dataTask,
-            downloadTask: downloadTask
-        )
+        // When
+        let url = sut.url(for: .data)
+
+        // Then
+        expect(url) == "https://raw.githubusercontent.com/gwikiera/CV/develop/Resources/CV.json"
+    }
+
+    func testImageEndpoint() {
+        // Given
+        let sut = APIClient.live
+
+        // When
+        let url = sut.url(for: .image)
+
+        // Then
+        expect(url) == "https://raw.githubusercontent.com/gwikiera/CV/develop/Resources/Profile.jpeg"
     }
 }

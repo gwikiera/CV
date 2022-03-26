@@ -18,11 +18,13 @@
 import Foundation
 import Logging
 import Networking
+import NetworkingLive
 import Logger
 import LoggerLive
 
 struct AppEnvironment {
     var apiClient: APIClient
+    var imageProvider: ImageProvider
     var logger: LoggerType
 }
 
@@ -33,12 +35,14 @@ extension AppEnvironment {
 extension AppEnvironment {
     static let live = AppEnvironment(
         apiClient: .live,
+        imageProvider: .live,
         logger: .live
     )
 
     #if DEBUG
     static let mock = AppEnvironment(
         apiClient: .mock,
+        imageProvider: .mock,
         logger: .mock
     )
     #endif

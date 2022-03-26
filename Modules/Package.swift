@@ -19,6 +19,9 @@ let package = Package(
             name: "Networking",
             targets: ["Networking"]),
         .library(
+            name: "NetworkingLive",
+            targets: ["NetworkingLive"]),
+        .library(
             name: "TestHelpers",
             targets: ["TestHelpers"]),
         .library(
@@ -34,8 +37,8 @@ let package = Package(
             name: "LoggerLive",
             targets: ["LoggerLive"]),
         .library(
-            name: "CV_UIKit",
-            targets: ["CV_UIKit"])
+            name: "CV-UIKit",
+            targets: ["CV-UIKit"])
     ],
     dependencies: [
         .package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0"),
@@ -51,11 +54,26 @@ let package = Package(
         ),
         .target(
             name: "Networking",
-            dependencies: ["Common", "Data"]),
+            dependencies: [
+                "Common",
+                "Logger"
+            ]),
         .testTarget(
             name: "NetworkingTests",
             dependencies: [
                 "Networking",
+                "TestHelpers",
+                .product(name: "Nimble", package: "Nimble")
+            ]),
+        .target(
+            name: "NetworkingLive",
+            dependencies: [
+                "Networking"
+            ]),
+        .testTarget(
+            name: "NetworkingLiveTests",
+            dependencies: [
+                "NetworkingLive",
                 "TestHelpers",
                 .product(name: "Nimble", package: "Nimble")
             ]),
@@ -95,17 +113,19 @@ let package = Package(
                 .product(name: "Nimble", package: "Nimble")
             ]),
         .target(
-            name: "CV_UIKit",
+            name: "CV-UIKit",
             dependencies: [
                 "UIKitHelpers",
                 "DesignSystem",
                 "Logger",
-                "Networking"
+                "Networking",
+                "NetworkingLive",
+                "Data"
             ]),
         .testTarget(
-            name: "CV_UIKitTests",
+            name: "CV-UIKitTests",
             dependencies: [
-                "CV_UIKit",
+                "CV-UIKit",
                 "TestHelpers",
                 .product(name: "Nimble", package: "Nimble"),
                 .product(name: "Quick", package: "Quick")
