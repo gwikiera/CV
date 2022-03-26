@@ -71,16 +71,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D2F27E924C39354004C8D8E"
-               BuildableName = "CVTests.xctest"
-               BlueprintName = "CVTests"
-               ReferencedContainer = "container:CV.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D2F27F424C39354004C8D8E"
                BuildableName = "CVUITests.xctest"
                BlueprintName = "CVUITests"
@@ -114,6 +104,16 @@
                BlueprintIdentifier = "LoggerLiveTests"
                BuildableName = "LoggerLiveTests"
                BlueprintName = "LoggerLiveTests"
+               ReferencedContainer = "container:Modules">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CV_UIKitTests"
+               BuildableName = "CV_UIKitTests"
+               BlueprintName = "CV_UIKitTests"
                ReferencedContainer = "container:Modules">
             </BuildableReference>
          </TestableReference>

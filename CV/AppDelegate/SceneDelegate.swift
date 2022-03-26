@@ -17,6 +17,7 @@
 
 import UIKit
 import Common
+import CV_UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

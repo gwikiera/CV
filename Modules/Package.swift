@@ -32,10 +32,14 @@ let package = Package(
             targets: ["Logger"]),
         .library(
             name: "LoggerLive",
-            targets: ["LoggerLive"])
+            targets: ["LoggerLive"]),
+        .library(
+            name: "CV_UIKit",
+            targets: ["CV_UIKit"])
     ],
     dependencies: [
         .package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0"),
+        .package(url: "https://github.com/Quick/Quick.git", from: "4.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.4.0")
     ],
     targets: [
@@ -89,6 +93,26 @@ let package = Package(
             dependencies: [
                 "LoggerLive",
                 .product(name: "Nimble", package: "Nimble")
+            ]),
+        .target(
+            name: "CV_UIKit",
+            dependencies: [
+                "UIKitHelpers",
+                "DesignSystem",
+                "Logger",
+                "Networking"
+            ]),
+        .testTarget(
+            name: "CV_UIKitTests",
+            dependencies: [
+                "CV_UIKit",
+                "TestHelpers",
+                .product(name: "Nimble", package: "Nimble"),
+                .product(name: "Quick", package: "Quick")
+            ],
+            resources: [
+                .copy("Resources/empty.json"),
+                .copy("Resources/whitePixel.png")
             ])
     ]
 )
