@@ -18,23 +18,23 @@
 #if DEBUG
 import SwiftUI
 
-struct GenericViewRepresentable<T: UIView>: UIViewRepresentable {
+public struct GenericViewRepresentable<T: UIView>: UIViewRepresentable {
     let initializer: () -> T
-    let cofigurator: ((T) -> Void)?
+    let configurator: ((T) -> Void)?
     
-    func makeUIView(context: Context) -> UIView {
+    public func makeUIView(context: Context) -> UIView {
         let view = initializer()
-        cofigurator?(view)
+        configurator?(view)
         return view
     }
     
-    func updateUIView(_ view: UIView, context: Context) {}
+    public func updateUIView(_ view: UIView, context: Context) {}
 }
 
-extension GenericViewRepresentable {
-    init(view: T, cofigurator: ((T) -> Void)? = nil) {
+public extension GenericViewRepresentable {
+    init(view: T, configurator: ((T) -> Void)? = nil) {
         initializer = { return view }
-        self.cofigurator = cofigurator
+        self.configurator = configurator
     }
 }
 #endif

@@ -65,7 +65,7 @@ struct AboutCollectionViewCell_Preview: PreviewProvider { // swiftlint:disable:t
     static var previews: some View {
         Group {
             GenericViewRepresentable(initializer: AboutCollectionViewCell.init,
-                                     cofigurator: { $0.setHeader(String.Localized.about, text: String.loremIpsum) })
+                                     configurator: { $0.setHeader(String.Localized.about, text: String.loremIpsum) })
                 .previewCell()
                 .previewColorSchemes()
         }

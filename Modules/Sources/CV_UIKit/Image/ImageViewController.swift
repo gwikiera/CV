@@ -17,23 +17,26 @@
     
 import UIKit
 import UIKitHelpers
+import DesignSystem
 
-class ImageCollectionViewCell: UICollectionViewCell {
-    var interactor: ImageBusinessLogic?
+protocol ImageViewLogic: AnyObject {
+    func displayLoading()
+    func displayImage(at imagePath: ImagePath)
+    func displayErrorMessage(_ message: String)
+}
 
-    private lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.Image.background
-        contentView.embed(view: imageView)
-        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1).isActive = true
-        return imageView
-    }()
+final class ImageViewController: UIViewController {
+    let interactor: ImageBusinessLogic
+    
+    private var imageView: UIImageView {
+        view as! UIImageView // swiftlint:disable:this force_cast
+    }
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .medium)
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = tintColor
-        contentView.center(view: activityIndicator)
+        activityIndicator.color = view.tintColor
+        view.center(view: activityIndicator)
         return activityIndicator
     }()
     
@@ -42,27 +45,36 @@ class ImageCollectionViewCell: UICollectionViewCell {
         let errorImage = UIImage(systemName: "xmark.octagon.fill", withConfiguration: largeConfiguration)
         return errorImage
     }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+
+    init(interactor: ImageBusinessLogic) {
+        self.interactor = interactor
         
-        tintColor = UIColor.Image.tint
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
+    override func loadView() {
+        self.view = UIImageView()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        guard superview != nil else { return }
+        view.backgroundColor = UIColor.Image.background
+        view.tintColor = UIColor.Image.tint
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        interactor?.loadImage()
+        interactor.loadImage()
     }
 }
 
-extension ImageCollectionViewCell: ImageViewLogic {
+extension ImageViewController: ImageViewLogic {
     func displayLoading() {
         activityIndicator.startAnimating()
     }
@@ -83,32 +95,44 @@ extension ImageCollectionViewCell: ImageViewLogic {
 #if DEBUG
 import SwiftUI
 
-struct ImageCollectionViewCellConfigurator {
+struct ImageInteractorDummy: ImageBusinessLogic {
+    func loadImage() {}
+}
+
+struct ImageViewRepresentable: UIViewRepresentable {
     enum Mode: CaseIterable {
         case loading, error, image
     }
     
     let mode: Mode
-
-    func configure(_ cell: ImageCollectionViewCell) {
+    
+    func makeUIView(context: Context) -> UIView {
+        let viewController = ImageViewController(interactor: ImageInteractorDummy())
         switch mode {
         case .loading:
-            cell.displayLoading()
+            viewController.displayLoading()
         case .error:
-            cell.displayErrorMessage("error message")
+            viewController.displayErrorMessage("error message")
         case .image:
-            cell.displayImage(at: Bundle.main.path(forResource: "Profile", ofType: "jpeg")!)
+            viewController.displayImage(at: Bundle.main.path(forResource: "Profile", ofType: "jpeg")!)
         }
+        return viewController.view
     }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {}
 }
 
-struct ImageCollectionViewCell_Preview: PreviewProvider { // swiftlint:disable:this type_name
+struct ImageViewRepresentable_Preview: PreviewProvider { // swiftlint:disable:this type_name
+    static var devices = ["iPhone SE", "iPhone XS Max", "iPad Pro (11-inch)"]
+
     static var previews: some View {
         Group {
-            ForEach(ImageCollectionViewCellConfigurator.Mode.allCases, id: \.self) { mode in
-                GenericViewRepresentable(initializer: ImageCollectionViewCell.init, cofigurator: ImageCollectionViewCellConfigurator(mode: mode).configure)
-                    .previewCell()
-                    .previewColorSchemes()
+            ForEach(devices, id: \.self) { name in
+                ForEach(ImageViewRepresentable.Mode.allCases, id: \.self) { mode in
+                    ImageViewRepresentable(mode: mode)
+                        .previewDevice(PreviewDevice(rawValue: name))
+                        .previewDisplayName(name)
+                }
             }
         }
     }

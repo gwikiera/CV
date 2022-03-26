@@ -16,28 +16,36 @@
 // limitations under the License.
     
 import UIKit
-import UIKitHelpers
 
-class CareerHeaderCollectionViewCell: UICollectionViewCell {
+class HeaderCollectionViewCell: UICollectionViewCell {
     private lazy var label: UILabel = {
         let label = UILabel()
-        label.font = .header1
-        center(view: label)
-        heightAnchor.constraint(equalTo: label.heightAnchor, constant: 20).isActive = true
+        label.font = .header
+        label.textColor = UIColor.Text.primary
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+                
+        let underlineView = UIView()
+        underlineView.backgroundColor = UIColor.Text.underline
+        underlineView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(underlineView)
+        contentView.center(view: label)
         contentView.backgroundColor = .tertiarySystemBackground
+        
+        underlineView.widthAnchor.constraint(equalTo: label.widthAnchor, multiplier: 1, constant: 20).isActive = true
+        underlineView.heightAnchor.constraint(equalTo: label.heightAnchor, multiplier: 0.4, constant: 0).isActive = true
+        underlineView.centerXAnchor.constraint(equalTo: label.centerXAnchor).isActive = true
+        underlineView.topAnchor.constraint(equalTo: label.lastBaselineAnchor).isActive = true
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(text: String) {
+    func setText(_ text: String) {
         label.text = text
     }
 }
@@ -45,11 +53,11 @@ class CareerHeaderCollectionViewCell: UICollectionViewCell {
 #if DEBUG
 import SwiftUI
 
-struct CareerHeaderCollectionViewCell_Preview: PreviewProvider { // swiftlint:disable:this type_name
+struct HeaderCollectionViewCell_Preview: PreviewProvider { // swiftlint:disable:this type_name
     static var previews: some View {
         Group {
-            GenericViewRepresentable(initializer: CareerHeaderCollectionViewCell.init,
-                                     cofigurator: { $0.set(text: "text") })
+            GenericViewRepresentable(initializer: HeaderCollectionViewCell.init,
+                                     configurator: { $0.setText("Test")})
                 .previewCell()
                 .previewColorSchemes()
         }

@@ -55,7 +55,7 @@ struct ContactCollectionViewCell_Preview: PreviewProvider { // swiftlint:disable
     static var previews: some View {
         Group {
             GenericViewRepresentable(initializer: ContactCollectionViewCell.init,
-                                     cofigurator: { $0.set(type: "Test", value: "http://www.google.com")})
+                                     configurator: { $0.set(type: "Test", value: "http://www.google.com")})
                 .previewCell(height: 30)
                 .previewColorSchemes()
         }

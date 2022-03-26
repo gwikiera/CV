@@ -21,12 +21,12 @@ import Networking
 import Data
 import Logger
 
-final class CollectionViewModel {
+public final class CollectionViewModel {
     private let client: APIClient
     private let viewStateSubject = PassthroughSubject<CollectionViewState, Never>()
     private var cancellables = Set<AnyCancellable>()
 
-    init(client: APIClient) {
+    public init(client: APIClient) {
         self.client = client
     }
 

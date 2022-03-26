@@ -32,7 +32,10 @@ let package = Package(
             targets: ["Logger"]),
         .library(
             name: "LoggerLive",
-            targets: ["LoggerLive"])
+            targets: ["LoggerLive"]),
+        .library(
+            name: "CV_UIKit",
+            targets: ["CV_UIKit"])
     ],
     dependencies: [
         .package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0"),
@@ -89,6 +92,13 @@ let package = Package(
             dependencies: [
                 "LoggerLive",
                 .product(name: "Nimble", package: "Nimble")
+            ]),
+        .target(
+            name: "CV_UIKit",
+            dependencies: [
+                "UIKitHelpers",
+                "DesignSystem",
+                "Logger"
             ])
     ]
 )

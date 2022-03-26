@@ -73,7 +73,7 @@ struct CareerCollectionViewCell_Preview: PreviewProvider { // swiftlint:disable:
     static var previews: some View {
         Group {
             GenericViewRepresentable(initializer: CareerCollectionViewCell.init,
-                                     cofigurator: { $0.set(title: "title", subtitle: "subtitle", description: "description") })
+                                     configurator: { $0.set(title: "title", subtitle: "subtitle", description: "description") })
                 .previewCell(height: 120)
                 .previewColorSchemes()
         }

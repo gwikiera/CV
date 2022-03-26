@@ -18,24 +18,22 @@
 import UIKit
 import UIKitHelpers
 
-protocol ImageViewLogic: AnyObject {
-    func displayLoading()
-    func displayImage(at imagePath: ImagePath)
-    func displayErrorMessage(_ message: String)
-}
+class ImageCollectionViewCell: UICollectionViewCell {
+    var interactor: ImageBusinessLogic?
 
-final class ImageViewController: UIViewController {
-    let interactor: ImageBusinessLogic
-    
-    private var imageView: UIImageView {
-        view as! UIImageView // swiftlint:disable:this force_cast
-    }
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = UIColor.Image.background
+        contentView.embed(view: imageView)
+        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1).isActive = true
+        return imageView
+    }()
     
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView(style: .medium)
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = view.tintColor
-        view.center(view: activityIndicator)
+        activityIndicator.color = tintColor
+        contentView.center(view: activityIndicator)
         return activityIndicator
     }()
     
@@ -44,36 +42,27 @@ final class ImageViewController: UIViewController {
         let errorImage = UIImage(systemName: "xmark.octagon.fill", withConfiguration: largeConfiguration)
         return errorImage
     }
-
-    init(interactor: ImageBusinessLogic) {
-        self.interactor = interactor
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
-        super.init(nibName: nil, bundle: nil)
+        tintColor = UIColor.Image.tint
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func loadView() {
-        self.view = UIImageView()
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
         
-        view.backgroundColor = UIColor.Image.background
-        view.tintColor = UIColor.Image.tint
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        guard superview != nil else { return }
         
-        interactor.loadImage()
+        interactor?.loadImage()
     }
 }
 
-extension ImageViewController: ImageViewLogic {
+extension ImageCollectionViewCell: ImageViewLogic {
     func displayLoading() {
         activityIndicator.startAnimating()
     }
@@ -94,44 +83,35 @@ extension ImageViewController: ImageViewLogic {
 #if DEBUG
 import SwiftUI
 
-struct ImageInteractorDummy: ImageBusinessLogic {
-    func loadImage() {}
-}
-
-struct ImageViewRepresentable: UIViewRepresentable {
+struct ImageCollectionViewCellConfigurator {
     enum Mode: CaseIterable {
         case loading, error, image
     }
     
     let mode: Mode
-    
-    func makeUIView(context: Context) -> UIView {
-        let viewController = ImageViewController(interactor: ImageInteractorDummy())
+
+    func configure(_ cell: ImageCollectionViewCell) {
         switch mode {
         case .loading:
-            viewController.displayLoading()
+            cell.displayLoading()
         case .error:
-            viewController.displayErrorMessage("error message")
+            cell.displayErrorMessage("error message")
         case .image:
-            viewController.displayImage(at: Bundle.main.path(forResource: "Profile", ofType: "jpeg")!)
+            cell.displayImage(at: Bundle.main.path(forResource: "Profile", ofType: "jpeg")!)
         }
-        return viewController.view
     }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
 }
 
-struct ImageViewRepresentable_Preview: PreviewProvider { // swiftlint:disable:this type_name
-    static var devices = ["iPhone SE", "iPhone XS Max", "iPad Pro (11-inch)"]
-
+struct ImageCollectionViewCell_Preview: PreviewProvider { // swiftlint:disable:this type_name
     static var previews: some View {
         Group {
-            ForEach(devices, id: \.self) { name in
-                ForEach(ImageViewRepresentable.Mode.allCases, id: \.self) { mode in
-                    ImageViewRepresentable(mode: mode)
-                        .previewDevice(PreviewDevice(rawValue: name))
-                        .previewDisplayName(name)
-                }
+            ForEach(ImageCollectionViewCellConfigurator.Mode.allCases, id: \.self) { mode in
+                GenericViewRepresentable(
+                    initializer: ImageCollectionViewCell.init,
+                    configurator: ImageCollectionViewCellConfigurator(mode: mode).configure
+                )
+                    .previewCell()
+                    .previewColorSchemes()
             }
         }
     }

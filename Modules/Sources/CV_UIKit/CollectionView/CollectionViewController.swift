@@ -16,17 +16,15 @@
 // limitations under the License.
 
 import UIKit
-import Logging
 import Combine
-import Data
 
-class CollectionViewController: UICollectionViewController {
+public class CollectionViewController: UICollectionViewController {
     private let viewModel: CollectionViewModel
     private var dataSource: UICollectionViewDiffableDataSource<CollectionViewState.Section.Kind, CollectionViewState.Item>?
     private lazy var cellProvider = CellProvider(collectionView: collectionView)
     private var cancellable: Cancellable?
 
-    init(viewModel: CollectionViewModel) {
+    public init(viewModel: CollectionViewModel) {
         self.viewModel = viewModel
         super.init(collectionViewLayout: CollectionViewLayoutGenerator().generateLayout())
     }
@@ -35,7 +33,7 @@ class CollectionViewController: UICollectionViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.backgroundColor = .black
@@ -58,19 +56,19 @@ class CollectionViewController: UICollectionViewController {
             }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         viewModel.viewLoaded()
     }
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
 
