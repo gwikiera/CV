@@ -17,11 +17,9 @@
     
 import UIKit
 
-typealias ImagePath = String
-
 protocol ImagePresentationLogic {
     func presentLoading()
-    func presentImage(at imagePath: ImagePath)
+    func presentImage(at imagePath: String)
     func presentError(_ error: Error)
 }
 
@@ -32,7 +30,7 @@ final class ImagePresenter: ImagePresentationLogic {
         view.displayLoading()
     }
     
-    func presentImage(at imagePath: ImagePath) {
+    func presentImage(at imagePath: String) {
         view.displayImage(at: imagePath)
     }
 

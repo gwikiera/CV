@@ -37,9 +37,7 @@ public final class CollectionViewModel {
 
     func viewLoaded() {
         Publishers.CombineLatest(
-            client.downloadTaskPublisher(.image)
-                .map { url -> URL? in url }
-                .prepend(.none),
+            Just(client.url(for: .image)).setFailureType(to: Error.self),
             client.request(endpoint: .data, as: Model.self)
         )
         .map(CollectionViewState.init)
@@ -52,7 +50,7 @@ public final class CollectionViewModel {
 }
 
 private extension CollectionViewState {
-    init(imageURL: URL?, model: Model) {
+    init(imageURL: URL, model: Model) {
         let sections = CollectionViewState.Section.Kind.allCases
             .map { kind -> CollectionViewState.Section in
                 let items = CollectionViewState.items(for: kind, from: imageURL, model: model)
@@ -61,7 +59,7 @@ private extension CollectionViewState {
         self.init(sections: sections)
     }
 
-    static func items(for section: CollectionViewState.Section.Kind, from imageURL: URL?, model: Model) -> [CollectionViewState.Item] {
+    static func items(for section: CollectionViewState.Section.Kind, from imageURL: URL, model: Model) -> [CollectionViewState.Item] {
         switch section {
         case .image:
             return [CollectionViewState.ImageSectionItem.url(imageURL)]

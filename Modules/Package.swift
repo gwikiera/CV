@@ -51,7 +51,11 @@ let package = Package(
         ),
         .target(
             name: "Networking",
-            dependencies: ["Common", "Data"]),
+            dependencies: [
+                "Common",
+                "Data",
+                "Logger"
+            ]),
         .testTarget(
             name: "NetworkingTests",
             dependencies: [

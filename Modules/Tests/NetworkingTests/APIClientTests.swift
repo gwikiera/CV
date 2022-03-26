@@ -50,7 +50,7 @@ class APIClientTests: XCTestCase {
         )
 
         // When
-        let firstResult = await sut.dataTaskPublisher(.stub).firstResult()
+        let firstResult = await sut.dataTaskPublisher(Endpoint.stub).firstResult()
 
         // Then
         expect(try firstResult.get()).to(throwError(ErrorStub()))
@@ -83,7 +83,7 @@ class APIClientTests: XCTestCase {
         )
 
         // When
-        let firstResult = await sut.downloadTaskPublisher(.stub).firstResult()
+        let firstResult = await sut.downloadTaskPublisher(Endpoint.stub).firstResult()
 
         // Then
         expect(try firstResult.get()).to(throwError(ErrorStub()))

@@ -16,6 +16,8 @@
 // limitations under the License.
 
 import Foundation
+import Networking
+import Combine
 
 protocol ImageBusinessLogic {
     func loadImage()
@@ -23,11 +25,12 @@ protocol ImageBusinessLogic {
 
 final class ImageInteractor: ImageBusinessLogic {
     let presenter: ImagePresentationLogic
-    let imageUrl: URL?
+    let imageUrl: URL
     let provider: ImageProviding
-    
+    private var cancellable: Cancellable?
+
     init(presenter: ImagePresentationLogic,
-         imageUrl: URL?,
+         imageUrl: URL,
          provider: ImageProviding) {
         self.presenter = presenter
         self.imageUrl = imageUrl
@@ -36,15 +39,20 @@ final class ImageInteractor: ImageBusinessLogic {
     
     func loadImage() {
         presenter.presentLoading()
-        guard let imageUrl = imageUrl else { return }
-
-        provider.imagePath(for: imageUrl) { [presenter] result in
-            switch result {
-            case .success(let image):
-                presenter.presentImage(at: image)
-            case .failure(let error):
-                presenter.presentError(error)
+        cancellable = provider.imagePath(for: imageUrl)
+            .handleEvents(receiveSubscription: { [presenter] _ in
+                presenter.presentLoading()
+            })
+            .first()
+            .sink { [presenter] completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    presenter.presentError(error)
+                }
+            } receiveValue: { [presenter] imagePath in
+                presenter.presentImage(at: imagePath)
             }
-        }
     }
 }

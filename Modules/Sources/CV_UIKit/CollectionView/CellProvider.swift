@@ -18,17 +18,23 @@
 import UIKit
 import UIKitHelpers
 import Logger
+import Networking
 
 class CellProvider {
     typealias SectionCellProvider = (UICollectionView, IndexPath, CollectionViewState.Item) -> UICollectionViewCell?
-    
-    init(collectionView: UICollectionView) {
+    let imageProvider: ImageProviding
+
+    init(
+        collectionView: UICollectionView,
+        imageProvider: ImageProviding
+    ) {
         collectionView.register(ImageCollectionViewCell.self)
         collectionView.register(HeaderCollectionViewCell.self)
         collectionView.register(ContactCollectionViewCell.self)
         collectionView.register(AboutCollectionViewCell.self)
         collectionView.register(CareerHeaderCollectionViewCell.self)
         collectionView.register(CareerCollectionViewCell.self)
+        self.imageProvider = imageProvider
     }
     
     func provideCell(collectionView: UICollectionView, indexPath: IndexPath, item: CollectionViewState.Item) -> UICollectionViewCell? {
@@ -60,7 +66,6 @@ private extension CellProvider {
             return nil
         }
         let imagePresenter = ImagePresenter()
-        let imageProvider = ImageProvider()
         let imageInteractor = ImageInteractor(presenter: imagePresenter,
                                               imageUrl: url,
                                               provider: imageProvider)

@@ -17,6 +17,7 @@
     
 import UIKit
 import UIKitHelpers
+import Networking
 
 class ImageCollectionViewCell: UICollectionViewCell {
     var interactor: ImageBusinessLogic?

@@ -35,7 +35,7 @@ struct CollectionViewState: Equatable {
     }
 
     enum ImageSectionItem: Hashable {
-        case url(URL?)
+        case url(URL)
     }
     
     enum PersonalSectionItem: Hashable {

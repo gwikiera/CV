@@ -29,16 +29,24 @@ public struct Endpoint {
 // Based on pointfree.co dependencies style
 // Reference: https://www.pointfree.co/collections/dependencies
 public struct APIClient {
-    public var baseURL: () -> BaseURL
-    public var dataTask: (URL) -> AnyPublisher<Data, Error>
-    public var downloadTask: (URL) -> AnyPublisher<URL, Error>
+    var baseURL: () -> BaseURL
+    var dataTask: (URL) -> AnyPublisher<Data, Error>
+    var downloadTask: (URL) -> AnyPublisher<URL, Error>
+
+    public func dataTaskPublisher(_ url: URL) -> AnyPublisher<Data, Error> {
+        dataTask(url)
+    }
 
     public func dataTaskPublisher(_ endpoint: Endpoint) -> AnyPublisher<Data, Error> {
-        dataTask(url(for: endpoint))
+        dataTaskPublisher(url(for: endpoint))
+    }
+
+    public func downloadTaskPublisher(_ url: URL) -> AnyPublisher<URL, Error> {
+        downloadTask(url)
     }
 
     public func downloadTaskPublisher(_ endpoint: Endpoint) -> AnyPublisher<URL, Error> {
-        downloadTask(url(for: endpoint))
+        downloadTaskPublisher(url(for: endpoint))
     }
 
     public func request<A: Decodable>(
@@ -50,10 +58,8 @@ public struct APIClient {
             .decode(type: A.self, decoder: decoder)
             .eraseToAnyPublisher()
     }
-}
 
-extension APIClient {
-    func url(for endpoint: Endpoint) -> URL {
+    public func url(for endpoint: Endpoint) -> URL {
         endpoint.urlBuilder(baseURL())
     }
 }

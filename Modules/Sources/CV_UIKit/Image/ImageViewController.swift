@@ -18,6 +18,7 @@
 import UIKit
 import UIKitHelpers
 import DesignSystem
+import Networking
 
 protocol ImageViewLogic: AnyObject {
     func displayLoading()

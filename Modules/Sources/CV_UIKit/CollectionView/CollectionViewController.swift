@@ -17,15 +17,19 @@
 
 import UIKit
 import Combine
+import Networking
 
 public class CollectionViewController: UICollectionViewController {
     private let viewModel: CollectionViewModel
     private var dataSource: UICollectionViewDiffableDataSource<CollectionViewState.Section.Kind, CollectionViewState.Item>?
-    private lazy var cellProvider = CellProvider(collectionView: collectionView)
+    private let imageProvider: ImageProviding
+
+    private lazy var cellProvider = CellProvider(collectionView: collectionView, imageProvider: imageProvider)
     private var cancellable: Cancellable?
 
-    public init(viewModel: CollectionViewModel) {
+    public init(viewModel: CollectionViewModel, imageProvider: ImageProviding) {
         self.viewModel = viewModel
+        self.imageProvider = imageProvider
         super.init(collectionViewLayout: CollectionViewLayoutGenerator().generateLayout())
     }
 
@@ -95,10 +99,10 @@ public class CollectionViewController: UICollectionViewController {
 #if DEBUG
 import SwiftUI
 
-struct CollectionViewController_Preview: PreviewProvider { // swiftlint:disable:this type_name
-    static var previews: some View {
-        GenericViewRepresentable(view: CollectionViewController(viewModel: .init(client: .mock)).view)
-            .previewForDevices()
-    }
-}
+//struct CollectionViewController_Preview: PreviewProvider { // swiftlint:disable:this type_name
+//    static var previews: some View {
+//        GenericViewRepresentable(view: CollectionViewController(viewModel: .init(client: .mock), imageProvider: .noop).view)
+//            .previewForDevices()
+//    }
+//}
 #endif
