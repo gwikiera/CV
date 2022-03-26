@@ -21,6 +21,10 @@
 		EB5E877F27EF7B2B0020A52C /* NetworkingLive in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877E27EF7B2B0020A52C /* NetworkingLive */; };
 		EB73C95127E65D4E00E55DE5 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C95027E65D4E00E55DE5 /* AppEnvironment.swift */; };
 		EB73C95527E662B600E55DE5 /* CV.json in Resources */ = {isa = PBXBuildFile; fileRef = EB73C95427E662B600E55DE5 /* CV.json */; };
+		EBECE7C227EF94B2005FA733 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = EBECE7C127EF94B2005FA733 /* Common */; };
+		EBECE7C427EF94B2005FA733 /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = EBECE7C327EF94B2005FA733 /* Data */; };
+		EBECE7C627EF94B2005FA733 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = EBECE7C527EF94B2005FA733 /* DesignSystem */; };
+		EBECE7C827EF94B2005FA733 /* UIKitHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = EBECE7C727EF94B2005FA733 /* UIKitHelpers */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +62,12 @@
 				EB5E877B27EF7B260020A52C /* LoggerLive in Frameworks */,
 				EB5E877927EF7B080020A52C /* Logger in Frameworks */,
 				EB5E877F27EF7B2B0020A52C /* NetworkingLive in Frameworks */,
+				EBECE7C827EF94B2005FA733 /* UIKitHelpers in Frameworks */,
+				EBECE7C627EF94B2005FA733 /* DesignSystem in Frameworks */,
 				EB5E877D27EF7B290020A52C /* Networking in Frameworks */,
 				EB5E877727EF7B000020A52C /* CV-UIKit in Frameworks */,
+				EBECE7C227EF94B2005FA733 /* Common in Frameworks */,
+				EBECE7C427EF94B2005FA733 /* Data in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +188,10 @@
 				EB5E877A27EF7B260020A52C /* LoggerLive */,
 				EB5E877C27EF7B290020A52C /* Networking */,
 				EB5E877E27EF7B2B0020A52C /* NetworkingLive */,
+				EBECE7C127EF94B2005FA733 /* Common */,
+				EBECE7C327EF94B2005FA733 /* Data */,
+				EBECE7C527EF94B2005FA733 /* DesignSystem */,
+				EBECE7C727EF94B2005FA733 /* UIKitHelpers */,
 			);
 			productName = CV;
 			productReference = 2D2F27D424C39352004C8D8E /* CV.app */;
@@ -580,6 +592,22 @@
 		EB5E877E27EF7B2B0020A52C /* NetworkingLive */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkingLive;
+		};
+		EBECE7C127EF94B2005FA733 /* Common */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+		EBECE7C327EF94B2005FA733 /* Data */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Data;
+		};
+		EBECE7C527EF94B2005FA733 /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesignSystem;
+		};
+		EBECE7C727EF94B2005FA733 /* UIKitHelpers */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UIKitHelpers;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

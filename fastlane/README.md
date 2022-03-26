@@ -23,14 +23,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Perform unit tests
 
-### ios codecov
-
-```sh
-[bundle exec] fastlane ios codecov
-```
-
-Submit tests report to codecov
-
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
