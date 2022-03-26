@@ -24,7 +24,7 @@ extension FileStorage {
     static let live = Self(fileManager: .default)
 }
 
-public extension FileStorage {
+extension FileStorage {
     init(fileManager: FileManager) {
         let storagePath = fileManager.cacheDirectory.path
         self.init(
