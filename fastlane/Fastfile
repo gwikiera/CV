@@ -7,17 +7,7 @@ platform :ios do
   lane :test do
   run_tests(
     scheme: "CV",
-    code_coverage: true,
-    derived_data_path: "build"
-  )
-  end
-end
-
-platform :ios do
-  desc "Submit tests report to codecov"
-  lane :codecov do
-  codecov_reporter(
-    token: "$CODECOV_TOKEN"
+    code_coverage: true
   )
   end
 end

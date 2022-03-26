@@ -7,8 +7,9 @@ coverage:
   range: 50...80
 
   ignore:
-    - CVTests/.*
+    - Modules/.build/*
     - CVUITests/.*
+    - Modules/Tests/*
 
   status:
     project:
