@@ -20,36 +20,60 @@ import Data
 import Combine
 import Common
 
-public typealias BaseURL = URL
-
-public struct Endpoint {
-    let urlBuilder: (BaseURL) -> URL
-}
-
 // Based on pointfree.co dependencies style
 // Reference: https://www.pointfree.co/collections/dependencies
 public struct APIClient {
+    public typealias BaseURL = URL
+
+    public struct Endpoint {
+        let urlBuilder: (BaseURL) -> URL
+
+        public init(urlBuilder: @escaping (BaseURL) -> URL) {
+            self.urlBuilder = urlBuilder
+        }
+    }
+
     var baseURL: () -> BaseURL
     var dataTask: (URL) -> AnyPublisher<Data, Error>
     var downloadTask: (URL) -> AnyPublisher<URL, Error>
 
-    public func dataTaskPublisher(_ url: URL) -> AnyPublisher<Data, Error> {
+    public init(
+        baseURL: @escaping () -> BaseURL,
+        dataTask: @escaping (URL) -> AnyPublisher<Data, Error>,
+        downloadTask: @escaping (URL) -> AnyPublisher<URL, Error>
+    ) {
+        self.baseURL = baseURL
+        self.dataTask = dataTask
+        self.downloadTask = downloadTask
+    }
+}
+
+public extension APIClient {
+    static let noop = Self(
+        baseURL: { "/" },
+        dataTask: { _ in .noop },
+        downloadTask: { _ in .noop }
+    )
+}
+
+public extension APIClient {
+    func dataTaskPublisher(_ url: URL) -> AnyPublisher<Data, Error> {
         dataTask(url)
     }
 
-    public func dataTaskPublisher(_ endpoint: Endpoint) -> AnyPublisher<Data, Error> {
+    func dataTaskPublisher(_ endpoint: Endpoint) -> AnyPublisher<Data, Error> {
         dataTaskPublisher(url(for: endpoint))
     }
 
-    public func downloadTaskPublisher(_ url: URL) -> AnyPublisher<URL, Error> {
+    func downloadTaskPublisher(_ url: URL) -> AnyPublisher<URL, Error> {
         downloadTask(url)
     }
 
-    public func downloadTaskPublisher(_ endpoint: Endpoint) -> AnyPublisher<URL, Error> {
+    func downloadTaskPublisher(_ endpoint: Endpoint) -> AnyPublisher<URL, Error> {
         downloadTaskPublisher(url(for: endpoint))
     }
 
-    public func request<A: Decodable>(
+    func request<A: Decodable>(
         endpoint: Endpoint,
         as type: A.Type,
         decoder: JSONDecoder = JSONDecoder()
@@ -59,7 +83,7 @@ public struct APIClient {
             .eraseToAnyPublisher()
     }
 
-    public func url(for endpoint: Endpoint) -> URL {
+    func url(for endpoint: Endpoint) -> URL {
         endpoint.urlBuilder(baseURL())
     }
 }

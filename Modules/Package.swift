@@ -19,6 +19,9 @@ let package = Package(
             name: "Networking",
             targets: ["Networking"]),
         .library(
+            name: "NetworkingLive",
+            targets: ["NetworkingLive"]),
+        .library(
             name: "TestHelpers",
             targets: ["TestHelpers"]),
         .library(
@@ -53,13 +56,24 @@ let package = Package(
             name: "Networking",
             dependencies: [
                 "Common",
-                "Data",
                 "Logger"
             ]),
         .testTarget(
             name: "NetworkingTests",
             dependencies: [
                 "Networking",
+                "TestHelpers",
+                .product(name: "Nimble", package: "Nimble")
+            ]),
+        .target(
+            name: "NetworkingLive",
+            dependencies: [
+                "Networking"
+            ]),
+        .testTarget(
+            name: "NetworkingLiveTests",
+            dependencies: [
+                "NetworkingLive",
                 "TestHelpers",
                 .product(name: "Nimble", package: "Nimble")
             ]),
@@ -104,7 +118,8 @@ let package = Package(
                 "UIKitHelpers",
                 "DesignSystem",
                 "Logger",
-                "Networking"
+                "Networking",
+                "NetworkingLive"
             ]),
         .testTarget(
             name: "CV_UIKitTests",

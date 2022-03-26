@@ -22,11 +22,11 @@ import Networking
 
 class CellProvider {
     typealias SectionCellProvider = (UICollectionView, IndexPath, CollectionViewState.Item) -> UICollectionViewCell?
-    let imageProvider: ImageProviding
+    let imageProvider: ImageProvider
 
     init(
         collectionView: UICollectionView,
-        imageProvider: ImageProviding
+        imageProvider: ImageProvider
     ) {
         collectionView.register(ImageCollectionViewCell.self)
         collectionView.register(HeaderCollectionViewCell.self)

@@ -26,12 +26,12 @@ protocol ImageBusinessLogic {
 final class ImageInteractor: ImageBusinessLogic {
     let presenter: ImagePresentationLogic
     let imageUrl: URL
-    let provider: ImageProviding
+    let provider: ImageProvider
     private var cancellable: Cancellable?
 
     init(presenter: ImagePresentationLogic,
          imageUrl: URL,
-         provider: ImageProviding) {
+         provider: ImageProvider) {
         self.presenter = presenter
         self.imageUrl = imageUrl
         self.provider = provider
@@ -39,11 +39,12 @@ final class ImageInteractor: ImageBusinessLogic {
     
     func loadImage() {
         presenter.presentLoading()
-        cancellable = provider.imagePath(for: imageUrl)
+        cancellable = provider.imagePathPublisher(for: imageUrl)
             .handleEvents(receiveSubscription: { [presenter] _ in
                 presenter.presentLoading()
             })
             .first()
+            .subscribe(on: DispatchQueue.main)
             .sink { [presenter] completion in
                 switch completion {
                 case .finished:

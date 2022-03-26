@@ -19,8 +19,9 @@ import Foundation
 import Data
 import Combine
 import Common
+import Networking
 
-public extension Endpoint {
+public extension APIClient.Endpoint {
     static let image = Self { url in
         url.appendingPathComponent("Profile.jpeg")
     }

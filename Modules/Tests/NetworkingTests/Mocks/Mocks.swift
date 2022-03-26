@@ -20,7 +20,7 @@ import TestHelpers
 import Foundation
 import Combine
 
-extension Endpoint {
+extension APIClient.Endpoint {
     static let stub = Self(urlBuilder: stubReturn(with: .stub))
 }
 

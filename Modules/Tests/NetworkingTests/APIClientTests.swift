@@ -27,7 +27,7 @@ class APIClientTests: XCTestCase {
     func testDataTaskPublisher() async throws {
         // Given
         let expectedUrl: URL = "/"
-        let endpoint = Endpoint(urlBuilder: stubReturn(with: expectedUrl))
+        let endpoint = APIClient.Endpoint(urlBuilder: stubReturn(with: expectedUrl))
 
         let sut = APIClient.client(
             dataTask: { url in
@@ -50,7 +50,7 @@ class APIClientTests: XCTestCase {
         )
 
         // When
-        let firstResult = await sut.dataTaskPublisher(Endpoint.stub).firstResult()
+        let firstResult = await sut.dataTaskPublisher(APIClient.Endpoint.stub).firstResult()
 
         // Then
         expect(try firstResult.get()).to(throwError(ErrorStub()))
@@ -60,7 +60,7 @@ class APIClientTests: XCTestCase {
     func testDownloadTaskPublisher() async throws {
         // Given
         let expectedUrl: URL = "/"
-        let endpoint = Endpoint(urlBuilder: stubReturn(with: expectedUrl))
+        let endpoint = APIClient.Endpoint(urlBuilder: stubReturn(with: expectedUrl))
 
         let sut = APIClient.client(
             downloadTask: { url in
@@ -83,7 +83,7 @@ class APIClientTests: XCTestCase {
         )
 
         // When
-        let firstResult = await sut.downloadTaskPublisher(Endpoint.stub).firstResult()
+        let firstResult = await sut.downloadTaskPublisher(APIClient.Endpoint.stub).firstResult()
 
         // Then
         expect(try firstResult.get()).to(throwError(ErrorStub()))

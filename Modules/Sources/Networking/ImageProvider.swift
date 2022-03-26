@@ -21,111 +21,53 @@ import Combine
 
 public typealias ImagePath = String
 
-public protocol ImageProviding {
-    func imagePath(for url: URL) -> AnyPublisher<ImagePath, Error>
-}
+public struct ImageProvider {
+    var imagePathPublisher: (URL) -> AnyPublisher<ImagePath, Error>
 
-public final class ImageProvider: ImageProviding {
-    public enum ImageProviderError: Error {
-        case downloadingError(Error)
-        case imageStoringError(Error)
+    public init(imagePathPublisher: @escaping (URL) -> AnyPublisher<ImagePath, Error>) {
+        self.imagePathPublisher = imagePathPublisher
     }
 
-    let fileManager: FileManager
-    let storagePath: String
-    let apiClient: APIClient
-
-    init(fileManager: FileManager = .default,
-         storagePath: String,
-         apiClient: APIClient) {
-        self.fileManager = fileManager
-        self.storagePath = storagePath
-        self.apiClient = apiClient
+    public func imagePathPublisher(for url: URL) -> AnyPublisher<ImagePath, Error> {
+        imagePathPublisher(url)
     }
-    
-    convenience init(fileManager: FileManager = .default,
-                     apiClient: APIClient) {
-        guard let storagePath = fileManager.urls(for: .cachesDirectory, in: .allDomainsMask).first else {
-            fatalError("Cannot find caches directory.")
-        }
-        self.init(fileManager: fileManager, storagePath: storagePath.path, apiClient: apiClient)
-    }
-    
-    public func imagePath(for url: URL) -> AnyPublisher<ImagePath, Error> {
-        let fileName = !url.lastPathComponent.isEmpty ? url.lastPathComponent : String(url.hashValue)
 
-        return storedImagePathForImage(named: fileName)
-            .catch { error -> AnyPublisher<ImagePath, ImageProviderError> in
-                guard (error as? CacheError) == .cachedFileNotFound else {
-                    return Fail(error: .imageStoringError(error)).eraseToAnyPublisher()
-                }
-                logger.debug("No stored image found, starting downloading image from url \(url).")
-                return self.apiClient.downloadTaskPublisher(url)
-                    .handleEvents(receiveOutput: { url in
-                        logger.debug("Image downloaded at path: \(url.absoluteString).")
-                    }, receiveCompletion: { completion in
-                        guard case let .failure(error) = completion else { return }
-                        logger.debug("Image downloading failed, error: \(error).")
-                    })
-                    .mapError(ImageProviderError.downloadingError)
-                    .flatMap { [self] tempURL in
-                        self.storeImage(named: fileName, sourceUrl: tempURL)
-                    }
-                    .eraseToAnyPublisher()
-            }
-            .mapError { $0 as Error }
+    public func imagePublisher(for url: URL) -> AnyPublisher<UIImage?, Error> {
+        imagePathPublisher(for: url)
+            .map(UIImage.init(contentsOfFile:))
             .eraseToAnyPublisher()
     }
 }
 
-private extension ImageProvider {
-    enum CacheError: Swift.Error, Equatable {
-        case cachedFileNotFound
-    }
+public extension ImageProvider {
+    static let noop = Self(imagePathPublisher: { _ in .noop })
+}
 
-    func storedImagePathForImage(named imageName: String) -> AnyPublisher<ImagePath, Swift.Error> {
-        return Future { [weak self, fileManager] promise in
-            guard let imagePath = self?.pathForImage(named: imageName),
-                fileManager.isReadableFile(atPath: imagePath) else {
-                promise(.failure(CacheError.cachedFileNotFound))
-                return
-            }
+public extension ImageProvider {
+    init(
+        apiClient: APIClient,
+        fileStorage: FileStorage
+    ) {
+        self.imagePathPublisher = { url in
+            let fileName = !url.lastPathComponent.isEmpty ? url.lastPathComponent : String(url.hashValue)
 
-            logger.debug("Providing stored path: '\(imagePath) for image named: \(imageName).")
-            promise(.success(imageName))
-        }
-        .eraseToAnyPublisher()
-    }
-
-    func storeImage(named imageName: String, sourceUrl: URL) -> AnyPublisher<ImagePath, ImageProviderError> {
-        let imagePath = pathForImage(named: imageName)
-        return Future { [fileManager] promise in
-            if fileManager.fileExists(atPath: imagePath) {
-                do {
-                    try fileManager.removeItem(atPath: imagePath)
-                } catch {
-                    logger.error("Cannot delete file at path:\(imagePath).\nError: \(error).")
-                    promise(.failure(.imageStoringError(error)))
-                    return
+            return fileStorage.getStoredFilePath(fileName)
+                .catch { error -> AnyPublisher<ImagePath, Error> in
+                    logger.debug("No stored image found, starting downloading image from url \(url).")
+                    return apiClient.downloadTaskPublisher(url)
+                        .handleEvents(receiveOutput: { url in
+                            logger.debug("Image downloaded at path: \(url.absoluteString).")
+                        }, receiveCompletion: { completion in
+                            guard case let .failure(error) = completion else { return }
+                            logger.debug("Image downloading failed, error: \(error).")
+                        })
+                        .flatMap { tempURL in
+                            fileStorage.storeFile(fileName, tempURL)
+                        }
+                        .eraseToAnyPublisher()
                 }
-            }
-
-            let destinationUrl = URL(fileURLWithPath: imagePath)
-
-            do {
-                try fileManager.moveItem(at: sourceUrl, to: destinationUrl)
-            } catch {
-                logger.error("Cannot copy file from path:\(sourceUrl) to path: \(destinationUrl).\nError: \(error).")
-                promise(.failure(.imageStoringError(error)))
-                return
-            }
-
-            return promise(.success(imagePath))
+                .mapError { $0 as Error }
+                .eraseToAnyPublisher()
         }
-        .eraseToAnyPublisher()
-    }
-    
-    func pathForImage(named imageName: String) -> ImagePath {
-        return storagePath + imageName
     }
 }

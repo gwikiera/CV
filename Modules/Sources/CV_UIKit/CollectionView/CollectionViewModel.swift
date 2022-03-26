@@ -20,6 +20,7 @@ import Combine
 import Networking
 import Data
 import Logger
+import NetworkingLive
 
 public final class CollectionViewModel {
     private let client: APIClient

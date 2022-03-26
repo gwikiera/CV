@@ -30,7 +30,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         #if DEBUG
         setupAppEnvironment()
         guard !isRunningUnitTests else { return }
-        window?.rootViewController = CollectionViewController(viewModel: .init(client: AppEnvironment.current.apiClient))
+        window?.rootViewController = CollectionViewController(
+            viewModel: .init(client: AppEnvironment.current.apiClient),
+            imageProvider: AppEnvironment.current.imageProvider
+        )
         #endif
 
         window?.makeKeyAndVisible()

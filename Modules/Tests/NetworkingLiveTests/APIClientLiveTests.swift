@@ -19,27 +19,28 @@ import XCTest
 import Nimble
 import TestHelpers
 @testable import Networking
+@testable import NetworkingLive
 
 class APIClientLiveTests: XCTestCase {
     func testDataEndpoint() {
         // Given
-        let sut = Endpoint.data
+        let sut = APIClient.live
 
         // When
-        let url = sut.urlBuilder(.stub)
+        let url = sut.url(for: .data)
 
         // Then
-        expect(url) == .stub.appendingPathComponent("/CV.json")
+        expect(url) == "https://raw.githubusercontent.com/gwikiera/CV/develop/Resources/CV.json"
     }
 
     func testImageEndpoint() {
         // Given
-        let sut = Endpoint.image
+        let sut = APIClient.live
 
         // When
-        let url = sut.urlBuilder(.stub)
+        let url = sut.url(for: .image)
 
         // Then
-        expect(url) == .stub.appendingPathComponent("/Profile.jpeg")
+        expect(url) == "https://raw.githubusercontent.com/gwikiera/CV/develop/Resources/Profile.jpeg"
     }
 }
