@@ -19,6 +19,7 @@ import Quick
 import Nimble
 import TestHelpers
 @testable import CV_UIKit
+@testable import Networking
 
 class ImageInteractorTests: QuickSpec {
     override func spec() {
@@ -26,42 +27,38 @@ class ImageInteractorTests: QuickSpec {
             context("started") {
                 it("presents loading") {
                     let presenter = ImagePresentationLogic.Spy()
-                    let tested = ImageInteractor(presenter: presenter, imageUrl: .stub, provider: ImageProviding.Dummy())
+                    let tested = ImageInteractor(presenter: presenter, imageUrl: .stub, provider: .noop)
                     
                     tested.loadImage()
                     
                     expect(presenter.presentLoadingSpy.wasInvoked) == true
                 }
 
-                it("does nothing for nil url") {
-                    let imageProvider = ImageProviding.Spy()
-                    let tested = ImageInteractor(presenter: ImagePresentationLogic.Dummy(), imageUrl: nil, provider: imageProvider)
-
-                    tested.loadImage()
-
-                    expect(imageProvider.imagePathSpy.wasInvoked(with: .stub)) == false
-                }
-
                 it("asks for image if url is not nil") {
-                    let imageProvider = ImageProviding.Spy()
+                    var imageProvider = ImageProvider.noop
+                    let imagePathPublisherSpy = spy(of: imageProvider.imagePathPublisher)
+                    imageProvider.imagePathPublisher = { url in
+                        imagePathPublisherSpy.register(with: url)
+                        return .noop
+                    }
                     let tested = ImageInteractor(presenter: ImagePresentationLogic.Dummy(), imageUrl: .stub, provider: imageProvider)
                     
                     tested.loadImage()
                     
-                    expect(imageProvider.imagePathSpy.wasInvoked(with: .stub)) == true
+                    expect(imagePathPublisherSpy.wasInvoked(with: .stub)) == true
                 }
             }
             
             context("succeded") {
                 it("presents image") {
                     let presenter = ImagePresentationLogic.Spy()
-                    let imageProvider = ImageProviding.Stub()
-                    imageProvider.imagePathStub = { _, completion in completion(.success(.stub)) }
+                    var imageProvider = ImageProvider.noop
+                    imageProvider.imagePathPublisher = stubReturn(with: .stubOutput("filePath"))
                     let tested = ImageInteractor(presenter: presenter, imageUrl: .stub, provider: imageProvider)
                     
                     tested.loadImage()
                     
-                    expect(presenter.presentImageSpy.wasInvoked(with: .stub)) == true
+                    expect(presenter.presentImageSpy.wasInvoked(with: "filePath")).toEventually(beTrue())
                 }
             }
             
@@ -69,13 +66,13 @@ class ImageInteractorTests: QuickSpec {
                 it("presents error") {
                     let error = ErrorStub()
                     let presenter = ImagePresentationLogic.Spy()
-                    let imageProvider = ImageProviding.Stub()
-                    imageProvider.imagePathStub = { _, completion in completion(.failure(error)) }
+                    var imageProvider = ImageProvider.noop
+                    imageProvider.imagePathPublisher = stubReturn(with: .stubFailure(error))
                     let tested = ImageInteractor(presenter: presenter, imageUrl: .stub, provider: imageProvider)
                     
                     tested.loadImage()
                     
-                    expect(presenter.presentErrorSpy.wasInvoked) == true
+                    expect(presenter.presentErrorSpy.wasInvoked).toEventually(beTrue())
                     expect(presenter.presentErrorSpy.invokedParameters) === error
                 }
             }

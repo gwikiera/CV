@@ -14,15 +14,13 @@
 		2D2F27FA24C39354004C8D8E /* CVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F27F924C39354004C8D8E /* CVUITests.swift */; };
 		2D8C6E7E24EFE01B006D8B5C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2D8C6E8024EFE01B006D8B5C /* Localizable.strings */; };
 		2DDFEAEB24C44D2D00E016BC /* Profile.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFEAEA24C44D2D00E016BC /* Profile.jpeg */; };
-		EB4EF69827EF1FDC00782474 /* CV_UIKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB4EF69727EF1FDC00782474 /* CV_UIKit */; };
-		EB70E43527EE61E4001B85EE /* UIKitHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = EB70E43427EE61E4001B85EE /* UIKitHelpers */; };
+		EB5E877727EF7B000020A52C /* CV-UIKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877627EF7B000020A52C /* CV-UIKit */; };
+		EB5E877927EF7B080020A52C /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877827EF7B080020A52C /* Logger */; };
+		EB5E877B27EF7B260020A52C /* LoggerLive in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877A27EF7B260020A52C /* LoggerLive */; };
+		EB5E877D27EF7B290020A52C /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877C27EF7B290020A52C /* Networking */; };
+		EB5E877F27EF7B2B0020A52C /* NetworkingLive in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877E27EF7B2B0020A52C /* NetworkingLive */; };
 		EB73C95127E65D4E00E55DE5 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C95027E65D4E00E55DE5 /* AppEnvironment.swift */; };
 		EB73C95527E662B600E55DE5 /* CV.json in Resources */ = {isa = PBXBuildFile; fileRef = EB73C95427E662B600E55DE5 /* CV.json */; };
-		EB77266527EE673600A8D1E3 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = EB77266427EE673600A8D1E3 /* DesignSystem */; };
-		EB77266727EE783900A8D1E3 /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = EB77266627EE783900A8D1E3 /* Logger */; };
-		EB77266927EE783900A8D1E3 /* LoggerLive in Frameworks */ = {isa = PBXBuildFile; productRef = EB77266827EE783900A8D1E3 /* LoggerLive */; };
-		EB7EE40827EA027F005B9344 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = EB7EE40727EA027F005B9344 /* Networking */; };
-		EB870EB627EA087500EC35CF /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = EB870EB527EA087500EC35CF /* Data */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,13 +55,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB77266927EE783900A8D1E3 /* LoggerLive in Frameworks */,
-				EB77266727EE783900A8D1E3 /* Logger in Frameworks */,
-				EB77266527EE673600A8D1E3 /* DesignSystem in Frameworks */,
-				EB7EE40827EA027F005B9344 /* Networking in Frameworks */,
-				EB70E43527EE61E4001B85EE /* UIKitHelpers in Frameworks */,
-				EB870EB627EA087500EC35CF /* Data in Frameworks */,
-				EB4EF69827EF1FDC00782474 /* CV_UIKit in Frameworks */,
+				EB5E877B27EF7B260020A52C /* LoggerLive in Frameworks */,
+				EB5E877927EF7B080020A52C /* Logger in Frameworks */,
+				EB5E877F27EF7B2B0020A52C /* NetworkingLive in Frameworks */,
+				EB5E877D27EF7B290020A52C /* Networking in Frameworks */,
+				EB5E877727EF7B000020A52C /* CV-UIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,13 +175,11 @@
 			);
 			name = CV;
 			packageProductDependencies = (
-				EB7EE40727EA027F005B9344 /* Networking */,
-				EB870EB527EA087500EC35CF /* Data */,
-				EB70E43427EE61E4001B85EE /* UIKitHelpers */,
-				EB77266427EE673600A8D1E3 /* DesignSystem */,
-				EB77266627EE783900A8D1E3 /* Logger */,
-				EB77266827EE783900A8D1E3 /* LoggerLive */,
-				EB4EF69727EF1FDC00782474 /* CV_UIKit */,
+				EB5E877627EF7B000020A52C /* CV-UIKit */,
+				EB5E877827EF7B080020A52C /* Logger */,
+				EB5E877A27EF7B260020A52C /* LoggerLive */,
+				EB5E877C27EF7B290020A52C /* Networking */,
+				EB5E877E27EF7B2B0020A52C /* NetworkingLive */,
 			);
 			productName = CV;
 			productReference = 2D2F27D424C39352004C8D8E /* CV.app */;
@@ -567,33 +561,25 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EB4EF69727EF1FDC00782474 /* CV_UIKit */ = {
+		EB5E877627EF7B000020A52C /* CV-UIKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = CV_UIKit;
+			productName = "CV-UIKit";
 		};
-		EB70E43427EE61E4001B85EE /* UIKitHelpers */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = UIKitHelpers;
-		};
-		EB77266427EE673600A8D1E3 /* DesignSystem */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = DesignSystem;
-		};
-		EB77266627EE783900A8D1E3 /* Logger */ = {
+		EB5E877827EF7B080020A52C /* Logger */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Logger;
 		};
-		EB77266827EE783900A8D1E3 /* LoggerLive */ = {
+		EB5E877A27EF7B260020A52C /* LoggerLive */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LoggerLive;
 		};
-		EB7EE40727EA027F005B9344 /* Networking */ = {
+		EB5E877C27EF7B290020A52C /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Networking;
 		};
-		EB870EB527EA087500EC35CF /* Data */ = {
+		EB5E877E27EF7B2B0020A52C /* NetworkingLive */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Data;
+			productName = NetworkingLive;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

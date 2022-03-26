@@ -23,7 +23,7 @@ import Nimble
 class CellProviderTests: QuickSpec {
     override func spec() { // swiftlint:disable:this function_body_length
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .init())
-        let tested = CellProvider(collectionView: collectionView)
+        let tested = CellProvider(collectionView: collectionView, imageProvider: .noop)
         let invalidItem = ""
 
         beforeSuite {

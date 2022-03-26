@@ -24,6 +24,16 @@ extension FileManager {
         case fileNotFound
     }
 
+    var cacheDirectory: URL {
+        guard let cacheDirectory = urls(for: .cachesDirectory, in: .allDomainsMask).first else {
+            let message = "Cannot find caches directory."
+            logger.critical(message)
+            fatalError(message)
+        }
+
+        return cacheDirectory
+    }
+
     func getStoredFilePath(for fileName: String, storagePath: String) -> AnyPublisher<String, Error> {
         let filePath = self.pathForFile(named: fileName, storagePath: storagePath)
         return Deferred {
@@ -71,7 +81,6 @@ extension FileManager {
     }
 
     private func pathForFile(named fileName: String, storagePath: String) -> String {
-        return storagePath + fileName
+        return "\(storagePath)/\(fileName)"
     }
 }
-

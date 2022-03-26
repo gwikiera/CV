@@ -27,7 +27,7 @@ enum ImageViewLogic {
         }
         
         lazy var displayImageSpy = spy(of: displayImage)
-        func displayImage(at imagePath: ImagePath) {
+        func displayImage(at imagePath: String) {
             displayImageSpy.register(with: imagePath)
         }
         

@@ -35,4 +35,9 @@ public extension FileStorage {
         getStoredFilePath: { _ in .noop },
         storeFile: { _, _ in .noop }
     )
+
+    static let failing = Self(
+        getStoredFilePath: { _ in fatalError() },
+        storeFile: { _, _ in fatalError() }
+    )
 }

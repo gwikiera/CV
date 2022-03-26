@@ -16,7 +16,6 @@
 // limitations under the License.
 
 import Foundation
-import Data
 import Combine
 import Common
 
@@ -53,6 +52,12 @@ public extension APIClient {
         baseURL: { "/" },
         dataTask: { _ in .noop },
         downloadTask: { _ in .noop }
+    )
+
+    static let failing = Self(
+        baseURL: { fatalError() },
+        dataTask: { _ in fatalError() },
+        downloadTask: { _ in fatalError() }
     )
 }
 

@@ -27,7 +27,7 @@ enum ImagePresentationLogic {
         }
         
         lazy var presentImageSpy = spy(of: presentImage)
-        func presentImage(at imagePath: ImagePath) {
+        func presentImage(at imagePath: String) {
             presentImageSpy.register(with: imagePath)
         }
         
@@ -40,7 +40,7 @@ enum ImagePresentationLogic {
     // MARK: - Dummy
     class Dummy: CV_UIKit.ImagePresentationLogic {
         func presentLoading() {}        
-        func presentImage(at imagePath: ImagePath) {}
+        func presentImage(at imagePath: String) {}
         func presentError(_ error: Error) {}
     }
 }

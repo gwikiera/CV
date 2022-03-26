@@ -27,6 +27,7 @@ import XCTest
 class CollectionViewModelTests: XCTestCase {
     var sut: CollectionViewModel!
     var apiClient: APIClient!
+    let imageURL = URL.stub.appendingPathComponent("Profile.jpeg")
 
     func testViewStatePublisher_FailingApiClient() {
         testViewStatePublisher(
@@ -38,14 +39,14 @@ class CollectionViewModelTests: XCTestCase {
     func testViewStatePublisher_FirstDataTaskFinished() {
         testViewStatePublisher(
             model: .stub(),
-            expectedViewState: .stub(imageItems: [.url(.none)])
+            expectedViewState: .stub(imageItems: [.url(imageURL)])
         )
     }
 
     func testViewStatePublisher_FirstImageTaskFinished() {
         testViewStatePublisher(
             model: .stub(),
-            expectedViewState: .stub(imageItems: [.url(.none)])
+            expectedViewState: .stub(imageItems: [.url(imageURL)])
         )
     }
 
@@ -53,7 +54,7 @@ class CollectionViewModelTests: XCTestCase {
         testViewStatePublisher(
             model: .stub(),
             imageResult: .success(.stub),
-            expectedViewState: .stub(imageItems: [.url(.stub)])
+            expectedViewState: .stub(imageItems: [.url(imageURL)])
         )
     }
 
@@ -66,7 +67,7 @@ class CollectionViewModelTests: XCTestCase {
             additionalInfo: [.init(title: "title", content: "content")]
         )
         let expectedViewState = CollectionViewState.stub(
-            imageItems: [.url(.stub)],
+            imageItems: [.url(imageURL)],
             personalItems: [.fullname("Full Name"), .contact(type: "name", value: "value")],
             aboutItems: [.text("introduction")],
             careerItems: [.title("title"), .item(title: "title", subtitle: "subtitle", text: "description")],
@@ -75,7 +76,7 @@ class CollectionViewModelTests: XCTestCase {
 
         testViewStatePublisher(
             model: model,
-            imageResult: .success(.stub),
+            imageResult: .success(imageURL),
             expectedViewState: expectedViewState
         )
     }

@@ -26,12 +26,7 @@ extension FileStorage {
 
 public extension FileStorage {
     init(fileManager: FileManager) {
-        guard let storagePath = fileManager.urls(for: .cachesDirectory, in: .allDomainsMask).first?.path else {
-            let message = "Cannot find caches directory."
-            logger.critical(message)
-            fatalError(message)
-        }
-
+        let storagePath = fileManager.cacheDirectory.path
         self.init(
             getStoredFilePath: { fileName in
                 fileManager.getStoredFilePath(for: fileName, storagePath: storagePath)

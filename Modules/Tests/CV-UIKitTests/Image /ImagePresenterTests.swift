@@ -29,7 +29,7 @@ class ImagePresenterTests: QuickSpec {
         describe("ImagePresenter") {
             context("presents image at path") {
                 it("calls the view to display it") {
-                    let imagePath = ImagePath.stub
+                    let imagePath = "imagePath"
                     
                     tested.presentImage(at: imagePath)
                     
