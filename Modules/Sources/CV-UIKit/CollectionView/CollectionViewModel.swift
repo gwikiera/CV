@@ -21,14 +21,20 @@ import Networking
 import Data
 import Logger
 import NetworkingLive
+import CombineSchedulers
 
 public final class CollectionViewModel {
     private let client: APIClient
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private let viewStateSubject = PassthroughSubject<CollectionViewState, Never>()
     private var cancellables = Set<AnyCancellable>()
 
-    public init(client: APIClient) {
+    public init(
+        client: APIClient,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
         self.client = client
+        self.scheduler = scheduler
     }
 
     var viewStatePublisher: AnyPublisher<CollectionViewState, Never> {
@@ -43,6 +49,7 @@ public final class CollectionViewModel {
         )
         .map(CollectionViewState.init)
         .ignoreFailure()
+        .receive(on: scheduler)
         .sink { [viewStateSubject] viewState in
             viewStateSubject.send(viewState)
         }

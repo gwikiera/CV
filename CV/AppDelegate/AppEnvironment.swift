@@ -49,6 +49,12 @@ extension AppEnvironment {
 }
 
 func setupAppEnvironment() {
+#if DEBUG
+    let isMockBuild = ProcessInfo.processInfo.arguments.contains("-Mock")
+    AppEnvironment.current = isMockBuild ? .mock : .live
+#else
     AppEnvironment.current = .live
+#endif
+
     logger = AppEnvironment.current.logger
 }

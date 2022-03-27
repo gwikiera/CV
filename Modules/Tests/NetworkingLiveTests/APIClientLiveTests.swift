@@ -43,4 +43,28 @@ class APIClientLiveTests: XCTestCase {
         // Then
         expect(url) == "https://raw.githubusercontent.com/gwikiera/CV/develop/Resources/Profile.jpeg"
     }
+
+#if DEBUG
+    func testDataTaskPublisher() {
+        // Given
+        let sut = APIClient.mock
+
+        // When
+        let observer = sut.dataTaskPublisher(.data).testObserver()
+
+        // Then
+        observer.assertError(FileManager.FileManagerError.fileNotFound)
+    }
+
+    func testDownloadTaskPublisher() {
+        // Given
+        let sut = APIClient.mock
+
+        // When
+        let observer = sut.downloadTaskPublisher(.data).testObserver()
+
+        // Then
+        observer.assertError(FileManager.FileManagerError.fileNotFound)
+    }
+#endif
 }
