@@ -99,7 +99,7 @@ class CollectionViewModelTests: XCTestCase {
         if let imageResult = imageResult {
             apiClient.overrideDownloadTask(endpoint: .image, withResult: imageResult)
         }
-        sut = CollectionViewModel(client: apiClient)
+        sut = CollectionViewModel(client: apiClient, scheduler: .immediate)
 
         // When
         let observer = sut.viewStatePublisher.testObserver()
