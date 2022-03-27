@@ -43,6 +43,7 @@ public final class CollectionViewModel {
         )
         .map(CollectionViewState.init)
         .ignoreFailure()
+        .receive(on: DispatchQueue.main)
         .sink { [viewStateSubject] viewState in
             viewStateSubject.send(viewState)
         }

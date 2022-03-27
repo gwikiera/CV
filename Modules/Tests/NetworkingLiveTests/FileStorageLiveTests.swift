@@ -35,7 +35,7 @@ class FileStorageLiveTests: XCTestCase {
 
     override func tearDown() async throws {
         try? fileManager.removeItem(at: tempFileURL)
-        try fileManager.removeItem(atPath: destinationPath)
+        try? fileManager.removeItem(atPath: destinationPath)
 
         try await super.tearDown()
     }
@@ -51,4 +51,13 @@ class FileStorageLiveTests: XCTestCase {
         // Then
         sut.getStoredFilePath(fileName).testObserver().assertValues([destinationPath])
     }
+
+#if DEBUG
+    func testMock() {
+        let sut = FileStorage.mock
+
+        sut.getStoredFilePath(fileName).testObserver().assertError(FileManager.FileManagerError.fileNotFound)
+        sut.storeFile(fileName, tempFileURL).expectComplete()
+    }
+#endif
 }

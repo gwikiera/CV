@@ -25,6 +25,6 @@ public extension ImageProvider {
 
     static let mock = Self(
         apiClient: .mock,
-        fileStorage: .noop
+        fileStorage: .mock
     )
 }

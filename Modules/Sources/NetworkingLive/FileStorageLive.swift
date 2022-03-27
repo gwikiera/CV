@@ -22,6 +22,17 @@ import Logger
 
 extension FileStorage {
     static let live = Self(fileManager: .default)
+
+#if DEBUG
+    static let mock = Self(
+        getStoredFilePath: { _ in
+            Fail(error: FileManager.FileManagerError.fileNotFound).eraseToAnyPublisher()
+        },
+        storeFile: { _, url in
+            Just(url.path).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
+    )
+#endif
 }
 
 extension FileStorage {

@@ -51,27 +51,32 @@ public extension APIClient {
 
 #if DEBUG
     static let mock = Self(
-        baseURL: { URL(fileURLWithPath: Bundle.main.path(forResource: "CV", ofType: "json")!).deletingLastPathComponent() },
+        baseURL: { "/" },
         dataTask: { url in
-            Deferred {
-                Future { promise in
-                    do {
-                        let data = try Data(contentsOf: url)
-                        promise(.success(data))
-                    } catch {
-                        promise(.failure(error))
-                    }
-                    fatalError()
-                }
-            }
-            .receive(on: DispatchQueue.global())
-            .eraseToAnyPublisher()
-        },
-        downloadTask: { url in
-            Just(url)
-                .setFailureType(to: Error.self)
+            Bundle.main.fileUrlPublisher(for: url)
+                .tryMap { try Data(contentsOf: $0) }
                 .eraseToAnyPublisher()
-        }
+        },
+        downloadTask: Bundle.main.fileUrlPublisher(for:)
     )
+
 #endif
 }
+
+#if DEBUG
+private extension Bundle {
+    func fileUrlPublisher(for url: URL) -> AnyPublisher<URL, Error> {
+        Deferred { [weak self] in
+            Future { promise in
+                let fileName = url.lastPathComponent
+                guard let path = self?.path(forResource: fileName, ofType: nil) else {
+                    promise(.failure(FileManager.FileManagerError.fileNotFound))
+                    return
+                }
+                promise(.success(URL(fileURLWithPath: path)))
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+}
+#endif
