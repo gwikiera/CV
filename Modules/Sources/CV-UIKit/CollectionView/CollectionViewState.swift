@@ -18,7 +18,7 @@
 import UIKit
 import Data
 
-struct CollectionViewState: Equatable {
+public struct CollectionViewState: Equatable {
     public typealias Item = AnyHashable
 
     struct Section: Equatable {

@@ -23,8 +23,10 @@ public extension ImageProvider {
         fileStorage: .live
     )
 
+#if DEBUG
     static let mock = Self(
         apiClient: .mock,
         fileStorage: .mock
     )
+#endif
 }

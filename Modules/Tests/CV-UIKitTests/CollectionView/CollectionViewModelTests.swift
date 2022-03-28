@@ -25,28 +25,35 @@ import XCTest
 @testable import CV_UIKit
 
 class CollectionViewModelTests: XCTestCase {
-    var sut: CollectionViewModel!
+    var sut: CLEViewModel<CollectionViewState>!
     var apiClient: APIClient!
     let imageURL = URL.stub.appendingPathComponent("Profile.jpeg")
+
+    func testViewStatePublisher_InitialState() {
+        testViewStatePublisher(
+            apiClient: .noop,
+            expectedViewState: .loading
+        )
+    }
 
     func testViewStatePublisher_FailingApiClient() {
         testViewStatePublisher(
             apiClient: .failing,
-            expectedViewState: nil
+            expectedViewState: .error
         )
     }
 
     func testViewStatePublisher_FirstDataTaskFinished() {
         testViewStatePublisher(
             model: .stub(),
-            expectedViewState: .stub(imageItems: [.url(imageURL)])
+            expectedViewState: .content(.stub(imageItems: [.url(imageURL)]))
         )
     }
 
     func testViewStatePublisher_FirstImageTaskFinished() {
         testViewStatePublisher(
             model: .stub(),
-            expectedViewState: .stub(imageItems: [.url(imageURL)])
+            expectedViewState: .content(.stub(imageItems: [.url(imageURL)]))
         )
     }
 
@@ -54,7 +61,7 @@ class CollectionViewModelTests: XCTestCase {
         testViewStatePublisher(
             model: .stub(),
             imageResult: .success(.stub),
-            expectedViewState: .stub(imageItems: [.url(imageURL)])
+            expectedViewState: .content(.stub(imageItems: [.url(imageURL)]))
         )
     }
 
@@ -66,13 +73,14 @@ class CollectionViewModelTests: XCTestCase {
             careerHistory: [.init(title: "title", items: [.init(title: "title", subtitle: "subtitle", description: "description")])],
             additionalInfo: [.init(title: "title", content: "content")]
         )
-        let expectedViewState = CollectionViewState.stub(
+        let expectedCollectionViewState = CollectionViewState.stub(
             imageItems: [.url(imageURL)],
             personalItems: [.fullname("Full Name"), .contact(type: "name", value: "value")],
             aboutItems: [.text("introduction")],
             careerItems: [.title("title"), .item(title: "title", subtitle: "subtitle", text: "description")],
             moreItems: [.item(title: "title", content: "content")]
         )
+        let expectedViewState = CLEViewState<CollectionViewState>.content(expectedCollectionViewState)
 
         testViewStatePublisher(
             model: model,
@@ -86,7 +94,7 @@ class CollectionViewModelTests: XCTestCase {
         apiClient client: APIClient = .noop,
         model: Model? = nil,
         imageResult: Result<URL, Error>? = nil,
-        expectedViewState: CollectionViewState? = nil,
+        expectedViewState: CLEViewState<CollectionViewState>,
         file: FileString = #file,
         line: UInt = #line
     ) {
@@ -99,17 +107,13 @@ class CollectionViewModelTests: XCTestCase {
         if let imageResult = imageResult {
             apiClient.overrideDownloadTask(endpoint: .image, withResult: imageResult)
         }
-        sut = CollectionViewModel(client: apiClient, scheduler: .immediate)
+        sut = CLEViewModel<CollectionViewState>(client: apiClient, scheduler: .immediate)
 
         // When
         let observer = sut.viewStatePublisher.testObserver()
-        sut.viewLoaded()
+        sut.fetchData()
 
         // Then
-        if let expectedViewState = expectedViewState {
-            observer.assertLastValue(expectedViewState, file: file, line: line)
-        } else {
-            observer.assertNil(file: file, line: line)
-        }
+        observer.assertLastValue(expectedViewState, file: file, line: line)
     }
 }

@@ -27,14 +27,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = scene as? UIWindowScene else { return }
 
         window = UIWindow(windowScene: scene)
-        #if DEBUG
         setupAppEnvironment()
+#if DEBUG
         guard !isRunningUnitTests else { return }
-        window?.rootViewController = CollectionViewController(
-            viewModel: .init(client: AppEnvironment.current.apiClient),
-            imageProvider: AppEnvironment.current.imageProvider
+#endif
+        let factory = UIViewControllerFactory(
+            apiClient: AppEnvironment.current.apiClient,
+            imageProvider:
+                AppEnvironment.current.imageProvider
         )
-        #endif
+        window?.rootViewController = factory.initialViewController()
 
         window?.makeKeyAndVisible()
     }
