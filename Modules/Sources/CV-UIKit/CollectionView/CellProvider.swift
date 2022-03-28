@@ -19,6 +19,7 @@ import UIKit
 import UIKitHelpers
 import Logger
 import Networking
+import Translations
 
 class CellProvider {
     typealias SectionCellProvider = (UICollectionView, IndexPath, CollectionViewState.Item) -> UICollectionViewCell?

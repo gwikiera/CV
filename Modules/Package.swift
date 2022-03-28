@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "Modules",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v13)
     ],
@@ -38,7 +39,10 @@ let package = Package(
             targets: ["LoggerLive"]),
         .library(
             name: "CV-UIKit",
-            targets: ["CV-UIKit"])
+            targets: ["CV-UIKit"]),
+        .library(
+            name: "Translations",
+            targets: ["Translations"])
     ],
     dependencies: [
         .package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0"),
@@ -122,6 +126,7 @@ let package = Package(
                 "Networking",
                 "NetworkingLive",
                 "Data",
+                "Translations",
                 .product(name: "CombineSchedulers", package: "combine-schedulers")
             ]),
         .testTarget(
@@ -135,6 +140,7 @@ let package = Package(
             resources: [
                 .copy("Resources/empty.json"),
                 .copy("Resources/whitePixel.png")
-            ])
+            ]),
+        .target(name: "Translations")
     ]
 )
