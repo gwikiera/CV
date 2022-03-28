@@ -23,37 +23,22 @@ import Logger
 import NetworkingLive
 import CombineSchedulers
 
-public final class CollectionViewModel {
-    private let client: APIClient
-    private let scheduler: AnySchedulerOf<DispatchQueue>
-    private let viewStateSubject = PassthroughSubject<CollectionViewState, Never>()
-    private var cancellables = Set<AnyCancellable>()
-
-    public init(
+extension CLEViewModel where ContentViewState == CollectionViewState {
+    convenience init(
         client: APIClient,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
-        self.client = client
-        self.scheduler = scheduler
-    }
-
-    var viewStatePublisher: AnyPublisher<CollectionViewState, Never> {
-        viewStateSubject
-            .eraseToAnyPublisher()
-    }
-
-    func viewLoaded() {
-        Publishers.CombineLatest(
+        let contentViewStatePublisher = Publishers.CombineLatest(
             Just(client.url(for: .image)).setFailureType(to: Error.self),
             client.request(endpoint: .data, as: Model.self)
         )
-        .map(CollectionViewState.init)
-        .ignoreFailure()
-        .receive(on: scheduler)
-        .sink { [viewStateSubject] viewState in
-            viewStateSubject.send(viewState)
-        }
-        .store(in: &cancellables)
+            .map(CollectionViewState.init)
+            .eraseToAnyPublisher()
+
+        self.init(
+            contentViewStatePublisher: contentViewStatePublisher,
+            scheduler: scheduler
+        )
     }
 }
 

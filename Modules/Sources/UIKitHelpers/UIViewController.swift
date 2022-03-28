@@ -27,4 +27,10 @@ public extension UIViewController {
         containerView.embed(view: viewController.view)
         viewController.didMove(toParent: self)
     }
+
+    func detach() {
+        willMove(toParent: nil)
+        view.removeFromSuperview()
+        removeFromParent()
+    }
 }

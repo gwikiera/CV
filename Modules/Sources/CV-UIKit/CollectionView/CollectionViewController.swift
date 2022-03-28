@@ -16,19 +16,23 @@
 // limitations under the License.
 
 import UIKit
-import Combine
 import Networking
+#if DEBUG
+import Combine
+#endif
 
 public class CollectionViewController: UICollectionViewController {
-    private let viewModel: CollectionViewModel
+    private let viewState: CollectionViewState
     private var dataSource: UICollectionViewDiffableDataSource<CollectionViewState.Section.Kind, CollectionViewState.Item>?
     private let imageProvider: ImageProvider
 
     private lazy var cellProvider = CellProvider(collectionView: collectionView, imageProvider: imageProvider)
+#if DEBUG
     private var cancellable: Cancellable?
-
-    public init(viewModel: CollectionViewModel, imageProvider: ImageProvider) {
-        self.viewModel = viewModel
+#endif
+    
+    public init(viewState: CollectionViewState, imageProvider: ImageProvider) {
+        self.viewState = viewState
         self.imageProvider = imageProvider
         super.init(collectionViewLayout: CollectionViewLayoutGenerator().generateLayout())
     }
@@ -45,25 +49,12 @@ public class CollectionViewController: UICollectionViewController {
         dataSource = UICollectionViewDiffableDataSource<CollectionViewState.Section.Kind, CollectionViewState.Item>(collectionView: collectionView, cellProvider: cellProvider.provideCell)
         collectionView.dataSource = dataSource
 
-        cancellable = viewModel.viewStatePublisher
-            .receive(on: DispatchQueue.main)
-            .map({ viewState in
-                var snapshot = NSDiffableDataSourceSnapshot<CollectionViewState.Section.Kind, CollectionViewState.Item>()
-                viewState.sections.forEach { section in
-                    snapshot.appendSections([section.kind])
-                    snapshot.appendItems(section.items, toSection: section.kind)
-                }
-                return snapshot
-            })
-            .sink { [dataSource] snapshot in
-                dataSource?.apply(snapshot, animatingDifferences: false)
-            }
-    }
-
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        viewModel.viewLoaded()
+        var snapshot = NSDiffableDataSourceSnapshot<CollectionViewState.Section.Kind, CollectionViewState.Item>()
+        viewState.sections.forEach { section in
+            snapshot.appendSections([section.kind])
+            snapshot.appendItems(section.items, toSection: section.kind)
+        }
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -101,7 +92,7 @@ import SwiftUI
 
 struct CollectionViewController_Preview: PreviewProvider { // swiftlint:disable:this type_name
     static var previews: some View {
-        GenericViewRepresentable(view: CollectionViewController(viewModel: .init(client: .mock), imageProvider: .noop).view)
+        GenericViewRepresentable(view: CollectionViewController(viewState: .init(sections: []), imageProvider: .noop).view)
             .previewForDevices()
     }
 }
