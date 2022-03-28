@@ -4,14 +4,14 @@ import Combine
 final class CLEViewController<ContentViewState: Equatable>: UIViewController {
     private let viewModel: CLEViewModel<ContentViewState>
     private let contentViewControllerBuilder: (ContentViewState) -> UIViewController
-    private let errorViewControllerBuilder: (() -> Void) -> UIViewController
+    private let errorViewControllerBuilder: (@escaping () -> Void) -> UIViewController
     private let loadingViewControllerBuilder: () -> UIViewController
     private var cancellables = Set<AnyCancellable>()
 
     init(
         viewModel: CLEViewModel<ContentViewState>,
         contentViewControllerBuilder: @escaping (ContentViewState) -> UIViewController,
-        errorViewControllerBuilder: @escaping (() -> Void) -> UIViewController,
+        errorViewControllerBuilder: @escaping (@escaping () -> Void) -> UIViewController,
         loadingViewControllerBuilder: @escaping () -> UIViewController
     ) {
         self.viewModel = viewModel
@@ -42,9 +42,9 @@ final class CLEViewController<ContentViewState: Equatable>: UIViewController {
                 }
             }
             .receive(on: DispatchQueue.main)
-            .sink { [unowned self] viewController in
-                self.children.forEach { $0.detach() }
-                self.embed(viewController: viewController)
+            .sink { [weak self] viewController in
+                self?.children.forEach { $0.detach() }
+                self?.embed(viewController: viewController)
             }
             .store(in: &cancellables)
     }

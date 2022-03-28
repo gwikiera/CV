@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D2F27D824C39352004C8D8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F27D724C39352004C8D8E /* AppDelegate.swift */; };
 		2D2F27DA24C39352004C8D8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F27D924C39352004C8D8E /* SceneDelegate.swift */; };
-		2D2F27E124C39354004C8D8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D2F27E024C39354004C8D8E /* Assets.xcassets */; };
+		2D2F27E124C39354004C8D8E /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D2F27E024C39354004C8D8E /* Icons.xcassets */; };
 		2D2F27E424C39354004C8D8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D2F27E224C39354004C8D8E /* LaunchScreen.storyboard */; };
 		2D2F27FA24C39354004C8D8E /* CVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F27F924C39354004C8D8E /* CVUITests.swift */; };
 		2DDFEAEB24C44D2D00E016BC /* Profile.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFEAEA24C44D2D00E016BC /* Profile.jpeg */; };
@@ -40,7 +40,7 @@
 		2D2F27D424C39352004C8D8E /* CV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2F27D724C39352004C8D8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D2F27D924C39352004C8D8E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2D2F27E024C39354004C8D8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2D2F27E024C39354004C8D8E /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		2D2F27E324C39354004C8D8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D2F27E524C39354004C8D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D2F27F524C39354004C8D8E /* CVUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CVUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,7 +150,7 @@
 			children = (
 				EB73C95427E662B600E55DE5 /* CV.json */,
 				2DDFEAEA24C44D2D00E016BC /* Profile.jpeg */,
-				2D2F27E024C39354004C8D8E /* Assets.xcassets */,
+				2D2F27E024C39354004C8D8E /* Icons.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -260,7 +260,7 @@
 				EB73C95527E662B600E55DE5 /* CV.json in Resources */,
 				2D2F27E424C39354004C8D8E /* LaunchScreen.storyboard in Resources */,
 				2DDFEAEB24C44D2D00E016BC /* Profile.jpeg in Resources */,
-				2D2F27E124C39354004C8D8E /* Assets.xcassets in Resources */,
+				2D2F27E124C39354004C8D8E /* Icons.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +458,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8V64EQR36T;
 				INFOPLIST_FILE = "CV/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -476,6 +477,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8V64EQR36T;
 				INFOPLIST_FILE = "CV/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
