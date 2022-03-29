@@ -18,21 +18,16 @@
 
 
 <!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-      <li><a href="#license">License</a></li>
-    </li>
-  </ol>
-</details>
+- [About The Project](#about-the-project)
+- [Getting Started](#getting-started)
+  * [Installation](#installation)
+- [Technical description](#technical-description)
+  * [Architecture](#architecture)
+  * [Modularization](#modularization)
+  * [Dependency injection](#dependency-injection)
+  * [Testing](#testing)
+  * [CI](#ci)
+- [License](#license)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -54,8 +49,6 @@ All the code is written in a testable way. Unit tests are written using `XCText`
 
 [SwiftLint](https://github.com/realm/SwiftLint) is used for linting the Swift source code. It is added to the project as a build phase. 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -72,8 +65,6 @@ To run the project only Xcode is needed (version 13+). All the project dependenc
    cd CV
    open CV.xcodeproj
    ```
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- TECHNICAL DESCRIPTION -->
 ## Technical description
@@ -94,11 +85,12 @@ The app dependencies are grouped inside the [AppEnvironment](./CV/AppDelegate/Ap
 
 ### Testing
 
+The app target contains only `CVUITest` target because all of the testable code was moved to the modules. Testable modules are unit tested, code coverage level is passed to the [codecov](https://app.codecov.io/gh/gwikiera/CV) to visualize it. Unit tests are written using third party modules like [Quick](https://github.com/Quick/Quick) and [Nimble](https://github.com/Quick/Nimble), and also internal [TestsHelpers](./Modules/Sources/TestHelpers) module. 
+
 ### CI
+For each PR and the main branches the project is built and tested by two separate providers: [bitrise](https://app.bitrise.io/app/58d6b8fa19361986) and [travis-ci]. All unit tests for all modules are triggered, and the code coverage report is attached to each PR. 
 
 <!-- LICENSE -->
 ## License
 
 Distributed under the Apache  License. See [LICENSE](LICENSE) for more information.
-
-<p align="right">(<a href="#top">back to top</a>)</p>
