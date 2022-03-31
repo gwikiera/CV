@@ -7,6 +7,7 @@ platform :ios do
   lane :test do
   run_tests(
     scheme: "CV",
+    device: "iPhone 13 Pro Max",
     code_coverage: true,
     derived_data_path: "build"
   )

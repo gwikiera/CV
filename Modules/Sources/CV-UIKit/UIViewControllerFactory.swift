@@ -1,6 +1,7 @@
 import UIKit
 import Networking
 import Translations
+import CombineSchedulers
 
 public final class UIViewControllerFactory {
     private let apiClient: APIClient
@@ -59,3 +60,5 @@ extension UIViewControllerFactory {
         return viewController
     }
 }
+
+var mainScheduler: AnySchedulerOf<DispatchQueue> = .main
