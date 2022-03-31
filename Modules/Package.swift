@@ -48,15 +48,12 @@ let package = Package(
         .package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0"),
         .package(url: "https://github.com/Quick/Quick.git", from: "4.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.4.0"),
-        .package(url: "https://github.com/pointfreeco/combine-schedulers", from: "0.5.0")
+        .package(url: "https://github.com/pointfreeco/combine-schedulers", from: "0.5.0"),
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.9.0")
     ],
     targets: [
-        .target(
-            name: "Common"
-        ),
-        .target(
-            name: "Data"
-        ),
+        .target(name: "Common"),
+        .target(name: "Data"),
         .target(
             name: "Networking",
             dependencies: [
@@ -88,8 +85,7 @@ let package = Package(
                 "Data",
                 .product(name: "Nimble", package: "Nimble")
             ]),
-        .target(
-            name: "UIKitHelpers"),
+        .target(name: "UIKitHelpers"),
         .target(
             name: "DesignSystem",
             resources: [
@@ -97,8 +93,7 @@ let package = Package(
                 .copy("Resources/Fonts/BebasNeue-Regular.ttf"),
                 .copy("Resources/Fonts/OpenSans-Regular.ttf")
             ]),
-        .target(
-            name: "Logger"),
+        .target(name: "Logger"),
         .testTarget(
             name: "LoggerTests",
             dependencies: [
@@ -135,7 +130,20 @@ let package = Package(
                 "CV-UIKit",
                 "TestHelpers",
                 .product(name: "Nimble", package: "Nimble"),
-                .product(name: "Quick", package: "Quick")
+                .product(name: "Quick", package: "Quick"),
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+            ],
+            exclude: [
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testCollectionViewController_imageLoading.dark.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testCollectionViewController_imageLoading.light.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testCollectionViewController_imageLoadingFailed.dark.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testCollectionViewController_imageLoadingFailed.light.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testCollectionViewController_imageLoadingSucceeded.dark.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testCollectionViewController_imageLoadingSucceeded.light.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testErrorViewController.dark.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testErrorViewController.light.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testLoadingViewController.dark.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testLoadingViewController.light.png"
             ],
             resources: [
                 .copy("Resources/empty.json"),

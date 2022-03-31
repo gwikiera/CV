@@ -34,4 +34,12 @@ extension CollectionViewState {
         ]
         return .init(sections: sections)
     }
+
+    static let mock = Self.stub(
+        imageItems: [.url(Image.whitePixel.url)],
+        personalItems: [.fullname("Full Name"), .contact(type: "name", value: "value")],
+        aboutItems: [.text("introduction")],
+        careerItems: [.title("title"), .item(title: "title", subtitle: "subtitle", text: "description")],
+        moreItems: [.item(title: "title", content: "content")]
+    )
 }

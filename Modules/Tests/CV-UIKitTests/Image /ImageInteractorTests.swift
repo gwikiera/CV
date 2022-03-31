@@ -24,6 +24,10 @@ import TestHelpers
 class ImageInteractorTests: QuickSpec {
     override func spec() {
         describe("ImageInteractor when loading image") {
+            beforeSuite {
+                mainScheduler = .immediate
+            }
+
             context("started") {
                 it("presents loading") {
                     let presenter = ImagePresentationLogic.Spy()
@@ -58,7 +62,7 @@ class ImageInteractorTests: QuickSpec {
                     
                     tested.loadImage()
                     
-                    expect(presenter.presentImageSpy.wasInvoked(with: "filePath")).toEventually(beTrue())
+                    expect(presenter.presentImageSpy.wasInvoked(with: "filePath")) == true
                 }
             }
             
@@ -72,7 +76,7 @@ class ImageInteractorTests: QuickSpec {
                     
                     tested.loadImage()
                     
-                    expect(presenter.presentErrorSpy.wasInvoked).toEventually(beTrue())
+                    expect(presenter.presentErrorSpy.wasInvoked) == true
                     expect(presenter.presentErrorSpy.invokedParameters) === error
                 }
             }

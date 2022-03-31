@@ -44,7 +44,7 @@ final class ImageInteractor: ImageBusinessLogic {
                 presenter.presentLoading()
             })
             .first()
-            .receive(on: DispatchQueue.main)
+            .receive(on: mainScheduler)
             .sink { [presenter] completion in
                 switch completion {
                 case .finished:
