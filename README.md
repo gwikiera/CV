@@ -26,6 +26,7 @@
   * [Modularization](#modularization)
   * [Dependency injection](#dependency-injection)
   * [Testing](#testing)
+    + [Snapshot testing](#snapshot-testing)
   * [CI](#ci)
 - [License](#license)
 
@@ -86,6 +87,9 @@ The app dependencies are grouped inside the [AppEnvironment](./CV/AppDelegate/Ap
 ### Testing
 
 The app target contains only `CVUITest` target because all of the testable code was moved to the modules. Testable modules are unit tested, code coverage level is passed to the [codecov](https://app.codecov.io/gh/gwikiera/CV) to visualize it. Unit tests are written using third party modules like [Quick](https://github.com/Quick/Quick) and [Nimble](https://github.com/Quick/Nimble), and also internal [TestsHelpers](./Modules/Sources/TestHelpers) module. 
+
+#### Snapshot testing
+`CV-UIKit` target contains snapshot tests written using the [swift-snapshot-testing](https://github.com/pointfreeco/swift-snapshot-testing) framework. Tests can be found in the [SnapshotTests.swift](./Modules/Tests/CV-UIKitTests/SnapshotTesting/SnapshotTests.swift) file, reference snapshots are stored in the [SnapshotTests](./Modules/Tests/CV-UIKitTests/SnapshotTesting/__Snapshots__/SnapshotTests) directory.
 
 ### CI
 For each PR and the main branches the project is built and tested by two separate providers: [bitrise](https://app.bitrise.io/app/58d6b8fa19361986) and [travis-ci]. All unit tests for all modules are triggered, and the code coverage report is attached to each PR. 
