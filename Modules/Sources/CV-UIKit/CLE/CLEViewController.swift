@@ -45,6 +45,7 @@ final class CLEViewController<ContentViewState: Equatable>: UIViewController {
             .sink { [weak self] viewController in
                 self?.children.forEach { $0.detach() }
                 self?.embed(viewController: viewController)
+                self?.setNeedsStatusBarAppearanceUpdate()
             }
             .store(in: &cancellables)
     }
@@ -53,5 +54,9 @@ final class CLEViewController<ContentViewState: Equatable>: UIViewController {
         super.viewWillAppear(animated)
 
         viewModel.fetchData()
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        children.first?.preferredStatusBarStyle ?? .default
     }
 }
