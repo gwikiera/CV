@@ -20,6 +20,7 @@ import UIKitHelpers
 import Logger
 import Networking
 import Translations
+import Combine
 
 class CellProvider {
     typealias SectionCellProvider = (UICollectionView, IndexPath, CollectionViewState.Item) -> UICollectionViewCell?
@@ -72,6 +73,7 @@ private extension CellProvider {
                                               provider: imageProvider)
         cell.interactor = imageInteractor
         imagePresenter.view = cell
+        cell.imageScalePublisher = collectionView.bounceScalePublisher()
         return cell
     }
     
@@ -133,5 +135,18 @@ private extension CellProvider {
             cell.setHeader(title, text: content)
             return cell
         }
+    }
+}
+
+private extension UIScrollView {
+    func bounceScalePublisher() -> AnyPublisher<CGFloat, Never> {
+        Publishers.CombineLatest(
+            publisher(for: \.adjustedContentInset).map(\.top),
+            publisher(for: \.contentOffset).map(\.y)
+        )
+        .map(+)
+        .filter { $0 < 0 }
+        .map { $0 * -1 }
+        .eraseToAnyPublisher()
     }
 }
