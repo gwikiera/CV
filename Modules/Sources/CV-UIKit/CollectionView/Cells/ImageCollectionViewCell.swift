@@ -18,15 +18,33 @@
 import UIKit
 import UIKitHelpers
 import Networking
+import Combine
 
 class ImageCollectionViewCell: UICollectionViewCell {
     var interactor: ImageBusinessLogic?
+    var imageScalePublisher: AnyPublisher<CGFloat, Never>? {
+        didSet {
+            setupScaleObserver()
+        }
+    }
+    private var imageViewConstraints: [NSLayoutConstraint] = []
+    private var cancellable: Cancellable?
 
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.Image.background
-        contentView.embed(view: imageView)
-        imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: 1).isActive = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(imageView)
+        imageViewConstraints = [
+            imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            imageView.heightAnchor.constraint(equalTo: contentView.heightAnchor)
+        ]
+        NSLayoutConstraint.activate(imageViewConstraints)
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
+        ])
         return imageView
     }()
     
@@ -61,6 +79,12 @@ class ImageCollectionViewCell: UICollectionViewCell {
         
         interactor?.loadImage()
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        cancellable = nil
+    }
 }
 
 extension ImageCollectionViewCell: ImageViewLogic {
@@ -78,6 +102,22 @@ extension ImageCollectionViewCell: ImageViewLogic {
         activityIndicator.stopAnimating()
         imageView.image = errorImage
         imageView.contentMode = .center
+    }
+}
+
+private extension ImageCollectionViewCell {
+    func setupScaleObserver() {
+        guard let imageScalePublisher = imageScalePublisher else {
+            cancellable = nil
+            return
+        }
+
+        cancellable = imageScalePublisher
+            .sink(receiveValue: { [weak self] scale in
+                self?.imageViewConstraints.forEach { constraint in
+                    constraint.constant = scale
+                }
+            })
     }
 }
 
