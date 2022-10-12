@@ -5,7 +5,7 @@ import Networking
 import TCADependencyKeys
 import Data
 
-struct CV: ReducerProtocol {
+struct CV: ReducerProtocol { // swiftlint:disable:this type_name
     public enum State: Equatable {
         case content(String)
         case loading
