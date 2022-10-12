@@ -13,6 +13,7 @@
 		2D2F27E424C39354004C8D8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D2F27E224C39354004C8D8E /* LaunchScreen.storyboard */; };
 		2D2F27FA24C39354004C8D8E /* CVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F27F924C39354004C8D8E /* CVUITests.swift */; };
 		2DDFEAEB24C44D2D00E016BC /* Profile.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFEAEA24C44D2D00E016BC /* Profile.jpeg */; };
+		EB1CEFD528F6E7D8001AB756 /* CV_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9EE73528F6CE890014E3D3 /* CV_SwiftUIApp.swift */; };
 		EB5E877727EF7B000020A52C /* CV-UIKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877627EF7B000020A52C /* CV-UIKit */; };
 		EB5E877927EF7B080020A52C /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877827EF7B080020A52C /* Logger */; };
 		EB5E877B27EF7B260020A52C /* LoggerLive in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877A27EF7B260020A52C /* LoggerLive */; };
@@ -20,6 +21,10 @@
 		EB5E877F27EF7B2B0020A52C /* NetworkingLive in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877E27EF7B2B0020A52C /* NetworkingLive */; };
 		EB73C95127E65D4E00E55DE5 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB73C95027E65D4E00E55DE5 /* AppEnvironment.swift */; };
 		EB73C95527E662B600E55DE5 /* CV.json in Resources */ = {isa = PBXBuildFile; fileRef = EB73C95427E662B600E55DE5 /* CV.json */; };
+		EB9EE73D28F6CEFD0014E3D3 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D2F27E024C39354004C8D8E /* Icons.xcassets */; };
+		EB9EE73E28F6CF010014E3D3 /* Profile.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFEAEA24C44D2D00E016BC /* Profile.jpeg */; };
+		EB9EE73F28F6CF040014E3D3 /* CV.json in Resources */ = {isa = PBXBuildFile; fileRef = EB73C95427E662B600E55DE5 /* CV.json */; };
+		EB9EE74128F6CF2F0014E3D3 /* CV-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EB9EE74028F6CF2F0014E3D3 /* CV-SwiftUI */; };
 		EBECE7C227EF94B2005FA733 /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = EBECE7C127EF94B2005FA733 /* Common */; };
 		EBECE7C427EF94B2005FA733 /* Data in Frameworks */ = {isa = PBXBuildFile; productRef = EBECE7C327EF94B2005FA733 /* Data */; };
 		EBECE7C627EF94B2005FA733 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = EBECE7C527EF94B2005FA733 /* DesignSystem */; };
@@ -50,6 +55,9 @@
 		EB6F544327EA02FE00741821 /* Modules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Modules; sourceTree = "<group>"; };
 		EB73C95027E65D4E00E55DE5 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		EB73C95427E662B600E55DE5 /* CV.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = CV.json; path = Resources/CV.json; sourceTree = SOURCE_ROOT; };
+		EB9EE72228F6CE570014E3D3 /* CV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB9EE73528F6CE890014E3D3 /* CV_SwiftUIApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CV_SwiftUIApp.swift; sourceTree = "<group>"; };
+		EB9EE73728F6CE890014E3D3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +84,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EB9EE71F28F6CE570014E3D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB9EE74128F6CF2F0014E3D3 /* CV-SwiftUI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -85,6 +101,8 @@
 				EB6F544327EA02FE00741821 /* Modules */,
 				2D2F27D624C39352004C8D8E /* CV */,
 				2D2F27F824C39354004C8D8E /* CVUITests */,
+				EB9EE73128F6CE890014E3D3 /* CV-SwiftUI */,
+				2D2F280B24C3951C004C8D8E /* Resources */,
 				2D2F27D524C39352004C8D8E /* Products */,
 				EB432EDE27E9FBFC00DCE789 /* Frameworks */,
 			);
@@ -95,6 +113,7 @@
 			children = (
 				2D2F27D424C39352004C8D8E /* CV.app */,
 				2D2F27F524C39354004C8D8E /* CVUITests.xctest */,
+				EB9EE72228F6CE570014E3D3 /* CV.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,7 +123,6 @@
 			children = (
 				2D2F280724C39490004C8D8E /* AppDelegate */,
 				2D2F280924C394D0004C8D8E /* Storyboards */,
-				2D2F280B24C3951C004C8D8E /* Resources */,
 				2D2F280824C394A6004C8D8E /* Supporting Files */,
 			);
 			path = CV;
@@ -152,7 +170,8 @@
 				2DDFEAEA24C44D2D00E016BC /* Profile.jpeg */,
 				2D2F27E024C39354004C8D8E /* Icons.xcassets */,
 			);
-			path = Resources;
+			name = Resources;
+			path = CV/Resources;
 			sourceTree = "<group>";
 		};
 		EB432EDE27E9FBFC00DCE789 /* Frameworks */ = {
@@ -160,6 +179,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB9EE73128F6CE890014E3D3 /* CV-SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				EB9EE73528F6CE890014E3D3 /* CV_SwiftUIApp.swift */,
+				EB9EE73728F6CE890014E3D3 /* Info.plist */,
+			);
+			path = "CV-SwiftUI";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,13 +240,33 @@
 			productReference = 2D2F27F524C39354004C8D8E /* CVUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		EB9EE72128F6CE570014E3D3 /* CV-SwiftUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB9EE72F28F6CE580014E3D3 /* Build configuration list for PBXNativeTarget "CV-SwiftUI" */;
+			buildPhases = (
+				EB9EE71E28F6CE570014E3D3 /* Sources */,
+				EB9EE71F28F6CE570014E3D3 /* Frameworks */,
+				EB9EE72028F6CE570014E3D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "CV-SwiftUI";
+			packageProductDependencies = (
+				EB9EE74028F6CF2F0014E3D3 /* CV-SwiftUI */,
+			);
+			productName = "CV-SwiftUI";
+			productReference = EB9EE72228F6CE570014E3D3 /* CV.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		2D2F27CC24C39352004C8D8E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1150;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Grzegorz Wikiera";
 				TargetAttributes = {
@@ -228,6 +276,9 @@
 					2D2F27F424C39354004C8D8E = {
 						CreatedOnToolsVersion = 11.5;
 						TestTargetID = 2D2F27D324C39352004C8D8E;
+					};
+					EB9EE72128F6CE570014E3D3 = {
+						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
 			};
@@ -248,6 +299,7 @@
 			targets = (
 				2D2F27D324C39352004C8D8E /* CV */,
 				2D2F27F424C39354004C8D8E /* CVUITests */,
+				EB9EE72128F6CE570014E3D3 /* CV-SwiftUI */,
 			);
 		};
 /* End PBXProject section */
@@ -268,6 +320,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB9EE72028F6CE570014E3D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB9EE73F28F6CF040014E3D3 /* CV.json in Resources */,
+				EB9EE73D28F6CEFD0014E3D3 /* Icons.xcassets in Resources */,
+				EB9EE73E28F6CF010014E3D3 /* Profile.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +372,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D2F27FA24C39354004C8D8E /* CVUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB9EE71E28F6CE570014E3D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB1CEFD528F6E7D8001AB756 /* CV_SwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +600,64 @@
 			};
 			name = Release;
 		};
+		EB9EE72D28F6CE580014E3D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "CV-SwiftUI/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gwikiera.CV;
+				PRODUCT_NAME = CV;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB9EE72E28F6CE580014E3D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "CV-SwiftUI/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gwikiera.CV;
+				PRODUCT_NAME = CV;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -560,6 +688,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		EB9EE72F28F6CE580014E3D3 /* Build configuration list for PBXNativeTarget "CV-SwiftUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB9EE72D28F6CE580014E3D3 /* Debug */,
+				EB9EE72E28F6CE580014E3D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -582,6 +719,10 @@
 		EB5E877E27EF7B2B0020A52C /* NetworkingLive */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkingLive;
+		};
+		EB9EE74028F6CF2F0014E3D3 /* CV-SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "CV-SwiftUI";
 		};
 		EBECE7C127EF94B2005FA733 /* Common */ = {
 			isa = XCSwiftPackageProductDependency;
