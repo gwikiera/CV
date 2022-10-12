@@ -13,7 +13,7 @@
 		2D2F27E424C39354004C8D8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D2F27E224C39354004C8D8E /* LaunchScreen.storyboard */; };
 		2D2F27FA24C39354004C8D8E /* CVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F27F924C39354004C8D8E /* CVUITests.swift */; };
 		2DDFEAEB24C44D2D00E016BC /* Profile.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFEAEA24C44D2D00E016BC /* Profile.jpeg */; };
-		EB1CEFD528F6E7D8001AB756 /* CV_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9EE73528F6CE890014E3D3 /* CV_SwiftUIApp.swift */; };
+		EB1CEFD528F6E7D8001AB756 /* CVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9EE73528F6CE890014E3D3 /* CVApp.swift */; };
 		EB5E877727EF7B000020A52C /* CV-UIKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877627EF7B000020A52C /* CV-UIKit */; };
 		EB5E877927EF7B080020A52C /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877827EF7B080020A52C /* Logger */; };
 		EB5E877B27EF7B260020A52C /* LoggerLive in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877A27EF7B260020A52C /* LoggerLive */; };
@@ -56,7 +56,7 @@
 		EB73C95027E65D4E00E55DE5 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		EB73C95427E662B600E55DE5 /* CV.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = CV.json; path = Resources/CV.json; sourceTree = SOURCE_ROOT; };
 		EB9EE72228F6CE570014E3D3 /* CV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CV.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB9EE73528F6CE890014E3D3 /* CV_SwiftUIApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CV_SwiftUIApp.swift; sourceTree = "<group>"; };
+		EB9EE73528F6CE890014E3D3 /* CVApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVApp.swift; sourceTree = "<group>"; };
 		EB9EE73728F6CE890014E3D3 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -184,7 +184,7 @@
 		EB9EE73128F6CE890014E3D3 /* CV-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				EB9EE73528F6CE890014E3D3 /* CV_SwiftUIApp.swift */,
+				EB9EE73528F6CE890014E3D3 /* CVApp.swift */,
 				EB9EE73728F6CE890014E3D3 /* Info.plist */,
 			);
 			path = "CV-SwiftUI";
@@ -379,7 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB1CEFD528F6E7D8001AB756 /* CV_SwiftUIApp.swift in Sources */,
+				EB1CEFD528F6E7D8001AB756 /* CVApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

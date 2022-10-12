@@ -3,7 +3,7 @@ import CV_SwiftUI
 import Combine
 
 @main
-struct CV_SwiftUIApp: App {
+struct CVApp: App {
     var body: some Scene {
         WindowGroup {
             CVView()
