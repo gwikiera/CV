@@ -10,38 +10,39 @@ public struct CVView: View {
     }
 
     public var body: some View {
-        WithViewStore(self.store) { viewState in
-            Group {
-                switch viewState.state {
-                case .loading:
-                    ProgressView()
-                case .error:
-                    Text("Something went wrong :(")
-                case .content(let string):
-                    Text(string)
-                }
+        VStack {
+            CLEView(store: store.scope(state: \.imageCLE, action: CV.Action.image)) { image in
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
             }
-            .onAppear {
-                viewState.send(.fetchData)
+            CLEView(store: store.scope(state: \.modelCLE, action: CV.Action.model)) { model in
+                Text(model.fullname)
+                    .foregroundColor(.white)
             }
         }
     }
 }
 
-extension CVView {
-    init(state: CV.State) {
-        self.init(store: .init(initialState: state, reducer: CV()))
-    }
-
-    public init() {
-        self.init(state: .loading)
+public extension CVView {
+    init() {
+        self.init(store: .init(initialState: .init(imageCLE: .loading, modelCLE: .loading), reducer: CV()))
     }
 }
 
+#if DEBUG
 struct CLEView_Previews: PreviewProvider {
     static var previews: some View {
-        CVView(state: .loading)
-        CVView(state: .error)
-        CVView(state: .content("Hello world!"))
+        CVView(state: .init(imageCLE: .loading, modelCLE: .loading))
+            .previewDisplayName("Loading")
+        CVView(state: .init(imageCLE: .error, modelCLE: .error))
+            .previewDisplayName("Error")
     }
 }
+
+private extension CVView {
+    init(state: CV.State) {
+        self.init(store: .init(initialState: state, reducer: EmptyReducer()))
+    }
+}
+#endif
