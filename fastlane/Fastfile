@@ -1,15 +1,16 @@
 default_platform(:ios)
 
-xcversion(version: "~> 13")
+xcversion(version: "~> 14")
 
 platform :ios do
   desc "Perform unit tests"
   lane :test do
   run_tests(
-    scheme: "CV",
+    scheme: "UnitTests",
     device: "iPhone 13 Pro Max",
     code_coverage: true,
-    derived_data_path: "build"
+    derived_data_path: "build",
+    skip_build: true
   )
   end
 end
