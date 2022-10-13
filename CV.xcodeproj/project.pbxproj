@@ -200,11 +200,11 @@
 				2D2F27D024C39352004C8D8E /* Sources */,
 				2D2F27D124C39352004C8D8E /* Frameworks */,
 				2D2F27D224C39352004C8D8E /* Resources */,
-				2D4673A624C733CA007981D6 /* Swiftlint */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EBDF146828F84F270038EB37 /* PBXTargetDependency */,
 			);
 			name = CV;
 			packageProductDependencies = (
@@ -251,6 +251,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				EBDF146A28F84F330038EB37 /* PBXTargetDependency */,
 			);
 			name = "CV-SwiftUI";
 			packageProductDependencies = (
@@ -292,6 +293,7 @@
 			);
 			mainGroup = 2D2F27CB24C39352004C8D8E;
 			packageReferences = (
+				EBDF146628F84F190038EB37 /* XCRemoteSwiftPackageReference "SwiftLintPlugin" */,
 			);
 			productRefGroup = 2D2F27D524C39352004C8D8E /* Products */;
 			projectDirPath = "";
@@ -335,27 +337,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		2D4673A624C733CA007981D6 /* Swiftlint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = Swiftlint;
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		2D2F27D024C39352004C8D8E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -390,6 +371,14 @@
 			isa = PBXTargetDependency;
 			target = 2D2F27D324C39352004C8D8E /* CV */;
 			targetProxy = 2D2F27F624C39354004C8D8E /* PBXContainerItemProxy */;
+		};
+		EBDF146828F84F270038EB37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = EBDF146728F84F270038EB37 /* SwiftLint */;
+		};
+		EBDF146A28F84F330038EB37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = EBDF146928F84F330038EB37 /* SwiftLint */;
 		};
 /* End PBXTargetDependency section */
 
@@ -699,6 +688,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		EBDF146628F84F190038EB37 /* XCRemoteSwiftPackageReference "SwiftLintPlugin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lukepistrol/SwiftLintPlugin";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		EB5E877627EF7B000020A52C /* CV-UIKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -723,6 +723,16 @@
 		EB9EE74028F6CF2F0014E3D3 /* CV-SwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "CV-SwiftUI";
+		};
+		EBDF146728F84F270038EB37 /* SwiftLint */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBDF146628F84F190038EB37 /* XCRemoteSwiftPackageReference "SwiftLintPlugin" */;
+			productName = "plugin:SwiftLint";
+		};
+		EBDF146928F84F330038EB37 /* SwiftLint */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBDF146628F84F190038EB37 /* XCRemoteSwiftPackageReference "SwiftLintPlugin" */;
+			productName = "plugin:SwiftLint";
 		};
 		EBECE7C127EF94B2005FA733 /* Common */ = {
 			isa = XCSwiftPackageProductDependency;
