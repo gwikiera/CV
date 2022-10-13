@@ -11,7 +11,6 @@
 		2D2F27DA24C39352004C8D8E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F27D924C39352004C8D8E /* SceneDelegate.swift */; };
 		2D2F27E124C39354004C8D8E /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D2F27E024C39354004C8D8E /* Icons.xcassets */; };
 		2D2F27E424C39354004C8D8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D2F27E224C39354004C8D8E /* LaunchScreen.storyboard */; };
-		2D2F27FA24C39354004C8D8E /* CVUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2F27F924C39354004C8D8E /* CVUITests.swift */; };
 		2DDFEAEB24C44D2D00E016BC /* Profile.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2DDFEAEA24C44D2D00E016BC /* Profile.jpeg */; };
 		EB1CEFD528F6E7D8001AB756 /* CVApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9EE73528F6CE890014E3D3 /* CVApp.swift */; };
 		EB5E877727EF7B000020A52C /* CV-UIKit in Frameworks */ = {isa = PBXBuildFile; productRef = EB5E877627EF7B000020A52C /* CV-UIKit */; };
@@ -31,16 +30,6 @@
 		EBECE7C827EF94B2005FA733 /* UIKitHelpers in Frameworks */ = {isa = PBXBuildFile; productRef = EBECE7C727EF94B2005FA733 /* UIKitHelpers */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2D2F27F624C39354004C8D8E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2D2F27CC24C39352004C8D8E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2D2F27D324C39352004C8D8E;
-			remoteInfo = CV;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		2D2F27D424C39352004C8D8E /* CV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2F27D724C39352004C8D8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,9 +37,6 @@
 		2D2F27E024C39354004C8D8E /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		2D2F27E324C39354004C8D8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D2F27E524C39354004C8D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2D2F27F524C39354004C8D8E /* CVUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CVUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D2F27F924C39354004C8D8E /* CVUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVUITests.swift; sourceTree = "<group>"; };
-		2D2F27FB24C39354004C8D8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DDFEAEA24C44D2D00E016BC /* Profile.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Profile.jpeg; path = ../../Resources/Profile.jpeg; sourceTree = "<group>"; };
 		EB6F544327EA02FE00741821 /* Modules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Modules; sourceTree = "<group>"; };
 		EB73C95027E65D4E00E55DE5 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
@@ -77,13 +63,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2D2F27F224C39354004C8D8E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EB9EE71F28F6CE570014E3D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -100,7 +79,6 @@
 			children = (
 				EB6F544327EA02FE00741821 /* Modules */,
 				2D2F27D624C39352004C8D8E /* CV */,
-				2D2F27F824C39354004C8D8E /* CVUITests */,
 				EB9EE73128F6CE890014E3D3 /* CV-SwiftUI */,
 				2D2F280B24C3951C004C8D8E /* Resources */,
 				2D2F27D524C39352004C8D8E /* Products */,
@@ -112,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				2D2F27D424C39352004C8D8E /* CV.app */,
-				2D2F27F524C39354004C8D8E /* CVUITests.xctest */,
 				EB9EE72228F6CE570014E3D3 /* CV.app */,
 			);
 			name = Products;
@@ -126,15 +103,6 @@
 				2D2F280824C394A6004C8D8E /* Supporting Files */,
 			);
 			path = CV;
-			sourceTree = "<group>";
-		};
-		2D2F27F824C39354004C8D8E /* CVUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2D2F27F924C39354004C8D8E /* CVUITests.swift */,
-				2D2F27FB24C39354004C8D8E /* Info.plist */,
-			);
-			path = CVUITests;
 			sourceTree = "<group>";
 		};
 		2D2F280724C39490004C8D8E /* AppDelegate */ = {
@@ -204,7 +172,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				EBDF146828F84F270038EB37 /* PBXTargetDependency */,
+				EB444BE128F8556100F3FB0D /* PBXTargetDependency */,
 			);
 			name = CV;
 			packageProductDependencies = (
@@ -222,24 +190,6 @@
 			productReference = 2D2F27D424C39352004C8D8E /* CV.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D2F27F424C39354004C8D8E /* CVUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2D2F280424C39354004C8D8E /* Build configuration list for PBXNativeTarget "CVUITests" */;
-			buildPhases = (
-				2D2F27F124C39354004C8D8E /* Sources */,
-				2D2F27F224C39354004C8D8E /* Frameworks */,
-				2D2F27F324C39354004C8D8E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2D2F27F724C39354004C8D8E /* PBXTargetDependency */,
-			);
-			name = CVUITests;
-			productName = CVUITests;
-			productReference = 2D2F27F524C39354004C8D8E /* CVUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		EB9EE72128F6CE570014E3D3 /* CV-SwiftUI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB9EE72F28F6CE580014E3D3 /* Build configuration list for PBXNativeTarget "CV-SwiftUI" */;
@@ -251,7 +201,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				EBDF146A28F84F330038EB37 /* PBXTargetDependency */,
+				EB444BE328F8556600F3FB0D /* PBXTargetDependency */,
 			);
 			name = "CV-SwiftUI";
 			packageProductDependencies = (
@@ -273,10 +223,6 @@
 				TargetAttributes = {
 					2D2F27D324C39352004C8D8E = {
 						CreatedOnToolsVersion = 11.5;
-					};
-					2D2F27F424C39354004C8D8E = {
-						CreatedOnToolsVersion = 11.5;
-						TestTargetID = 2D2F27D324C39352004C8D8E;
 					};
 					EB9EE72128F6CE570014E3D3 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -300,7 +246,6 @@
 			projectRoot = "";
 			targets = (
 				2D2F27D324C39352004C8D8E /* CV */,
-				2D2F27F424C39354004C8D8E /* CVUITests */,
 				EB9EE72128F6CE570014E3D3 /* CV-SwiftUI */,
 			);
 		};
@@ -315,13 +260,6 @@
 				2D2F27E424C39354004C8D8E /* LaunchScreen.storyboard in Resources */,
 				2DDFEAEB24C44D2D00E016BC /* Profile.jpeg in Resources */,
 				2D2F27E124C39354004C8D8E /* Icons.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D2F27F324C39354004C8D8E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,14 +286,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2D2F27F124C39354004C8D8E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2D2F27FA24C39354004C8D8E /* CVUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EB9EE71E28F6CE570014E3D3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -367,18 +297,13 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2D2F27F724C39354004C8D8E /* PBXTargetDependency */ = {
+		EB444BE128F8556100F3FB0D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D2F27D324C39352004C8D8E /* CV */;
-			targetProxy = 2D2F27F624C39354004C8D8E /* PBXContainerItemProxy */;
+			productRef = EB444BE028F8556100F3FB0D /* SwiftLint */;
 		};
-		EBDF146828F84F270038EB37 /* PBXTargetDependency */ = {
+		EB444BE328F8556600F3FB0D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = EBDF146728F84F270038EB37 /* SwiftLint */;
-		};
-		EBDF146A28F84F330038EB37 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = EBDF146928F84F330038EB37 /* SwiftLint */;
+			productRef = EB444BE228F8556600F3FB0D /* SwiftLint */;
 		};
 /* End PBXTargetDependency section */
 
@@ -549,46 +474,6 @@
 			};
 			name = Release;
 		};
-		2D2F280524C39354004C8D8E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8V64EQR36T;
-				INFOPLIST_FILE = CVUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gwikiera.CVUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CV;
-			};
-			name = Debug;
-		};
-		2D2F280624C39354004C8D8E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8V64EQR36T;
-				INFOPLIST_FILE = CVUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.gwikiera.CVUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CV;
-			};
-			name = Release;
-		};
 		EB9EE72D28F6CE580014E3D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -668,15 +553,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D2F280424C39354004C8D8E /* Build configuration list for PBXNativeTarget "CVUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2D2F280524C39354004C8D8E /* Debug */,
-				2D2F280624C39354004C8D8E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		EB9EE72F28F6CE580014E3D3 /* Build configuration list for PBXNativeTarget "CV-SwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -700,6 +576,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EB444BE028F8556100F3FB0D /* SwiftLint */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBDF146628F84F190038EB37 /* XCRemoteSwiftPackageReference "SwiftLintPlugin" */;
+			productName = "plugin:SwiftLint";
+		};
+		EB444BE228F8556600F3FB0D /* SwiftLint */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBDF146628F84F190038EB37 /* XCRemoteSwiftPackageReference "SwiftLintPlugin" */;
+			productName = "plugin:SwiftLint";
+		};
 		EB5E877627EF7B000020A52C /* CV-UIKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "CV-UIKit";
@@ -723,16 +609,6 @@
 		EB9EE74028F6CF2F0014E3D3 /* CV-SwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = "CV-SwiftUI";
-		};
-		EBDF146728F84F270038EB37 /* SwiftLint */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EBDF146628F84F190038EB37 /* XCRemoteSwiftPackageReference "SwiftLintPlugin" */;
-			productName = "plugin:SwiftLint";
-		};
-		EBDF146928F84F330038EB37 /* SwiftLint */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EBDF146628F84F190038EB37 /* XCRemoteSwiftPackageReference "SwiftLintPlugin" */;
-			productName = "plugin:SwiftLint";
 		};
 		EBECE7C127EF94B2005FA733 /* Common */ = {
 			isa = XCSwiftPackageProductDependency;
