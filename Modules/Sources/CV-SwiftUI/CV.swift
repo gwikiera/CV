@@ -4,18 +4,24 @@ import Combine
 import Networking
 import TCADependencyKeys
 import Data
+import UIKit
 
 struct CV: ReducerProtocol { // swiftlint:disable:this type_name
-    public enum State: Equatable {
-        case content(String)
-        case loading
-        case error
+    typealias ImageCLE = CLE<UIImage>
+    typealias ModelCLE = CLE<Model>
+
+    public struct State: Equatable {
+        var imageCLE: ImageCLE.State
+        var modelCLE: ModelCLE.State
     }
 
     public enum Action {
-        case fetchData
-        case fetchDataFailed
-        case fetchModelFinished(String)
+        case image(ImageCLE.Action)
+        case model(ModelCLE.Action)
+    }
+
+    enum Error: Swift.Error {
+        case missingImage
     }
 
     @Dependency(\.apiClient) var apiClient
@@ -23,22 +29,26 @@ struct CV: ReducerProtocol { // swiftlint:disable:this type_name
     @Dependency(\.logger) var logger
 
     public init() {}
-    
-    public func reduce(into state: inout State, action: Action) -> Effect<Action, Never> {
-        switch action {
-        case .fetchData:
-            state = .loading
-            return apiClient.request(endpoint: .data, as: Model.self)
-                .map(\.fullname)
-                .map(Action.fetchModelFinished)
-                .replaceError(with: .fetchDataFailed)
-                .eraseToEffect()
-        case .fetchDataFailed:
-            state = .error
-            return .none
-        case .fetchModelFinished(let model):
-            state = .content(model)
-            return .none
+
+    var body: some ReducerProtocol<State, Action> {
+        Scope(state: \.imageCLE, action: /Action.image) {
+            ImageCLE(contentProvider: self.profileImage)
         }
+
+        Scope(state: \.modelCLE, action: /Action.model) {
+            ModelCLE(contentProvider: self.model)
+        }
+    }
+
+    func profileImage() async throws -> UIImage {
+        let url = apiClient.url(for: .image)
+        guard let image = try await imageProvider.imagePublisher(for: url).async() else {
+            throw Error.missingImage
+        }
+        return image
+    }
+
+    func model() async throws -> Model {
+        return try await apiClient.request(endpoint: .data, as: Model.self).async()
     }
 }
