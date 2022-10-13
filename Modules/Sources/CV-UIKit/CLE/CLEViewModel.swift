@@ -1,5 +1,6 @@
 import Combine
 import CombineSchedulers
+import Foundation
 import Networking
 
 final class CLEViewModel<ContentViewState: Equatable> {

@@ -23,6 +23,9 @@ let package = Package(
             name: "NetworkingLive",
             targets: ["NetworkingLive"]),
         .library(
+            name: "TCADependencyKeys",
+            targets: ["TCADependencyKeys"]),
+        .library(
             name: "TestHelpers",
             targets: ["TestHelpers"]),
         .library(
@@ -41,6 +44,9 @@ let package = Package(
             name: "CV-UIKit",
             targets: ["CV-UIKit"]),
         .library(
+            name: "CV-SwiftUI",
+            targets: ["CV-SwiftUI"]),
+        .library(
             name: "Translations",
             targets: ["Translations"])
     ],
@@ -49,7 +55,8 @@ let package = Package(
         .package(url: "https://github.com/Quick/Quick.git", from: "4.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.4.0"),
         .package(url: "https://github.com/pointfreeco/combine-schedulers", from: "0.5.0"),
-        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.9.0")
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.9.0"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.41.0")
     ],
     targets: [
         .target(name: "Common"),
@@ -71,6 +78,15 @@ let package = Package(
             name: "NetworkingLive",
             dependencies: [
                 "Networking"
+            ]),
+        .target(
+            name: "TCADependencyKeys",
+            dependencies: [
+                "Networking",
+                "NetworkingLive",
+                "Logger",
+                "LoggerLive",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture")
             ]),
         .testTarget(
             name: "NetworkingLiveTests",
@@ -148,6 +164,15 @@ let package = Package(
             resources: [
                 .copy("Resources/empty.json"),
                 .copy("Resources/whitePixel.png")
+            ]),
+        .target(
+            name: "CV-SwiftUI",
+            dependencies: [
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+                "Networking",
+                "NetworkingLive",
+                "TCADependencyKeys",
+                "Data"
             ]),
         .target(name: "Translations")
     ]
