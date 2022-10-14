@@ -76,6 +76,20 @@
                ReferencedContainer = "container:Modules">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CV-SwiftUITests"
+               BuildableName = "CV-SwiftUITests"
+               BlueprintName = "CV-SwiftUITests"
+               ReferencedContainer = "container:Modules">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -134,6 +148,16 @@
                ReferencedContainer = "container:Modules">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CV-SwiftUITests"
+               BuildableName = "CV-SwiftUITests"
+               BlueprintName = "CV-SwiftUITests"
+               ReferencedContainer = "container:Modules">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -146,15 +170,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D2F27D324C39352004C8D8E"
-            BuildableName = "CV.app"
-            BlueprintName = "CV"
-            ReferencedContainer = "container:CV.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

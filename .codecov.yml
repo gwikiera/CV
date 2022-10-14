@@ -8,8 +8,9 @@ coverage:
 
   ignore:
     - Modules/.build/*
-    - CVUITests/.*
     - Modules/Tests/*
+    - CV/*
+    - CV-SwiftUI/*
 
   status:
     project:

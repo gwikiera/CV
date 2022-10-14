@@ -174,6 +174,14 @@ let package = Package(
                 "TCADependencyKeys",
                 "Data"
             ]),
+        .testTarget(
+            name: "CV-SwiftUITests",
+            dependencies: [
+                "CV-SwiftUI",
+                "TestHelpers",
+                .product(name: "Nimble", package: "Nimble"),
+                .product(name: "Quick", package: "Quick")
+            ]),
         .target(name: "Translations")
     ]
 )

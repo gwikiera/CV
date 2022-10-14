@@ -54,7 +54,7 @@ public extension APIClient {
         downloadTask: { _ in .noop }
     )
 
-    static let failing = Self(
+    static let unimplemented = Self(
         baseURL: { fatalError() },
         dataTask: { _ in fatalError() },
         downloadTask: { _ in fatalError() }

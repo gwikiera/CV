@@ -15,7 +15,7 @@ struct CV: ReducerProtocol { // swiftlint:disable:this type_name
         var modelCLE: ModelCLE.State
     }
 
-    public enum Action {
+    public enum Action: Equatable {
         case image(ImageCLE.Action)
         case model(ModelCLE.Action)
     }

@@ -9,7 +9,7 @@ struct CLE<Content: Equatable>: ReducerProtocol { // swiftlint:disable:this type
         case error
     }
 
-    public enum Action {
+    public enum Action: Equatable {
         case fetchContent
         case fetchContentResult(TaskResult<Content>)
     }

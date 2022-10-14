@@ -17,10 +17,14 @@
 
 import Foundation
 
-public class ErrorStub: Error, LocalizedError {
+public class ErrorStub: Error, Equatable, LocalizedError {
     public init() {}
     public var errorDescription: String? {
         "errorDescription"
+    }
+
+    public static func == (lhs: ErrorStub, rhs: ErrorStub) -> Bool {
+        return true
     }
 }
 
