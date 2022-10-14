@@ -183,6 +183,10 @@ let package = Package(
                 .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ],
             exclude: [
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testCVView_error.dark.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testCVView_error.light.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testCVView_loading.dark.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testCVView_loading.light.png",
                 "SnapshotTesting/__Snapshots__/SnapshotTests/testErrorView.dark.png",
                 "SnapshotTesting/__Snapshots__/SnapshotTests/testErrorView.light.png"
             ]),
