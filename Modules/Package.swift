@@ -178,9 +178,7 @@ let package = Package(
             name: "CV-SwiftUITests",
             dependencies: [
                 "CV-SwiftUI",
-                "TestHelpers",
-                .product(name: "Nimble", package: "Nimble"),
-                .product(name: "Quick", package: "Quick")
+                "TestHelpers"
             ]),
         .target(name: "Translations")
     ]

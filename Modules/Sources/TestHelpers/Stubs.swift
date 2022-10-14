@@ -24,7 +24,7 @@ public class ErrorStub: Error, Equatable, LocalizedError {
     }
 
     public static func == (lhs: ErrorStub, rhs: ErrorStub) -> Bool {
-        return true
+        return lhs === rhs
     }
 }
 
