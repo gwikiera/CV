@@ -23,7 +23,10 @@ public struct CLEView<Content: Equatable, ContentView: View>: View {
                 case .loading:
                     ProgressView()
                 case .error:
-                    Text("Something went wrong :(")
+                    ErrorView(store: store.scope(
+                        state: { _ in return .init() },
+                        action: { _ in return .fetchContent }
+                    ))
                 }
             }
             .onAppear {

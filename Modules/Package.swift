@@ -7,7 +7,7 @@ let package = Package(
     name: "Modules",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v14)
+        .iOS(.v15)
     ],
     products: [
         .library(
@@ -172,13 +172,19 @@ let package = Package(
                 "Networking",
                 "NetworkingLive",
                 "TCADependencyKeys",
+                "Translations",
                 "Data"
             ]),
         .testTarget(
             name: "CV-SwiftUITests",
             dependencies: [
                 "CV-SwiftUI",
-                "TestHelpers"
+                "TestHelpers",
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+            ],
+            exclude: [
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testErrorView.dark.png",
+                "SnapshotTesting/__Snapshots__/SnapshotTests/testErrorView.light.png"
             ]),
         .target(name: "Translations")
     ]
