@@ -22,7 +22,7 @@ class SnapshotTests: XCTestCase {
 
         let sut = viewControllerFactory.loadingViewController()
 
-        assertSnapshots(matching: sut, as: .testStrategies)
+        assertSnapshots(matching: sut, as: .testStrategies())
     }
 
     func testErrorViewController() {
@@ -30,7 +30,7 @@ class SnapshotTests: XCTestCase {
 
         let sut = viewControllerFactory.errorViewController(refreshAction: {})
 
-        assertSnapshots(matching: sut, as: .testStrategies)
+        assertSnapshots(matching: sut, as: .testStrategies(precision: 0.999))
     }
 
     func testCollectionViewController_imageLoading() {
@@ -41,7 +41,7 @@ class SnapshotTests: XCTestCase {
         var imageProvider = ImageProvider.noop
         imageProvider.imagePathPublisher = stubReturn(with: .stubFailure(errorStub))
 
-        testCollectionViewController(imageProvider: imageProvider)
+        testCollectionViewController(precision: 0.999, imageProvider: imageProvider)
     }
 
     func testCollectionViewController_imageLoadingSucceeded() {
@@ -53,6 +53,7 @@ class SnapshotTests: XCTestCase {
 
     // MARK: -
     func testCollectionViewController(
+        precision: Float = 1,
         imageProvider: ImageProvider = .noop,
         file: StaticString = #file,
         testName: String = #function,
@@ -63,7 +64,7 @@ class SnapshotTests: XCTestCase {
 
         assertSnapshots(
             matching: sut,
-            as: .testStrategies,
+            as: .testStrategies(precision: precision),
             file: file,
             testName: testName,
             line: line
@@ -72,8 +73,14 @@ class SnapshotTests: XCTestCase {
 }
 
 private extension Dictionary where Key == String, Value == Snapshotting<UIViewController, UIImage> {
-    static let testStrategies: Self = [
-        "light": .image(on: .iPhoneXsMax, traits: .init(userInterfaceStyle: .light)),
-        "dark": .image(on: .iPhoneXsMax, traits: .init(userInterfaceStyle: .dark))
-    ]
+    static func testStrategies(precision: Float = 1) -> Self {
+        [
+            "light": .image(
+                on: .iPhoneXsMax,
+                precision: precision,
+                traits: .init(userInterfaceStyle: .light)
+            ),
+            "dark": .image(on: .iPhoneXsMax, precision: 0.99, traits: .init(userInterfaceStyle: .dark))
+        ]
+    }
 }

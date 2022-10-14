@@ -17,14 +17,22 @@ class SnapshotTests: XCTestCase {
     func testErrorView() {
         let errorView = ErrorView_Previews.previews
 
-        assertSnapshots(matching: errorView, as: testStrategies())
+        assertSnapshots(matching: errorView, as: strategies(precision: 0.999))
     }
 
     // MARK: - Helpers
-    private func testStrategies<V>() -> [String: Snapshotting<V, UIImage>] where V: View {
+    private func strategies<V>(precision: Float = 1) -> [String: Snapshotting<V, UIImage>] where V: View {
         return [
-            "light": .image(layout: .device(config: .iPhoneXsMax), traits: .init(userInterfaceStyle: .light)),
-            "dark": .image(layout: .device(config: .iPhoneXsMax), traits: .init(userInterfaceStyle: .dark))
+            "light": .image(
+                precision: precision,
+                layout: .device(config: .iPhoneXsMax),
+                traits: .init(userInterfaceStyle: .light)
+            ),
+            "dark": .image(
+                precision: precision,
+                layout: .device(config: .iPhoneXsMax),
+                traits: .init(userInterfaceStyle: .dark)
+            )
         ]
     }
 }
