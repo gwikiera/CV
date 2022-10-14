@@ -15,12 +15,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-public func unimplemented<A, T>() -> (A) -> T {
-    return { _ in
-        fatalError()
-    }
-}
-
 public func noop<T>() -> ((T) -> Void) {
     return { _ in }
 }

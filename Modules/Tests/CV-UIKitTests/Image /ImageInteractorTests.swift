@@ -68,7 +68,7 @@ class ImageInteractorTests: QuickSpec {
             
             context("failed") {
                 it("presents error") {
-                    let error = ErrorStub()
+                    let error = errorStub
                     let presenter = ImagePresentationLogic.Spy()
                     var imageProvider = ImageProvider.noop
                     imageProvider.imagePathPublisher = stubReturn(with: .stubFailure(error))

@@ -17,20 +17,29 @@
 
 import Foundation
 import Combine
-import TestHelpers
 @testable import Networking
 
-extension APIClient {
+public extension APIClient.Endpoint {
+    static let stub = Self(urlBuilder: stubReturn(with: .stub))
+}
+
+public extension APIClient {
+    static func client(
+        baseURL: @escaping () -> URL = stubReturn(with: .stub),
+        dataTask: @escaping (URL) -> AnyPublisher<Data, Error> = { _ in fatalError() },
+        downloadTask: @escaping (URL) -> AnyPublisher<URL, Error> = { _ in fatalError() }
+    ) -> APIClient {
+        self.init(
+            baseURL: baseURL,
+            dataTask: dataTask,
+            downloadTask: downloadTask
+        )
+    }
+
     static let failing = Self(
         baseURL: stubReturn(with: .stub),
-        dataTask: stubReturn(with: .stubFailure(ErrorStub())),
-        downloadTask: stubReturn(with: .stubFailure(ErrorStub()))
-    )
-
-    static let noop = Self(
-        baseURL: stubReturn(with: .stub),
-        dataTask: stubReturn(with: .noop()),
-        downloadTask: stubReturn(with: .noop())
+        dataTask: stubReturn(with: .stubFailure(errorStub)),
+        downloadTask: stubReturn(with: .stubFailure(errorStub))
     )
 
     mutating func overrideDataTask(

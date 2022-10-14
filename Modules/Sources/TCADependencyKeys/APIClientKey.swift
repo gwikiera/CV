@@ -4,6 +4,8 @@ import ComposableArchitecture
 
 private enum APIClientKey: DependencyKey {
     static let liveValue = APIClient.live
+    static let testValue = APIClient.unimplemented
+    static let previewValue = APIClient.mock
 }
 
 public extension DependencyValues {

@@ -39,7 +39,7 @@ class SnapshotTests: XCTestCase {
 
     func testCollectionViewController_imageLoadingFailed() {
         var imageProvider = ImageProvider.noop
-        imageProvider.imagePathPublisher = stubReturn(with: .stubFailure(ErrorStub()))
+        imageProvider.imagePathPublisher = stubReturn(with: .stubFailure(errorStub))
 
         testCollectionViewController(imageProvider: imageProvider)
     }

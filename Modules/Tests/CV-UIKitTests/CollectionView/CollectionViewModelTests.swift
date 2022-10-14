@@ -27,7 +27,7 @@ import XCTest
 class CollectionViewModelTests: XCTestCase {
     var sut: CLEViewModel<CollectionViewState>!
     var apiClient: APIClient!
-    let imageURL = URL.stub.appendingPathComponent("Profile.jpeg")
+    let imageURL: URL = "/Profile.jpeg"
 
     func testViewStatePublisher_InitialState() {
         testViewStatePublisher(

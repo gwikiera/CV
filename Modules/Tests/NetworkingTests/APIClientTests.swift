@@ -45,14 +45,14 @@ class APIClientTests: XCTestCase {
     func testDataTaskPublisher_Failing() async throws {
         // Given
         let sut = APIClient.client(
-            dataTask: stubReturn(with: .stubFailure(ErrorStub()))
+            dataTask: stubReturn(with: .stubFailure(errorStub))
         )
 
         // When
         let firstResult = await sut.dataTaskPublisher(APIClient.Endpoint.stub).firstResult()
 
         // Then
-        expect(try firstResult.get()).to(throwError(ErrorStub()))
+        expect(try firstResult.get()).to(throwError(errorStub))
     }
 
     // MARK: - downloadTaskPublisher
@@ -78,14 +78,14 @@ class APIClientTests: XCTestCase {
     func testDownloadTaskPublisher_Failing() async throws {
         // Given
         let sut = APIClient.client(
-            downloadTask: stubReturn(with: .stubFailure(ErrorStub()))
+            downloadTask: stubReturn(with: .stubFailure(errorStub))
         )
 
         // When
         let firstResult = await sut.downloadTaskPublisher(APIClient.Endpoint.stub).firstResult()
 
         // Then
-        expect(try firstResult.get()).to(throwError(ErrorStub()))
+        expect(try firstResult.get()).to(throwError(errorStub))
     }
 
     // MARK: - request
