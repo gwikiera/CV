@@ -14,6 +14,18 @@ class SnapshotTests: XCTestCase {
 //        isRecording = true
     }
 
+    func testCVView_loading() {
+        let loadingView = CVView_Previews.loading
+
+        assertSnapshots(matching: loadingView, as: strategies())
+    }
+
+    func testCVView_error() {
+        let errorView = CVView_Previews.error
+
+        assertSnapshots(matching: errorView, as: strategies(precision: 0.999))
+    }
+
     func testErrorView() {
         let errorView = ErrorView_Previews.previews
 
