@@ -10,7 +10,7 @@ import ComposableArchitecture
 class CLETests: XCTestCase {
     typealias CLEString = CLE<String>
     static let value = ""
-    static let error = ErrorStub()
+    static let error = errorStub
 
     func testSuccess() async {
         let store = TestStore(

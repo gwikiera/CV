@@ -47,7 +47,7 @@ class ImagePresenterTests: QuickSpec {
             
             context("presents error") {
                 it("calls the view to display its localized message") {
-                    let error = ErrorStub.init()
+                    let error = errorStub
                     
                     tested.presentError(error)
                     

@@ -60,7 +60,7 @@ class CLEViewControllerTests: XCTestCase {
     func testError() {
         // Given
         viewModel = CLEViewModel<String>(
-            contentViewStatePublisher: .stubFailure(ErrorStub()),
+            contentViewStatePublisher: .stubFailure(errorStub),
             scheduler: .immediate
         )
 

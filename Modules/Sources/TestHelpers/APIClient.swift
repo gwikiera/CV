@@ -38,8 +38,8 @@ public extension APIClient {
 
     static let failing = Self(
         baseURL: stubReturn(with: .stub),
-        dataTask: stubReturn(with: .stubFailure(ErrorStub())),
-        downloadTask: stubReturn(with: .stubFailure(ErrorStub()))
+        dataTask: stubReturn(with: .stubFailure(errorStub)),
+        downloadTask: stubReturn(with: .stubFailure(errorStub))
     )
 
     mutating func overrideDataTask(

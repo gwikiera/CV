@@ -18,7 +18,7 @@
 import Foundation
 
 public class ErrorStub: Error, Equatable, LocalizedError {
-    public init() {}
+    fileprivate init() {}
     public var errorDescription: String? {
         "errorDescription"
     }
@@ -27,6 +27,8 @@ public class ErrorStub: Error, Equatable, LocalizedError {
         return lhs === rhs
     }
 }
+
+public let errorStub = ErrorStub()
 
 public extension URL {
     static let stub = URL(string: "scheme://host")!

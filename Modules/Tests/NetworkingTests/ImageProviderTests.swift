@@ -49,10 +49,10 @@ class ImageProviderTests: XCTestCase {
         var apiClient = APIClient.failing
         apiClient.downloadTask = { url in
             expect(url) == self.fileURL
-            return .stubFailure(ErrorStub())
+            return .stubFailure(errorStub)
         }
         var fileStorage = FileStorage.failing
-        fileStorage.getStoredFilePath = stubReturn(with: .stubFailure(ErrorStub()))
+        fileStorage.getStoredFilePath = stubReturn(with: .stubFailure(errorStub))
         let sut = ImageProvider(
             apiClient: apiClient,
             fileStorage: fileStorage
@@ -62,7 +62,7 @@ class ImageProviderTests: XCTestCase {
         let observer = sut.imagePathPublisher(for: fileURL).testObserver()
 
         // Then
-        observer.assertError(ErrorStub())
+        observer.assertError(errorStub)
     }
 
     func testImagePathPublisher_WhenFileNotCashed_StoringFails() {
@@ -70,11 +70,11 @@ class ImageProviderTests: XCTestCase {
         var apiClient = APIClient.failing
         apiClient.downloadTask = stubReturn(with: .stubOutput(.stub))
         var fileStorage = FileStorage.failing
-        fileStorage.getStoredFilePath = stubReturn(with: .stubFailure(ErrorStub()))
+        fileStorage.getStoredFilePath = stubReturn(with: .stubFailure(errorStub))
         fileStorage.storeFile = { fileName, url in
             expect(fileName) == "image.png"
             expect(url) == .stub
-            return .stubFailure(ErrorStub())
+            return .stubFailure(errorStub)
         }
 
         let sut = ImageProvider(
@@ -86,7 +86,7 @@ class ImageProviderTests: XCTestCase {
         let observer = sut.imagePathPublisher(for: fileURL).testObserver()
 
         // Then
-        observer.assertError(ErrorStub())
+        observer.assertError(errorStub)
     }
 
     func testImagePathPublisher_NewFile() {
@@ -94,7 +94,7 @@ class ImageProviderTests: XCTestCase {
         var apiClient = APIClient.failing
         apiClient.downloadTask = stubReturn(with: .stubOutput(.stub))
         var fileStorage = FileStorage.failing
-        fileStorage.getStoredFilePath = stubReturn(with: .stubFailure(ErrorStub()))
+        fileStorage.getStoredFilePath = stubReturn(with: .stubFailure(errorStub))
         fileStorage.storeFile = { _, _ in .stubOutput(self.filePath) }
         let sut = ImageProvider(
             apiClient: apiClient,
